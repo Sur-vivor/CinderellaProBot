@@ -50,7 +50,7 @@
          "value": "802002142"
       },
       "GBAN_LOGS": {
-         "description": "Gban log channel, include the hyphen too: ex: -123456"
+         "description": "Gban log channel, include the hyphen too: ex: -123456",
          "value": "-123"
       },
       "CASH_API_KEY": {
