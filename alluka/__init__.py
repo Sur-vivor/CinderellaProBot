@@ -129,7 +129,7 @@ else:
     PORT = Config.PORT
     CERT_PATH = Config.CERT_PATH
 
-    DB_URI = Config.SQLALCHEMY_DATABASE_URI
+    DB_URI = Config.DB_URI
     DONATION_LINK = Config.DONATION_LINK
     LOAD = Config.LOAD
     NO_LOAD = Config.NO_LOAD
