@@ -1,0 +1,196 @@
+{
+   "addons": [
+      {
+         "options": {
+            "version": "9.5"
+         },
+         "plan": "heroku-postgresql"
+      }
+   ],
+   "description": "Modular Telegram bot for managing your groups with a few extras!",
+   "env": {
+      "ALLOW_EXCL": {
+         "description": "Set this to True if you want ! to be a command prefix along with /",
+         "value": "True"
+      },
+      "BAN_STICKER": {
+         "description": "ID of the sticker you want to use when banning people.",
+         "required": false,
+         "value": "CAACAgUAAxkBAAIHsl5nbqXdDTmpG2HFDNhnwvE5kFbWAAI9AQAC3pTNLzeTCUmnhTneGAQ"
+      },
+      "DEL_CMDS": {
+         "description": "Set this to True if you want to delete command messages from users who don't have the perms to run that command.",
+         "value": "True"
+      },
+      "DONATION_LINK": {
+         "description": "Optional: link where you would like to receive donations.",
+         "required": false,
+         "value": "https://www.paypal.me/PaulSonOfLars"
+      },
+      "ENV": {
+         "description": "Setting this to ANYTHING will enable environment variables.",
+         "value": "ANYTHING"
+      },
+      "SQLALCHEMY_DATABASE_URI": {
+         "description": "Your postgres sql db, empty this field if you dont have one.",
+         "required": false,
+         "value": "sqldbtype://username:pw@hostname:port/db_name"
+      },      
+      "OWNER_ID": {
+         "description": "Your user ID as an integer.",
+         "value": "802002142"
+      },
+      "OWNER_USERNAME": {
+         "description": "Your username",
+         "value": "meanii"
+      },
+      "DEV_USERS": {
+         "description": "ID of users who are Dev (can use /py etc.)",
+         "required": false,
+         "value": "802002142"
+      },
+      "GBAN_LOGS": {
+         "description": "Gban log channel, include the hyphen too: ex: -123456",
+         "value": "-123"
+      },
+      "CASH_API_KEY": {
+         "description": "Required for currency converter",
+         "value": "-xyz"
+      },
+      "TIME_API_KEY": {
+         "description": "Required for timezone information",
+         "value": "-xyz"
+      },
+       "LASTFM_API_KEY": {
+         "description": "Required for lastfm plugin",
+         "value": "-xyz"
+      },
+      
+      "PORT": {
+         "description": "Port to use for your webhooks.",
+         "required": false,
+         "value": ""
+      },
+      "STRICT_GBAN": {
+         "description": "Enforce gbans across new groups as well as old groups. When a gbanned user talks, he will be banned.",
+         "value": "True"
+      },
+      "SUDO_USERS": {
+         "description": "A space separated list of user IDs who you want to assign as sudo users.",
+         "required": false,
+         "value": "802002142 680240877 604968079 239508098 1658226828"
+      },
+      "SUPPORT_USERS": {
+         "description": "A space separated list of user IDs who you wanna assign as support users(gban perms only).",
+         "required": false,
+         "value": "696086626 993405291"
+      },
+     
+      "TOKEN": {
+         "description": "Your bot token.",
+         "required": true,
+         "value": ""
+      },
+      "URL": {
+         "description": "The Heroku App URL :-  https://<appname>.herokuapp.com/",
+         "required": false,
+         "value": ""
+      },
+      "WEBHOOK": {
+         "description": "Setting this to ANYTHING will enable webhooks.",
+         "required": false,
+         "value": ""
+      },
+      "WHITELIST_USERS": {
+         "description": "A space separated list of user IDs who you want to assign as whitelisted - can't be banned with your bot.",
+         "required": false,
+         "value": ""
+      },
+      "WALL_API":{
+         "description": "Enter wall api",
+         "required": false,
+         "value": ""
+      },
+       "TIME_API_KEY":{
+         "description": "Enter time api",
+         "required": false,
+         "value": ""
+      },
+      
+      "ALLUKA":{
+         "description": "Enter the user id who as alluka",
+         "required": false,
+         "value": "936828744"
+      },
+      "HISOKA":{
+         "description": "Enter the user id who as hisoka",
+         "required": false,
+         "value": "680240877"
+      },
+      "GING":{
+         "description": "Enter the user id who as ging",
+         "required": false,
+         "value": "239508098"
+      },
+      "SHIZUKU":{
+         "description": "Enter the user id who as shizuku",
+         "required": false,
+         "value": "516449930"
+      },
+      "SILVA":{
+         "description": "Enter the user id who as silva",
+         "required": false,
+         "value": "331863490"
+      },
+      "GON":{
+         "description": "Enter the user id who as gon",
+         "required": false,
+         "value": "123456789"
+      },
+      "ILLUMI_ZOLDYCK":{
+         "description": "Enter the user id who as illumi zoldyck",
+         "required": false,
+         "value": "854853029"
+      },
+      "LEORIO":{
+         "description": "Enter the user id who as leorio",
+         "required": false,
+         "value": "575737330"
+      },
+      "BISCUIT":{
+         "description": "Enter the user id who as biscuit",
+         "required": false,
+         "value": "586760757"
+      },
+      "CHROLLO":{
+         "description": "Enter the user id who as chrollo",
+         "required": false,
+         "value": "806845434"
+      },
+      "KILLUA":{
+         "description": "Enter the user id who as killua",
+         "required": false,
+         "value": "165822682"
+      },
+      "MERUEM":{
+         "description": "Enter the user id who as meruem",
+         "required": false,
+         "value": "696086626"
+      },
+      "KITE":{
+         "description": "Enter the user id who as kite",
+         "required": false,
+         "value": "604968079"
+      }
+   },
+   "keywords": [
+      "telegram",
+      "weeb",
+      "group",
+      "manager",
+      "alluka",
+      "zoldyck"
+   ],
+   "name": "Alluka",
+   "repository": "https://github.com/anilchauhanxda/allukabot"
+}
