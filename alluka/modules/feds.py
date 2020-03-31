@@ -1127,8 +1127,8 @@ def fed_ban_list(bot: Bot, update: Update, args: List[str], chat_data):
 				backups += "{user_id},{first_name},{last_name},{user_name},{reason}".format(user_id=users, first_name=getuserinfo['first_name'], last_name=getuserinfo['last_name'], user_name=getuserinfo['user_name'], reason=getuserinfo['reason'])
 				backups += "\n"
 			with BytesIO(str.encode(backups)) as output:
-				output.name = "saitama_fbanned_users.csv"
-				update.effective_message.reply_document(document=output, filename="saitama_fbanned_users.csv",
+				output.name = "alluka_fbanned_users.csv"
+				update.effective_message.reply_document(document=output, filename="alluka_fbanned_users.csv",
 													caption="Total {} User are blocked by Federation {}.".format(len(getfban), info['fname']))
 			return
 
