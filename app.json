@@ -1,5 +1,12 @@
 {
-   
+   "addons": [
+      {
+         "options": {
+            "version": "9.5"
+         },
+         "plan": "heroku-postgresql"
+      }
+   ],
    "description": "Modular Telegram bot for managing your groups with a few extras features with zoldyck family theme.",
    "env": {
       "ALLOW_EXCL": {
@@ -24,7 +31,7 @@
          "description": "Setting this to ANYTHING will enable environment variables.",
          "value": "ANYTHING"
       },
-      "DB_URI": {
+      "SQLALCHEMY_DATABASE_URI": {
          "description": "Your postgres sql db, empty this field if you dont have one.",
          "required": false,
          "value": "sqldbtype://username:pw@hostname:port/db_name"
