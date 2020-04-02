@@ -68,15 +68,15 @@ def report(bot: Bot, update: Update) -> str:
         message = update.effective_message
 
         if user.id == reported_user.id:
-            message.reply_text("Uh yeah, Sure.")
+            message.reply_text("You don't seem to be referring to a user.")
             return ""
 
         if user.id == bot.id:
-            message.reply_text("Nice try.")
+            message.reply_text("You can't report on me 😏.")
             return ""
         
         if reported_user.id in REPORT_IMMUNE_USERS:
-            message.reply_text("Uh? You reporting whitelisted users?")
+            message.reply_text("You can't report on my whitelist user.")
             return "" 
 
         if chat.username and chat.type == Chat.SUPERGROUP:
