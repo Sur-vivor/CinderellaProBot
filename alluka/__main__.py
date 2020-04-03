@@ -21,11 +21,11 @@ from alluka.modules.helper_funcs.misc import paginate_modules
 PM_START_TEXT = """
 
 Hi {}, my name is αℓℓυкα (アルカ゠ゾルディック, Aruka Zorudikku)! 
-I'm the second youngest child of [Silva] and Kikyo Zoldyck. Under unknown circumstances, I was possessed by a mysterious Dark Continent creature, My family named Nanika.. 
+I'm the second youngest child of Silva and Kikyo Zoldyck. Under unknown circumstances, I was possessed by a mysterious Dark Continent creature, My family named Nanika.. 
 
 𝕴𝖋 𝖞𝖔𝖚'𝖗𝖊 𝖓𝖎𝖈𝖊 𝖙𝖔 𝖒𝖊, 𝖞𝖔𝖚 𝖍𝖆𝖛𝖊 𝖙𝖔 𝖇𝖊 𝖓𝖎𝖈𝖊 𝖙𝖔 𝕹𝖆𝖓𝖎𝖐𝖆 𝖙𝖔𝖔!! 𝕴𝖋 𝖞𝖔𝖚'𝖗𝖊 𝖌𝖔𝖎𝖓𝖌 𝖙𝖔 𝖕𝖗𝖔𝖙𝖊𝖈𝖙 𝖒𝖊, 𝖞𝖔𝖚 𝖍𝖆𝖛𝖊 𝖙𝖔 𝖕𝖗𝖔𝖙𝖊𝖈𝖙 𝕹𝖆𝖓𝖎𝖐𝖆 𝖙𝖔𝖔!! 𝕭𝖚𝖙 𝖎𝖋 𝖞𝖔𝖚'𝖗𝖊 𝖌𝖔𝖎𝖓𝖌 𝖙𝖔 𝖇𝖊 𝖒𝖊𝖆𝖓 𝖙𝖔 𝕹𝖆𝖓𝖎𝖐𝖆, 𝕴 𝖍𝖆𝖙𝖊 𝖞𝖔𝖚!!!"""
 
-G_START_TEXT = """ heya!!? """
+
 
 
 HELP_STRINGS = """
@@ -151,7 +151,8 @@ def start(bot: Bot, update: Update, args: List[str]):
     else:
          
 
-        update.effective_message.reply_text("Heya, How can I help you? 🙂")
+        update.effective_message.reply_text("Heya, How can I help you? 🙂",reply_markup=InlineKeyboardMarkup(
+                                                [[InlineKeyboardButton(text="❓ Help",url="t.me/{}?start=help".format(bot.username)),InlineKeyboardButton(text=" ✉️ Public Feeds",url="https://telegram.dog/allukatm")]]))
                                             
         
 
