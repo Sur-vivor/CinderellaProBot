@@ -16,7 +16,7 @@ feedparser
 alphabet_detector
 psycopg2-binary
 feedparser
-
+tswift
 pynewtonmath
 #memes vvv
 spongemock
