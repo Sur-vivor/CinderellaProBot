@@ -16,18 +16,18 @@ from telegram import ParseMode, Update, Bot, Chat, User, MessageEntity, InlineKe
 from telegram.ext import run_async, CommandHandler, MessageHandler, Filters, CallbackQueryHandler
 from telegram.utils.helpers import escape_markdown, mention_html, mention_markdown
 
-from tg_bot import dispatcher, OWNER_ID, SUDO_USERS, DEV_USERS, WHITELIST_USERS, GBAN_LOGS, LOGGER
-from tg_bot.modules.helper_funcs.handlers import CMD_STARTERS
-from tg_bot.modules.helper_funcs.misc import is_module_loaded, send_to_list
-from tg_bot.modules.helper_funcs.chat_status import is_user_admin
-from tg_bot.modules.helper_funcs.extraction import extract_user, extract_unt_fedban, extract_user_fban
-from tg_bot.modules.helper_funcs.string_handling import markdown_parser
-from tg_bot.modules.disable import DisableAbleCommandHandler
+from alluka import dispatcher, OWNER_ID, SUDO_USERS, DEV_USERS, WHITELIST_USERS, GBAN_LOGS, LOGGER
+from alluka.modules.helper_funcs.handlers import CMD_STARTERS
+from alluka.modules.helper_funcs.misc import is_module_loaded, send_to_list
+from alluka.modules.helper_funcs.chat_status import is_user_admin
+from alluka.modules.helper_funcs.extraction import extract_user, extract_unt_fedban, extract_user_fban
+from alluka.modules.helper_funcs.string_handling import markdown_parser
+from alluka.modules.disable import DisableAbleCommandHandler
 
-import tg_bot.modules.sql.feds_sql as sql
+import alluka.modules.sql.feds_sql as sql
 
-from tg_bot.modules.connection import connected
-from tg_bot.modules.helper_funcs.alternate import send_message
+from alluka.modules.connection import connected
+from alluka.modules.helper_funcs.alternate import send_message
 # Hello bot owner, I time spent for feds many hours of my life, Please don't remove this if you still respect MrYacha and peaktogoo and AyraHikari too
 # Federation by MrYacha
 # Federation rework by Mizukito Akito
@@ -1068,8 +1068,8 @@ def fed_import_bans(bot: Bot, update: Update, chat_data):
             if user.id not in SUDO_USERS:
                 put_chat(chat.id, new_jam, chat_data)
         #if int(int(msg.reply_to_message.document.file_size)/1024) >= 200:
-        #	msg.reply_text("This file is too big!")
-        #	return
+        #   msg.reply_text("This file is too big!")
+        #   return
         success = 0
         failed = 0
         try:
