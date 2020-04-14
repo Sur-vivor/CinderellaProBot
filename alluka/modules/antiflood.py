@@ -98,7 +98,7 @@ def set_flood(bot: Bot, update: Update, args: List[str]) -> str:
 
             else:
                 sql.set_flood(chat.id, amount)
-                message.reply_text("Antiflood has been updated and set to {}{}".format(amount, chat_name),
+                message.reply_text("Anti-flood is set to {} messages.".format(amount),
                                    parse_mode=ParseMode.HTML)
                 log_message = (f"<b>{html.escape(chat.title)}:</b>\n"
                                f"#SETFLOOD\n"
@@ -130,7 +130,7 @@ def flood(bot: Bot, update: Update):
         update.effective_message.reply_text(f"I'm not currently enforcing flood control{chat_name}!",
                                             parse_mode=ParseMode.HTML)
     else:
-        update.effective_message.reply_text(f"I'm currently punching users if they send "
+        update.effective_message.reply_text(f"I'm currently kicking users if they send "
                                             f"more than {limit} consecutive messages{chat_name}.",
                                             parse_mode=ParseMode.HTML)
 
