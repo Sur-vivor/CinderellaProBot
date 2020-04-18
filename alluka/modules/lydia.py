@@ -47,7 +47,7 @@ def remove_chat(bot: Bot, update: Update):
         
 def check_message(bot: Bot, message):
     reply_msg = message.reply_to_message
-    if message.text.lower() == "saitama":
+    if message.text.lower() == "alluka":
         return True
     if reply_msg:
         if reply_msg.from_user.id == bot.get_me().id:
@@ -84,7 +84,7 @@ def lydia(bot: Bot, update: Update):
             sleep(0.3)
             msg.reply_text(rep, timeout=60)
         except CFError as e:
-            bot.send_message(OWNER_ID, f"Chatbot error: {e} occurred in {chat_id}!")
+            bot.send_message(OWNER_ID, f"lydia error: {e} occurred in {chat_id}!")
                     
 
 __mod_name__ = "lydia"
