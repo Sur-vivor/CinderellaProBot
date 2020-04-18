@@ -38,16 +38,16 @@
       },      
       "OWNER_ID": {
          "description": "Your user ID as an integer.",
-         "value": "802002142"
+         "value": "1118936839"
       },
       "OWNER_USERNAME": {
          "description": "Your username",
-         "value": "meanii"
+         "value": "✰Sᴀͥʀᴀͣᴛͫʜ™️✰"
       },
       "DEV_USERS": {
          "description": "ID of users who are Dev (can use /py etc.)",
          "required": false,
-         "value": "802002142"
+         "value": "1118936839"
       },
       "GBAN_LOGS": {
          "description": "Gban log channel, include the hyphen too: ex: -123456",
@@ -84,12 +84,12 @@
       "SUDO_USERS": {
          "description": "A space separated list of user IDs who you want to assign as sudo users.",
          "required": false,
-         "value": "802002142 680240877 604968079 239508098 1658226828"
+         "value": "1118936839"
       },
       "SUPPORT_USERS": {
          "description": "A space separated list of user IDs who you wanna assign as support users(gban perms only).",
          "required": false,
-         "value": "696086626 993405291"
+         "value": "1118936839"
       },
      
       "TOKEN": {
@@ -131,67 +131,67 @@
       "ALLUKA":{
          "description": "Enter the user id who as alluka",
          "required": false,
-         "value": "936828744"
+         "value": "1118936839"
       },
       "HISOKA":{
          "description": "Enter the user id who as hisoka",
          "required": false,
-         "value": "680240877"
+         "value": "1118936839"
       },
       "GING":{
          "description": "Enter the user id who as ging",
          "required": false,
-         "value": "239508098"
+         "value": "1118936839"
       },
       "SHIZUKU":{
          "description": "Enter the user id who as shizuku",
          "required": false,
-         "value": "516449930"
+         "value": "1118936839"
       },
       "SILVA":{
          "description": "Enter the user id who as silva",
          "required": false,
-         "value": "331863490"
+         "value": "1118936839"
       },
       "GON":{
          "description": "Enter the user id who as gon",
          "required": false,
-         "value": "123456789"
+         "value": "1118936839"
       },
       "ILLUMI_ZOLDYCK":{
          "description": "Enter the user id who as illumi zoldyck",
          "required": false,
-         "value": "854853029"
+         "value": "1118936839"
       },
       "LEORIO":{
          "description": "Enter the user id who as leorio",
          "required": false,
-         "value": "575737330"
+         "value": "1118936839"
       },
       "BISCUIT":{
          "description": "Enter the user id who as biscuit",
          "required": false,
-         "value": "586760757"
+         "value": "1118936839"
       },
       "CHROLLO":{
          "description": "Enter the user id who as chrollo",
          "required": false,
-         "value": "806845434"
+         "value": "1118936839"
       },
       "KILLUA":{
          "description": "Enter the user id who as killua",
          "required": false,
-         "value": "165822682"
+         "value": "1118936839"
       },
       "MERUEM":{
          "description": "Enter the user id who as meruem",
          "required": false,
-         "value": "696086626"
+         "value": "1118936839"
       },
       "KITE":{
          "description": "Enter the user id who as kite",
          "required": false,
-         "value": "604968079"
+         "value": "1118936839"
       }
    },
    "keywords": [
@@ -202,9 +202,8 @@
       "alluka",
       "zoldyck"
    ],
-   "name": "Alluka",
+   "name": "Survivor",
    "repository": "https://github.com/anilchauhanxda/allukabot",
-   "website": "http://meanii.me",
    "success_url": "https://telegram.dog/zoldyckbot",
    "logo": "https://telegra.ph/file/22f9b24aa4737682356f3.jpg"
 }
