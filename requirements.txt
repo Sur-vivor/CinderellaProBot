@@ -13,6 +13,7 @@ pyowm
 wikipedia
 kbbi
 feedparser
+gtts
 alphabet_detector
 psycopg2-binary
 feedparser
