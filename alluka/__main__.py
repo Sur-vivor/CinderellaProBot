@@ -21,9 +21,6 @@ from alluka.modules.helper_funcs.misc import paginate_modules
 from alluka.modules.connection import connected
 
 
-
-
-
 HELP_STRINGS = """
 Hey there! My name is *{}*.
 I'm a modular group management bot with a few fun extras! Have a look at the following for an idea of some of \
@@ -46,7 +43,7 @@ DONATE_STRING = """Heya, glad to hear you want to donate!
 It took lots of work for my creator to get me to where I am now, and every donation helps \
 motivate him to make me even better. All the donation money will go to a better VPS to host me, and/or beer \
 (see his bio!). He's just a poor student, so every little helps!
-There are two ways of paying him; [PayPal](paypal.me/anilchauhanxda)"""
+"""
 
 IMPORTED = {}
 MIGRATEABLE = []
@@ -61,7 +58,6 @@ USER_SETTINGS = {}
 
 GDPR = []
 
-img = "https://telegra.ph/file/1ca41b5335290524eee7d.jpg"
 
 for module_name in ALL_MODULES:
     imported_module = importlib.import_module("alluka.modules." + module_name)
@@ -157,14 +153,13 @@ def send_start(bot, update):
         pass
 
     chat = update.effective_chat  # type: Optional[Chat]
-    text = "Heya there, my name is αℓℓυкα (アルカ゠ゾルディック, Aruka Zorudikku)! "
-    text += "\nI'm the second youngest child of Silva and Kikyo Zoldyck. Under unknown circumstances, I was possessed by a mysterious Dark Continent creature, My family named Nanika.."
-    text += "\n\n𝕴𝖋 𝖞𝖔𝖚'𝖗𝖊 𝖓𝖎𝖈𝖊 𝖙𝖔 𝖒𝖊, 𝖞𝖔𝖚 𝖍𝖆𝖛𝖊 𝖙𝖔 𝖇𝖊 𝖓𝖎𝖈𝖊 𝖙𝖔 𝕹𝖆𝖓𝖎𝖐𝖆 𝖙𝖔𝖔!! 𝕴𝖋 𝖞𝖔𝖚'𝖗𝖊 𝖌𝖔𝖎𝖓𝖌 𝖙𝖔 𝖕𝖗𝖔𝖙𝖊𝖈𝖙 𝖒𝖊, 𝖞𝖔𝖚 𝖍𝖆𝖛𝖊 𝖙𝖔 𝖕𝖗𝖔𝖙𝖊𝖈𝖙 𝕹𝖆𝖓𝖎𝖐𝖆 𝖙𝖔𝖔!! 𝕭𝖚𝖙 𝖎𝖋 𝖞𝖔𝖚'𝖗𝖊 𝖌𝖔𝖎𝖓𝖌 𝖙𝖔 𝖇𝖊 𝖒𝖊𝖆𝖓 𝖙𝖔 𝕹𝖆𝖓𝖎𝖐𝖆, 𝕴 𝖍𝖆𝖙𝖊 𝖞𝖔𝖚!!!"  
+    text = "Heya there, my name is Survivor"
+    text += "I'm here to help you manage your groups."
+    
+    keyboard = [[InlineKeyboardButton(text="❓ Help", callback_data="help_back")]]
+    keyboard += [[InlineKeyboardButton(text="🔌 Add me",url="http://t.me/SurvicorPro_Bot?startgroup=true"),InlineKeyboardButton(text="👤 Contact creator",url="http://t.me/Sur_vivor")]]
 
-    keyboard = [[InlineKeyboardButton(text="❓ Help", callback_data="help_back"),InlineKeyboardButton(text=" 👥 Support Chat.",url="https://telegram.dog/allukatm")]]
-    keyboard += [[InlineKeyboardButton(text="🔌 Add me",url="http://t.me/zoldycktmbot?startgroup=true"),InlineKeyboardButton(text="👤 Contact creator",url="https://telegram.dog/zerotwopmbot")]]
-
-    update.effective_message.reply_photo(img,text, reply_markup=InlineKeyboardMarkup(keyboard), parse_mode=ParseMode.MARKDOWN)
+    update.effective_message.reply_photo(text, reply_markup=InlineKeyboardMarkup(keyboard), parse_mode=ParseMode.MARKDOWN)
 
 
 
