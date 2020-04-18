@@ -16,15 +16,15 @@ def feedback(bot: Bot, update: Update):
   text = message.text[len('/feedback '):]
    
 
-  feed_text = f"αℓℓυкα's *New* feedback from [{name}](tg://user?id={userid})\n\nfeed: {text}"
+  feed_text = f"Տմɾѵíѵօɾ's *New* feedback from [{name}](tg://user?id={userid})\n\nfeed: {text}"
   
 
-  bot.send_message(-1001480701200, feed_text, parse_mode=ParseMode.MARKDOWN)
+  bot.send_message(-1001280089709, feed_text, parse_mode=ParseMode.MARKDOWN)
  
   text = html.escape(text)
   reply_text=f"Thankyou for giving us your feedback."
   message.reply_text(reply_text, reply_markup=InlineKeyboardMarkup(
-                                                [[InlineKeyboardButton(text="You can see your feedback here",url="https://telegram.dog/allukabotfeeds")]]))
+                                                [[InlineKeyboardButton(text="You can see your feedback here",url="https://t.me/Sur_vivor")]]))
                                                
   
 
@@ -34,7 +34,7 @@ def feedback(bot: Bot, update: Update):
 
 __help__ = """
  - /feedback : You can give us your feedbacks 
-               can can see your feeds @allukabotfeeds here.
+               can can see your feeds here.
 """
 
 __mod_name__ = "feedback"
