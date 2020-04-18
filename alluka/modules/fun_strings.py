@@ -50,7 +50,7 @@ RUN_STRINGS = (
     "As The Doctor would say... RUN!",
 )
 
-SLAP_ALLUKA_TEMPLATES = (
+SLAP_stella_TEMPLATES = (
     "If you slap me one more time killua gonna kill you.",
     "fuck off.",
     [
