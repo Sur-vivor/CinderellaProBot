@@ -9,7 +9,7 @@ from telegram import Message, Chat, User, Update, Bot
 from telegram.ext import CommandHandler, MessageHandler, Filters, run_async
 
 from alluka import dispatcher, LYDIA_API, OWNER_ID
-import alluka.modules.sql.chatbot_sql as sql
+import alluka.modules.sql.lydia_sql as sql
 from alluka.modules.helper_funcs.filters import CustomFilters
 
 
