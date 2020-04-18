@@ -1593,6 +1593,13 @@ Command:
  - /fedchats: Get all the chats that are connected in the Federation.
  - /importfbans: Reply to the Federation backup message file to import the banned list to the Federation now.
  - /fbanstat: Shows if you/or the user you are replying to or their username is fbanned somewhere or not.
+ - /subfed <FedId>: Subscribe your federation to another. Users banned in the subscribed fed will also be banned in this one.
+            Note: This does not affect your banlist. You just inherit any bans.
+ - /unsubfed <FedId>: Unsubscribes your federation from another. Bans from the other fed will no longer take effect.
+ - /fedsubs: List all federations your federation is subscribed to.
+ - /setfedlog: Sets the current chat as the federation log. All federation events will be logged here.
+ - /unsetfedlog: Unset the federation log. Events will no longer be logged.
+ - /myfeds: To know Federations Created by you.
 """
 
 NEW_FED_HANDLER = CommandHandler("newfed", new_fed)
