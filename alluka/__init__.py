@@ -90,7 +90,7 @@ if ENV:
     TIME_API_KEY = os.environ.get('TIME_API_KEY', None)
     WALL_API = os.environ.get('WALL_API',None)
     LASTFM_API_KEY = os.environ.get('LASTFM_API_KEY',None)
-    LASTFM_API_KEY = os.environ.get('LYDIA_API',None)
+    LYDIA_API = os.environ.get('LYDIA_API',None)
 
 else:
     from alluka.config import Development as Config
