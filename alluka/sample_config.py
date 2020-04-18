@@ -45,6 +45,7 @@ class Config(object):
     TIME_API_KEY = None # Get one from https://timezonedb.com/register
     WALL_API = None
     LASTFM_API_KEY = None
+    LYDIA_API = None
 
 
     #ZOLDYCK_FAMILY
