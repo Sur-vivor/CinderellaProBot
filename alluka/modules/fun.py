@@ -32,7 +32,7 @@ def slap(bot: Bot, update: Update, args: List[str]):
     user_id = extract_user(message, args)
 
     if user_id == bot.id:
-        temp = random.choice(fun_strings.SLAP_ALLUKA_TEMPLATES)
+        temp = random.choice(fun_strings.SLAP_alluka_TEMPLATES)
 
         if type(temp) == list:
             if temp[2] == "tmute":
