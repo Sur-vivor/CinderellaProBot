@@ -81,15 +81,13 @@ if ENV:
     LOAD = os.environ.get("LOAD", "").split()
     NO_LOAD = os.environ.get("NO_LOAD", "translation").split()
     DEL_CMDS = bool(os.environ.get('DEL_CMDS', False))
-    STRICT_GBAN = bool(os.environ.get('STRICT_GBAN', False))
+    STRICT_GBAN = bool(os.environ.get('STRICT_GBAN', False))  
     STRICT_GMUTE = bool(os.environ.get('STRICT_GMUTE', False))
     WORKERS = int(os.environ.get('WORKERS', 8))
     BAN_STICKER = os.environ.get('BAN_STICKER', 'CAACAgUAAxkBAAIHsl5nbqXdDTmpG2HFDNhnwvE5kFbWAAI9AQAC3pTNLzeTCUmnhTneGAQ')
     ALLOW_EXCL = os.environ.get('ALLOW_EXCL', False)
     CASH_API_KEY = os.environ.get('CASH_API_KEY', None)
     TIME_API_KEY = os.environ.get('TIME_API_KEY', None)
-    WALL_API = os.environ.get('WALL_API',None)
-    LASTFM_API_KEY = os.environ.get('LASTFM_API_KEY',None)
 
 else:
     from alluka.config import Development as Config
@@ -136,14 +134,12 @@ else:
     NO_LOAD = Config.NO_LOAD
     DEL_CMDS = Config.DEL_CMDS
     STRICT_GBAN = Config.STRICT_GBAN
-     STRICT_GMUTE = Config.STRICT_GMUTE
+    STRICT_GMUTE = Config.STRICT_GMUTE
     WORKERS = Config.WORKERS
     BAN_STICKER = Config.BAN_STICKER
     ALLOW_EXCL = Config.ALLOW_EXCL
     CASH_API_KEY = Config.CASH_API_KEY
     TIME_API_KEY = Config.TIME_API_KEY
-    WALL_API = Config.WALL_API
-    LASTFM_API_KEY = Config.LASTFM_API_KEY
 
     #ZOLDYCK_FAMMILY
     ALLUKA = Config.ALLUKA
