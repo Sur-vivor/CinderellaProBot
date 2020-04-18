@@ -92,7 +92,7 @@ if ENV:
     WALL_API = os.environ.get('WALL_API',None)
     LASTFM_API_KEY = os.environ.get('LASTFM_API_KEY',None)
     LYDIA_API = os.environ.get('LYDIA_API',None)
-
+    API_WEATHER  = os.environ.get('API_OPENWEATHER',False)
 else:
     from alluka.config import Development as Config
     TOKEN = Config.API_KEY
@@ -148,7 +148,8 @@ else:
     WALL_API = Config.WALL_API
     LASTFM_API_KEY = Config.LASTFM_API_KEY
     LYDIA_API = Config.LYDIA_API
-
+    API_OPENWEATHER = Config.API_OPENWEATHER
+   
     #ZOLDYCK_FAMMILY
     ALLUKA = Config.ALLUKA
     HISOKA = Config.HISOKA
