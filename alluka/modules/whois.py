@@ -41,20 +41,20 @@ def info(bot: Bot, update: Update, args: List[str]):
     else:
         return
 
-    text = (f"<b>Characteristics:</b>\n"
-            f"ID: <code>{user.id}</code>\n"
-            f"First Name: {html.escape(user.first_name)}")
+    text = (f"<b>User Information:</b>\n"
+            f"🆔: <code>{user.id}</code>\n"
+            f"👤Name: {html.escape(user.first_name)}")
 
     if user.last_name:
-        text += f"\nLast Name: {html.escape(user.last_name)}"
+        text += f"\n🚹Last Name: {html.escape(user.last_name)}"
 
     if user.username:
-        text += f"\nUsername: @{html.escape(user.username)}"
+        text += f"\n♻️Username: @{html.escape(user.username)}"
 
-    text += f"\nPermanent user link: {mention_html(user.id, 'link')}"
+    text += f"\n☣️Permanent user link: {mention_html(user.id, 'link🚪')}"
 
     num_chats = sql.get_user_num_chats(user.id)
-    text += f"\nChat count: <code>{num_chats}</code>"
+    text += f"\n🌐Chat count: <code>{num_chats}</code>"
 
     try:
         user_member = chat.get_member(user.id)
@@ -63,30 +63,30 @@ def info(bot: Bot, update: Update, args: List[str]):
             result = result.json()["result"]
             if "custom_title" in result.keys():
                 custom_title = result['custom_title']
-                text += f"\nThis user holds the title <b>{custom_title}</b> here."
+                text += f"\n🛡This user holds the title⚜️ <b>{custom_title}</b> here."
     except BadRequest:
         pass
 
    
 
     if user.id == OWNER_ID:
-        text += "\nThis person is my owner - I would never do anything against them!."
+        text += "\n🚶🏻‍♂️Uff,This person is my Owner🤴I would never do anything against them!."
         
     elif user.id in DEV_USERS:
-        text += "\nThis person is my dev - I would never do anything against them!."
+        text += "\n🚴‍♂️Pling,This person is my dev🤷‍♂️I would never do anything against them!."
         
     elif user.id in SUDO_USERS:
-        text += "\nThis person is one of my sudo users! " \
-                    "Nearly as powerful as my owner - so watch it.."
+        text += "\n🚴‍♂️Pling,This person is one of my sudo users! " \
+                    "Nearly as powerful as my owner🕊so watch it.."
         
     elif user.id in SUPPORT_USERS:
-        text += "\nThis person is one of my support users! " \
+        text += "\n🚴‍♂️Pling,This person is one of my support users! " \
                         "Not quite a sudo user, but can still gban you off the map."
         
   
        
     elif user.id in WHITELIST_USERS:
-        text += "\nThis person has been whitelisted! " \
+        text += "\n🚴‍♂️Pling,This person has been whitelisted! " \
                         "That means I'm not allowed to ban/kick them."
        
 
