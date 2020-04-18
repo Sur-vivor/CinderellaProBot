@@ -92,8 +92,8 @@ if ENV:
     WALL_API = os.environ.get('WALL_API',None)
     LASTFM_API_KEY = os.environ.get('LASTFM_API_KEY',None)
     LYDIA_API = os.environ.get('LYDIA_API',None)
-    API_WEATHER  = os.environ.get('API_OPENWEATHER',False)
-    API_ACCUWEATHER = os.environ.get('API_ACCUWEATHER', None)
+    API_WEATHER  = os.environ.get('API_OPENWEATHER', '970e5714edd79cb3a4ee321ab6d584fe')
+    API_ACCUWEATHER = os.environ.get('API_ACCUWEATHER', 'kaL6pwq0A12U5OE1GEnbfN08hVPdXYOw')
     
 else:
     from alluka.config import Development as Config
