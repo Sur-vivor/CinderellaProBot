@@ -10,11 +10,11 @@ from telegram.ext import MessageHandler, Filters, CommandHandler
 from telegram.ext.dispatcher import run_async
 from telegram.utils.helpers import escape_markdown
 from html import escape
-from allaku.modules.helper_funcs.chat_status import is_user_ban_protected, bot_admin
+from alluka.modules.helper_funcs.chat_status import is_user_ban_protected, bot_admin
 
-import allaku.modules.sql.users_sql as sql
-from allaku import dispatcher, OWNER_ID, SUDO_USERS, SUPPORT_USERS, LOGGER
-from allaku.modules.helper_funcs.filters import CustomFilters
+import alluka.modules.sql.users_sql as sql
+from alluka import dispatcher, OWNER_ID, SUDO_USERS, SUPPORT_USERS, LOGGER
+from alluka.modules.helper_funcs.filters import CustomFilters
 
 USERS_GROUP = 4
 
