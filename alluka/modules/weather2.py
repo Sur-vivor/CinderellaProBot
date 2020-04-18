@@ -170,8 +170,8 @@ __help__ = """
 __mod_name__ = "Weather2"
 
 CUACA_HANDLER = DisableAbleCommandHandler(["cuaca", "weather"], accuweather, pass_args=True)
-# ACCUWEATHER_HANDLER = DisableAbleCommandHandler("accuweather", accuweather, pass_args=True)
+ACCUWEATHER_HANDLER = DisableAbleCommandHandler("accuweather", accuweather, pass_args=True)
 
 
 dispatcher.add_handler(CUACA_HANDLER)
-# dispatcher.add_handler(ACCUWEATHER_HANDLER)
+dispatcher.add_handler(ACCUWEATHER_HANDLER)
