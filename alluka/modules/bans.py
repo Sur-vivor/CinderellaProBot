@@ -6,7 +6,7 @@ from telegram.error import BadRequest
 from telegram.ext import CommandHandler, Filters, run_async
 from telegram.utils.helpers import mention_html
 
-from alluka import dispatcher, LOGGER, DEV_USERS, SUDO_USERS, TIGER_USERS, BAN_STICKER, KICK_STICKER 
+from alluka import dispatcher, LOGGER, DEV_USERS, SUDO_USERS, BAN_STICKER, KICK_STICKER 
 from alluka.modules.disable import DisableAbleCommandHandler
 from alluka.modules.helper_funcs.chat_status import (bot_admin, user_admin, is_user_ban_protected, can_restrict,
                                                      is_user_admin, is_user_in_chat, connection_status)
