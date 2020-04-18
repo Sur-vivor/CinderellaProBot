@@ -70,10 +70,10 @@ def info(bot: Bot, update: Update, args: List[str]):
    
 
     if user.id == OWNER_ID:
-        text += "\n🚶🏻‍♂️Uff,This person is my Owner🤴   I would never do anything against them!."
+        text += "\n🚶🏻‍♂️Uff,This person is my Owner🤴!    I would never do anything against them!."
         
     elif user.id in DEV_USERS:
-        text += "\n🚴‍♂️Pling,This person is my dev🤷‍♂️  I would never do anything against them!."
+        text += "\n🚴‍♂️Pling,This person is my dev🤷‍♂️!   I would never do anything against them!."
         
     elif user.id in SUDO_USERS:
         text += "\n🚴‍♂️Pling,This person is one of my sudo users! " \
