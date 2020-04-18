@@ -20,7 +20,12 @@ from alluka.modules.helper_funcs.misc import paginate_modules
 
 from alluka.modules.connection import connected
 
-
+PM_START_TEXT = """
+Hello *{}*
+My name is *{}*.I'm here to help you manage your groups.  
+Hit /help to find out my Commands and to know more about how to use me to my full potential..
+My Creator is [✰Sᴀͥʀᴀͣᴛͫʜ™️✰](https://t.me/Sur_vivor)
+"""
 HELP_STRINGS = """
 Hey there! My name is *{}*.
 I'm a modular group management bot with a few fun extras! Have a look at the following for an idea of some of \
@@ -153,8 +158,6 @@ def send_start(bot, update):
         pass
 
     chat = update.effective_chat  # type: Optional[Chat]
-    text = "Heya there, my name is Survivor"
-    text += "I'm here to help you manage your groups."
     
     keyboard = [[InlineKeyboardButton(text="❓ Help", callback_data="help_back")]]
     keyboard += [[InlineKeyboardButton(text="🔌 Add me",url="http://t.me/SurvicorPro_Bot?startgroup=true"),InlineKeyboardButton(text="👤 Contact creator",url="http://t.me/Sur_vivor")]]
