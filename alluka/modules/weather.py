@@ -7,7 +7,7 @@ from telegram import Message, Chat, Update, Bot, ParseMode
 from telegram.error import BadRequest
 from telegram.ext import run_async
 
-from alluka import dispatcher, updater, API_WEATHER as APPID
+from alluka import dispatcher, updater, API_WEATHER
 from alluka.modules.disable import DisableAbleCommandHandler
 
 
@@ -19,7 +19,7 @@ def weather(bot, update, args):
 
 
     CITY = " ".join(args)
-    url = f'https://api.openweathermap.org/data/2.5/weather?q={CITY}&appid={APPID}'
+    url = f'https://api.openweathermap.org/data/2.5/weather?q={CITY}&appid={API_WEATHER}'
     request = requests.get(url)
     result = json.loads(request.text)
     if request.status_code != 200:
