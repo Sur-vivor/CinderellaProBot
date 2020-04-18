@@ -32,52 +32,15 @@ def stickerid(bot: Bot, update: Update):
 @run_async
 def getsticker(bot: Bot, update: Update):
     msg = update.effective_message
-    chat_id = update.effective_chat.id 
-    if msg.reply_to_message:
-       if msg.reply_to_message and msg.reply_to_message.sticker:
-            file_id = msg.reply_to_message.sticker.file_id 
-            newFile = bot.get_file(file_id)
-            newFile.download('sticker.png')
-            size = 512,512
-            try:
-               im = Image.open('sticker.png')
-               im.thumbnail(size, Image.ANTIALIAS)
-               im.save("sticker.png", "png") 
-               bot.sendDocument(chat_id, document=open('sticker.png', 'rb'))
-            except IOError: 
-                   update.effective_message.reply_text
-            os.remove("sticker.png")       
-       elif msg.reply_to_message.photo:
-            file_id = msg.reply_to_message.photo[-1].file_id 
-            newFile = bot.get_file(file_id)
-            newFile.download('sticker.png')
-            size = 512,512
-            try:
-               im = Image.open('sticker.png')
-               im.thumbnail(size, Image.ANTIALIAS)
-               im.save("sticker.png", "png") 
-               bot.sendDocument(chat_id, document=open('sticker.png', 'rb'))
-            except IOError: 
-                   update.effective_message.reply_text("Dammit, got some errors while processing the sticker, you may report it to my master - (@allukatm) if the error persists.")
-
-            os.remove("sticker.png")
-       elif msg.reply_to_message.document:
-            file_id = msg.reply_to_message.document.file_id
-            newFile = bot.get_file(file_id)
-            newFile.download('sticker.png')
-            size = 512,512
-            try:
-               im = Image.open('sticker.png')
-               im.thumbnail(size, Image.ANTIALIAS)
-               im.save("sticker.png", "png") 
-               bot.sendDocument(chat_id, document=open('sticker.png', 'rb'))
-            except IOError: 
-                   update.effective_message.reply_text("Dammit, got some errors while processing the sticker, you may report it to my master - (@spookyenvy) if the error persists.")
-            os.remove("sticker.png")
-       else:
-           update.effective_message.reply_text("Unknown format. sticker/photo/document are the supported formats.")
+    chat_id = update.effective_chat.id
+    if msg.reply_to_message and msg.reply_to_message.sticker:
+        file_id = msg.reply_to_message.sticker.file_id
+        newFile = bot.get_file(file_id)
+        newFile.download('sticker.png')
+        bot.send_document(chat_id, document=open('sticker.png', 'rb'))
+        os.remove("sticker.png")
     else:
-        update.effective_message.reply_text("Please reply to a sticker/photo/document for me to upload its PNG.")
+        update.effective_message.reply_text("Please reply to a sticker for me to upload its PNG.")
 
 
 @run_async
