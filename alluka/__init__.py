@@ -90,6 +90,7 @@ if ENV:
     TIME_API_KEY = os.environ.get('TIME_API_KEY', None)
     WALL_API = os.environ.get('WALL_API',None)
     LASTFM_API_KEY = os.environ.get('LASTFM_API_KEY',None)
+    LASTFM_API_KEY = os.environ.get('LYDIA_API',None)
 
 else:
     from alluka.config import Development as Config
@@ -144,6 +145,7 @@ else:
     TIME_API_KEY = Config.TIME_API_KEY
     WALL_API = Config.WALL_API
     LASTFM_API_KEY = Config.LASTFM_API_KEY
+    LYDIA_API = Config.LYDIA_API
 
     #ZOLDYCK_FAMMILY
     ALLUKA = Config.ALLUKA
