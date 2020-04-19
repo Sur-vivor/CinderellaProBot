@@ -19,8 +19,8 @@ from alluka.modules.helper_funcs.chat_status import is_user_admin
 from alluka.modules.helper_funcs.misc import paginate_modules
 
 PM_START_TEXT = """
-_Hello *{}*
-My name is *{}*.A Powerful Telegram ProBot to Manage Your Groups,feel free to add to ur groups!!!_"""
+_Hello_ *{}*
+_My name is_ *{}*._A Powerful Telegram ProBot to Manage Your Groups,feel free to add to ur groups!!!_"""
 
 
 
