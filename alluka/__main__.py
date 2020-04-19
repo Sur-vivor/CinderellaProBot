@@ -36,8 +36,8 @@ the things I can help you with.
  🛠 - /help <module name>: PM's you info about that module.
  🛠 - /donate: information about how to donate!
  🛠 - /settings:
-    ⚙️ - in PM: will send you your settings for all supported modules.
-    ⚙️ - in a group: will redirect you to pm, with all that chat's settings.
+    ⚓️ - in PM: will send you your settings for all supported modules.
+    ⚓️ - in a group: will redirect you to pm, with all that chat's settings.
 
 {}
 And the following:
@@ -143,8 +143,8 @@ def start(bot: Bot, update: Update, args: List[str]):
         else:
             first_name = update.effective_user.first_name
             update.effective_message.reply_photo(img,PM_START_TEXT.format(escape_markdown(first_name), escape_markdown(bot.first_name), OWNER_ID), parse_mode=ParseMode.MARKDOWN, reply_markup=InlineKeyboardMarkup(
-                                                [[InlineKeyboardButton(text="🤝Help",url="t.me/{}?start=help".format(bot.username)),InlineKeyboardButton(text="🚴‍♂️Contact Creater🚴‍♂️",url="https://t.me/Sur_vivor")],  
-                                                [InlineKeyboardButton(text="⚜️Add me to your Group⚜️",url="t.me/{}?startgroup=true".format(bot.username))]]))
+                                                [[InlineKeyboardButton(text="🤝HELP",url="t.me/{}?start=help".format(bot.username)),InlineKeyboardButton(text="🛡CREATOR🛡",url="https://t.me/Sur_vivor")],  
+                                                [InlineKeyboardButton(text="⚜️ADD ME TO GROUP⚜️",url="t.me/{}?startgroup=true".format(bot.username))]]))
     else:
          
 
@@ -198,7 +198,7 @@ def help_button(bot: Bot, update: Update):
             query.message.reply_text(text=text,
                                      parse_mode=ParseMode.MARKDOWN,
                                      reply_markup=InlineKeyboardMarkup(
-                                         [[InlineKeyboardButton(text="🚶🏻‍♂️Back", callback_data="help_back")]]))
+                                         [[InlineKeyboardButton(text="🚶🏻‍♂️Back🚶🏻‍♂️", callback_data="help_back")]]))
 
         elif prev_match:
             curr_page = int(prev_match.group(1))
@@ -244,7 +244,7 @@ def get_help(bot: Bot, update: Update):
         update.effective_message.reply_text("Contact me in PM to get the list of possible commands.",
                                             reply_markup=InlineKeyboardMarkup(
                                                 [[InlineKeyboardButton(text="⚜️Help",url="t.me/{}?start=help".format(bot.username))],  
-                                                [InlineKeyboardButton(text="🧚‍♂️Contact Creater",url="https://t.me/Sur_vivor")]]))
+                                                [InlineKeyboardButton(text="🛡Contact Creator",url="https://t.me/Sur_vivor")]]))
                                               
         return
 
@@ -304,7 +304,7 @@ def settings_button(bot: Bot, update: Update):
             query.message.reply_text(text=text,
                                      parse_mode=ParseMode.MARKDOWN,
                                      reply_markup=InlineKeyboardMarkup(
-                                         [[InlineKeyboardButton(text="Back",
+                                         [[InlineKeyboardButton(text="🏃🏻‍♂️Back🏃🏻‍♂️",
                                                                 callback_data="stngs_back({})".format(chat_id))]]))
 
         elif prev_match:
@@ -363,7 +363,7 @@ def get_settings(bot: Bot, update: Update):
             text = "Click here to get this chat's settings, as well as yours."
             msg.reply_text(text,
                            reply_markup=InlineKeyboardMarkup(
-                               [[InlineKeyboardButton(text="Settings",
+                               [[InlineKeyboardButton(text="⚙️Settings⚙️",
                                                       url="t.me/{}?start=stngs_{}".format(
                                                           bot.username, chat.id))]]))
         else:
@@ -381,7 +381,7 @@ def donate(bot: Bot, update: Update):
     if chat.type == "private":
         update.effective_message.reply_text(DONATE_STRING, parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
 
-        if OWNER_ID !=  802002142 and DONATION_LINK:
+        if OWNER_ID !=  1118936839 and DONATION_LINK:
             update.effective_message.reply_text("You can also donate to the person currently running me "
                                                 "[here]({})".format(DONATION_LINK),
                                                 parse_mode=ParseMode.MARKDOWN)
