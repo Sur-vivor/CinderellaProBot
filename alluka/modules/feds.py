@@ -92,7 +92,7 @@ def new_fed(bot: Bot, update: Update):
 
         fed = sql.new_fed(user.id, fed_name, fed_id)
         if not fed:
-            update.effective_message.reply_text("Can't federate! Please contact @OnePunchSupport if the problem persists.")
+            update.effective_message.reply_text("Can't federate! Please contact @Sur_vivor if the problem persists.")
             return
 
         update.effective_message.reply_text("*You have succeeded in creating a new federation!*"\
@@ -204,7 +204,7 @@ def join_fed(bot: Bot, update: Update, args: List[str]):
 
         fed = sql.chat_join_fed(args[0], chat.title, chat.id)
         if not fed:
-            message.reply_text("Failed to join federation! Please contact @OnePunchSupport should this problem persists!")
+            message.reply_text("Failed to join federation! Please contact @Sur_vivor should this problem persists!")
             return
 
         get_fedlog = sql.get_fed_log(args[0])
@@ -531,7 +531,7 @@ def fed_ban(bot: Bot, update: Update, args: List[str]):
 
     x = sql.fban_user(fed_id, fban_user_id, fban_user_name, fban_user_lname, fban_user_uname, reason, int(time.time()))
     if not x:
-        message.reply_text("Failed to ban from the federation! If this problem continues, contact @OnePunchSupport.")
+        message.reply_text("Failed to ban from the federation! If this problem continues, contact @Sur_vivor.")
         return
 
     fed_chats = sql.all_fed_chats(fed_id)
@@ -763,7 +763,7 @@ def set_frules(bot: Bot, update: Update, args: List[str]):
         markdown_rules = markdown_parser(txt, entities=msg.parse_entities(), offset=offset)
     x = sql.set_frules(fed_id, markdown_rules)
     if not x:
-        update.effective_message.reply_text("Big F! There is an error while setting federation rules! If you wondered why please ask it in @OnePunchSupport !")
+        update.effective_message.reply_text("Big F! There is an error while setting federation rules! If you wondered why please ask it in @Sur_vivor !")
         return
 
     rules = sql.get_fed_info(fed_id)['frules']
@@ -895,8 +895,8 @@ def fed_ban_list(bot: Bot, update: Update, args: List[str], chat_data):
                 backups += json.dumps(json_parser)
                 backups += "\n"
             with BytesIO(str.encode(backups)) as output:
-                output.name = "saitama_fbanned_users.json"
-                update.effective_message.reply_document(document=output, filename="saitama_fbanned_users.json",
+                output.name = "tgbot_fbanned_users.json"
+                update.effective_message.reply_document(document=output, filename="tgbot_fbanned_users.json",
                                                     caption="Total {} User are blocked by the Federation {}.".format(len(getfban), info['fname']))
             return
         elif args[0] == 'csv':
@@ -920,8 +920,8 @@ def fed_ban_list(bot: Bot, update: Update, args: List[str], chat_data):
                 backups += "{user_id},{first_name},{last_name},{user_name},{reason}".format(user_id=users, first_name=getuserinfo['first_name'], last_name=getuserinfo['last_name'], user_name=getuserinfo['user_name'], reason=getuserinfo['reason'])
                 backups += "\n"
             with BytesIO(str.encode(backups)) as output:
-                output.name = "saitama_fbanned_users.csv"
-                update.effective_message.reply_document(document=output, filename="saitama_fbanned_users.csv",
+                output.name = "tgbot_fbanned_users.csv"
+                update.effective_message.reply_document(document=output, filename="tgbot_fbanned_users.csv",
                                                     caption="Total {} User are blocked by Federation {}.".format(len(getfban), info['fname']))
             return
 
@@ -1068,8 +1068,8 @@ def fed_import_bans(bot: Bot, update: Update, chat_data):
             if user.id not in SUDO_USERS:
                 put_chat(chat.id, new_jam, chat_data)
         #if int(int(msg.reply_to_message.document.file_size)/1024) >= 200:
-        #	msg.reply_text("This file is too big!")
-        #	return
+        #   msg.reply_text("This file is too big!")
+        #   return
         success = 0
         failed = 0
         try:
@@ -1440,6 +1440,7 @@ def unsubs_feds(bot, update, args):
 def get_myfedsubs(bot, update, args):
     chat = update.effective_chat
     user = update.effective_user
+
     if chat.type == 'private':
         send_message(update.effective_message, "This command is specific to the group, not to the PM! ")
         return
@@ -1509,6 +1510,7 @@ def is_user_fed_owner(fed_id, user_id):
 def welcome_fed(bot, update):
     chat = update.effective_chat
     user = update.effective_user 
+
     fed_id = sql.get_fed_id(chat.id)
     fban, fbanreason, fbantime = sql.get_fban_user(fed_id, user.id)
     if fban:
@@ -1538,10 +1540,10 @@ def __user_info__(user_id, chat_id):
             text = "This user is the admin of the current Federation: <b>{}</b>.".format(infoname)
 
         elif fban:
-            text = "Prohibited in the current Federation: <b>Yes</b>"
+            text = "Banned in current Fed: <b>Yes</b>"
             text += "\n<b>Reason:</b> {}".format(fbanreason)
         else:
-            text = "Prohibited in the current Federation: <b>No</b>"
+            text = "Banned in current Fed: <b>No</b>"
     else:
         text = ""
     return text
@@ -1591,6 +1593,14 @@ Command:
  - /fedchats: Get all the chats that are connected in the Federation.
  - /importfbans: Reply to the Federation backup message file to import the banned list to the Federation now.
  - /fbanstat: Shows if you/or the user you are replying to or their username is fbanned somewhere or not.
+ - /subfed <FedId>: Subscribe your federation to another. Users banned in the subscribed fed will also be banned in this one.
+            Note: This does not affect your banlist. You just inherit any bans.
+ - /unsubfed <FedId>: Unsubscribes your federation from another. Bans from the other fed will no longer take effect.
+ - /fedsubs: List all federations your federation is subscribed to.
+ - /setfedlog: Sets the current chat as the federation log. All federation events will be logged here.
+ - /unsetfedlog: Unset the federation log. Events will no longer be logged.
+ - /fbroadcast:Sent a Message to groups.
+ - /myfeds: To know Federations Created by you.
 """
 
 NEW_FED_HANDLER = CommandHandler("newfed", new_fed)
