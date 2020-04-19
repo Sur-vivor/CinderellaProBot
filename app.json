@@ -16,7 +16,11 @@
       "BAN_STICKER": {
          "description": "ID of the sticker you want to use when banning people.",
          "required": false,
-         "value": "CAACAgUAAxkBAAIHsl5nbqXdDTmpG2HFDNhnwvE5kFbWAAI9AQAC3pTNLzeTCUmnhTneGAQ"
+         "value": ""
+      },
+      "MESSAGE_DUMP": {
+         "description": "optional: a chat where your replied saved messages are stored, to stop people deleting their old",
+         "value": ""   
       },
       "DEL_CMDS": {
          "description": "Set this to True if you want to delete command messages from users who don't have the perms to run that command.",
