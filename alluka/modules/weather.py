@@ -80,7 +80,7 @@ def accuweather(update, context):
         return
 
     if True:
-        url = "api.openweathermap.org/data/2.5/weather?q={}&appid={}".format(location, API_ACCUWEATHER)
+        url = "https://api.openweathermap.org/data/2.5/weather?q={}&appid={}".format(location, API_ACCUWEATHER)
         headers = {'Content-type': 'application/json'}
         r = requests.get(url, headers=headers)
         try:
@@ -88,7 +88,7 @@ def accuweather(update, context):
         except:
             return send_message(update.effective_message, "Sorry, location not found 😞")
         locid = data.get('Key')
-        urls = "api.openweathermap.org/data/2.5/weather?id={}&appid={}".format(locid, API_ACCUWEATHER)
+        urls = "https://api.openweathermap.org/data/2.5/weather?id={}&appid={}".format(locid, API_ACCUWEATHER)
         rs = requests.get(urls, headers=headers)
         datas = rs.json()[0]
 
