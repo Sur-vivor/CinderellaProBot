@@ -142,7 +142,7 @@ def start(bot: Bot, update: Update, args: List[str]):
 
         else:
             first_name = update.effective_user.first_name
-            update.effective_message.reply_photo(img,PM_START_TEXT.format(escape_markdown(first_name), escape_markdown(bot.first_name), OWNER_ID),reply_markup=InlineKeyboardMarkup(
+            update.effective_message.reply_photo(img,PM_START_TEXT.format(escape_markdown(first_name), escape_markdown(bot.first_name), OWNER_ID), parse_mode=ParseMode.MARKDOWN, reply_markup=InlineKeyboardMarkup(
                                                 [[InlineKeyboardButton(text="❓ Help",url="t.me/{}?start=help".format(bot.username)),InlineKeyboardButton(text=" 👥 Contact Creater",url="https://t.me/Sur_vivor")],  
                                                 [InlineKeyboardButton(text=" Add in your Group",url="t.me/{}?startgroup=true".format(bot.username))]]))
     else:
@@ -244,8 +244,8 @@ def get_help(bot: Bot, update: Update):
         update.effective_message.reply_text("Contact me in PM to get the list of possible commands.",
                                             reply_markup=InlineKeyboardMarkup(
                                                 [[InlineKeyboardButton(text="Help",url="t.me/{}?start=help".format(bot.username))],  
-                                                [InlineKeyboardButton(text="Join our support chat.",url="https://telegram.dog/allukatm")],
-                                                [InlineKeyboardButton(text="You want to try my userbot vesion 😄",url="https://telegram.dog/allukabot")]]))
+                                                [InlineKeyboardButton(text="Contact Creater",url="https://t.me/Sur_vivor")]]))
+                                              
         return
 
     elif len(args) >= 2 and any(args[1].lower() == x for x in HELPABLE):
