@@ -161,19 +161,18 @@ def fed_chat(bot: Bot, update: Update, args: List[str]):
 def join_fed(bot: Bot, update: Update, args: List[str]):
     chat = update.effective_chat
     user = update.effective_user
-
-    if chat.type == 'private':
-        send_message(update.effective_message, "This command is specific to the group, not to the PM!")
-        return
-
     message = update.effective_message
     administrators = chat.get_administrators()
     fed_id = sql.get_fed_id(chat.id)
-
-    if not user.id in SUDO_USERS:
+	
+    if chat.type == 'private':
+        send_message(update.effective_message, "This command is specific to the group, not to the PM!")
         return
-
-    for admin in administrators:
+   
+   if user.id in SUDO_USERS:
+        pass
+    else:
+        for admin in administrators:
             status = admin.status
             if status == "creator":
                 print(admin)
@@ -182,7 +181,7 @@ def join_fed(bot: Bot, update: Update, args: List[str]):
                 else:
                     update.effective_message.reply_text("Only the group creator can do it!")
                     return
-
+	
     if fed_id:
         message.reply_text("You cannot join two federations from one chat")
         return
