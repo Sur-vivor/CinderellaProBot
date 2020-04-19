@@ -68,45 +68,38 @@ UNFBAN_ERRORS = {
 
 @run_async
 def new_fed(bot: Bot, update: Update):
-    chat = update.effective_chat
-    user = update.effective_user
-    message = update.effective_message
+	chat = update.effective_chat  # type: Optional[Chat]
+	user = update.effective_user  # type: Optional[User]
+	message = update.effective_message
+	if chat.type != "private":
+		update.effective_message.reply_text("Please run this command in my PM only!")
+		return
+	fednam = message.text.split(None, 1)[1]
+	if not fednam == '':
+		fed_id = str(uuid.uuid4())
+		fed_name = fednam
+		LOGGER.info(fed_id)
+		if user.id == int(OWNER_ID):
+			fed_id = fed_name
 
-    if chat.type != "private":
-        update.effective_message.reply_text("Make your federation in my PM, not in a group.")
-        return
+		x = sql.new_fed(user.id, fed_name, fed_id)
+		if not x:
+			update.effective_message.reply_text("Failed to create federation! Head over to @Sur_vivor to notify us of the error.")
+			return
 
-    if len(message.text) == 1:
-        send_message(update.effective_message, "Please write the name of the federation!")
-        return
+		update.effective_message.reply_text("*You have successfully created a new federation!*"\
+											"\nName: `{}`"\
+											"\nID: `{}`"
+											"\n\nUse the command below to join the federation:"
+											"\n`/joinfed {}`".format(fed_name, fed_id, fed_id), parse_mode=ParseMode.MARKDOWN)
+		try:
+			bot.send_message(MESSAGE_DUMP,
+				"Federation <b>{}</b> has been created with ID: <pre>{}</pre>".format(fed_name, fed_id), parse_mode=ParseMode.HTML)
+		except:
+			LOGGER.warning("Cannot send a message to MESSAGE_DUMP")
+	else:
+		update.effective_message.reply_text("Please give a name for the federation.")
 
-    fed_name = message.text.split(None, 1)[1]
-    if not fed_name == '':
-        fed_id = str(uuid.uuid4())
-    else:
-        update.effective_message.reply_text("Please write down the name of the federation")
-        return
-
-    if user.id == int(OWNER_ID):
-        fed_id = fed_name
-
-        fed = sql.new_fed(user.id, fed_name, fed_id)
-        if not fed:
-            update.effective_message.reply_text("Can't federate! Please contact @Sur_vivor if the problem persists.")
-            return
-
-        update.effective_message.reply_text("*You have succeeded in creating a new federation!*"\
-                                            "\nName: `{}`"\
-                                            "\nID: `{}`"
-                                            "\n\nUse the command below to join the federation:"
-                                            "\n`/joinfed {}`".format(fed_name, fed_id, fed_id), parse_mode=ParseMode.MARKDOWN)
-        try:
-            bot.send_message(GBAN_LOGS,
-                             "Federation <b>{}</b> has been created with ID: <pre>{}</pre>".format(
-                                 fed_name, fed_id),
-                             parse_mode=ParseMode.HTML)
-        except:
-            LOGGER.warning("Cannot send a message to GBAN_LOGS")
 
 
 @run_async
