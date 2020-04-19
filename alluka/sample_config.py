@@ -46,7 +46,8 @@ class Config(object):
     WALL_API = None
     LASTFM_API_KEY = None
     LYDIA_API = None
-
+    API_OPENWEATHER = ""
+    API_ACCUWEATHER = ""
 
     #ZOLDYCK_FAMILY
     ALLUKA = [936828744]
