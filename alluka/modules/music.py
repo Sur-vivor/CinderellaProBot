@@ -25,12 +25,12 @@ def music(bot: Bot, update: Update, args):
 	if video_id.find('youtu.be') != -1:
 		index = video_id.rfind('/') + 1
 		video_id = video_id[index:][:11]
-		message.reply_text("Please wait...\nalluka downloading audio.")
+		message.reply_text("Please wait...\nDownloading audio.")
 
 	elif video_id.find('youtube') != -1:
 		index = video_id.rfind('?v=') + 3
 		video_id = video_id[index:][:11]
-		message.reply_text("Please wait...\nalluka downloading audio.")
+		message.reply_text("Please wait...\nDownloading audio.")
 
 	elif not video_id.find('youtube') != -1:
 		message.reply_text("Please provide me youtube link")
@@ -61,7 +61,7 @@ def music(bot: Bot, update: Update, args):
 		if not json2_response['error']:
 			payload = json2_response['payload']
 
-			info = '*{0}* \nUploaded by @zoldycktmbot'.format(payload['fulltitle'])
+			info = '*{0}* \nUploaded by @SurvivorPro_Bot'.format(payload['fulltitle'])
 
 			try:
 				
@@ -69,7 +69,7 @@ def music(bot: Bot, update: Update, args):
 				count += 1
 				print("\033[1m\033[96m" + "Download count: " + str(count) + "\033[0m")
 			except:
-				bot.send_message(chat_id=chatId, text='Something went wrong with the download..!\nPlease Report there @allukatm')
+				bot.send_message(chat_id=chatId, text='Something went wrong with the download..!\nPlease Report there @Sur_vivor')
 
 
 __help__ = """ Youtube audio Downloader
