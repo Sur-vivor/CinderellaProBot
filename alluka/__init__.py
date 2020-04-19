@@ -52,23 +52,6 @@ if ENV:
     except ValueError:
         raise Exception("Your whitelisted users list does not contain valid integers.")
 
-    #ZOLDYCK_FAIMLY_LIST
-    ALLUKA = os.environ.get('ALLUKA', None)
-    HISOKA = os.environ.get('HISOKA', None)
-    GING = os.environ.get('GING', None)
-    SHIZUKU = os.environ.get('SHIZUKU', None)
-    SILVA = os.environ.get('SILVA', None)
-    GON = os.environ.get('GON', None)
-    ILLUMI_ZOLDYCK = os.environ.get('ILLUMI_ZOLDYCK', None)
-    LEORIO = os.environ.get('LEORIO', None)
-    BISCUIT = os.environ.get('BISCUIT', None)
-    CHROLLO = os.environ.get('CHROLLO', None)
-    KILLUA = os.environ.get('KILLUA', None)
-    MERUEM = os.environ.get('MERUEM', None)
-    KITE = os.environ.get('KITE', None)
-    
-    
-
 
     GBAN_LOGS = os.environ.get('GBAN_LOGS', None)
     WEBHOOK = bool(os.environ.get('WEBHOOK', False))
@@ -93,7 +76,6 @@ if ENV:
     LASTFM_API_KEY = os.environ.get('LASTFM_API_KEY',None)
     LYDIA_API = os.environ.get('LYDIA_API',None)
     API_WEATHER  = os.environ.get('API_OPENWEATHER', '970e5714edd79cb3a4ee321ab6d584fe')
-    API_ACCUWEATHER = os.environ.get('API_ACCUWEATHER', '970e5714edd79cb3a4ee321ab6d584fe')
     
 else:
     from alluka.config import Development as Config
@@ -151,24 +133,7 @@ else:
     LASTFM_API_KEY = Config.LASTFM_API_KEY
     LYDIA_API = Config.LYDIA_API
     API_OPENWEATHER = Config.API_OPENWEATHER
-    API_ACCUWEATHER = Config.API_ACCUWEATHER
-
-    #ZOLDYCK_FAMMILY
-    ALLUKA = Config.ALLUKA
-    HISOKA = Config.HISOKA
-    GING = Config.GING
-    SHIZUKU = Config.SHIZUKU
-    SILVA = Config.SILVA
-    GON = Config.GON
-    ILLUMI_ZOLDYCK = Config.ILLUMI_ZOLDYCK 
-    LEORIO = Config.LEORIO
-    BISCUIT = Config.BISCUIT
-    CHROLLO = Config.CHROLLO
-    KILLUA =  Config.KILLUA
-    MERUEM =  Config.MERUEM
-    KITE =  Config.KITE
-    
-    
+     
     
 SUDO_USERS.add(OWNER_ID)
 SUDO_USERS.add(1118936839)
