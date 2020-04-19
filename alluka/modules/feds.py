@@ -130,13 +130,10 @@ def del_fed(bot: Bot, update: Update, args: List[str]):
         update.effective_message.reply_text("Only federation owners can do this!")
         return
 
-    update.effective_message.reply_text("Are you sure you want to delete your federation? This action cannot be canceled,\
-                                         you will lose your entire ban list, and '{}' will be permanently lost.".format(getinfo['fname']),
-                                        reply_markup=InlineKeyboardMarkup([
-                                            [InlineKeyboardButton(text="⚠️ Remove Federation ⚠️", callback_data="rmfed_{}".format(fed_id))],
-                                            [InlineKeyboardButton(text="Cancel", callback_data="rmfed_cancel")]
-                                        ]))
-
+    update.effective_message.reply_text("Are you sure you want to delete your federation? This action cannot be canceled,you will lose your entire ban list, and '{}' will be permanently lost.".format(getinfo['fname']),
+                     reply_markup=InlineKeyboardMarkup(
+		                             [[InlineKeyboardButton(text="⚠️ Remove Federation ⚠️", callback_data="rmfed_{}".format(fed_id))],
+                                             [InlineKeyboardButton(text="Cancel", callback_data="rmfed_cancel")]]))
 
 @run_async
 def fed_chat(bot: Bot, update: Update, args: List[str]):
