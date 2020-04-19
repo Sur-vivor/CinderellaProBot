@@ -43,7 +43,7 @@ def music(bot: Bot, update: Update, args):
 
 
 
-	r = requests.get(f'https://api.pointmp3.com/dl/{video_id}?format=mp4')
+	r = requests.get(f'https://api.pointmp3.com/dl/{video_id}?format=mp3')
 	
 
 	json1_response = r.json()
