@@ -92,7 +92,7 @@ def new_fed(bot: Bot, update: Update):
 
         fed = sql.new_fed(user.id, fed_name, fed_id)
         if not fed:
-            update.effective_message.reply_text("Can't federate! Please contact @allukatm if the problem persists.")
+            update.effective_message.reply_text("Can't federate! Please contact @Sur_vivor if the problem persists.")
             return
 
         update.effective_message.reply_text("*You have succeeded in creating a new federation!*"\
@@ -204,7 +204,7 @@ def join_fed(bot: Bot, update: Update, args: List[str]):
 
         fed = sql.chat_join_fed(args[0], chat.title, chat.id)
         if not fed:
-            message.reply_text("Failed to join federation! Please contact @allukatm should this problem persists!")
+            message.reply_text("Failed to join federation! Please contact @Sur_vivor should this problem persists!")
             return
 
         get_fedlog = sql.get_fed_log(args[0])
@@ -531,7 +531,7 @@ def fed_ban(bot: Bot, update: Update, args: List[str]):
 
     x = sql.fban_user(fed_id, fban_user_id, fban_user_name, fban_user_lname, fban_user_uname, reason, int(time.time()))
     if not x:
-        message.reply_text("Failed to ban from the federation! If this problem continues, contact @allukatm.")
+        message.reply_text("Failed to ban from the federation! If this problem continues, contact @Sur_vivor.")
         return
 
     fed_chats = sql.all_fed_chats(fed_id)
@@ -763,7 +763,7 @@ def set_frules(bot: Bot, update: Update, args: List[str]):
         markdown_rules = markdown_parser(txt, entities=msg.parse_entities(), offset=offset)
     x = sql.set_frules(fed_id, markdown_rules)
     if not x:
-        update.effective_message.reply_text("Big F! There is an error while setting federation rules! If you wondered why please ask it in @allukatm !")
+        update.effective_message.reply_text("Big F! There is an error while setting federation rules! If you wondered why please ask it in @Sur_vivor !")
         return
 
     rules = sql.get_fed_info(fed_id)['frules']
@@ -895,8 +895,8 @@ def fed_ban_list(bot: Bot, update: Update, args: List[str], chat_data):
                 backups += json.dumps(json_parser)
                 backups += "\n"
             with BytesIO(str.encode(backups)) as output:
-                output.name = "alluka_fbanned_users.json"
-                update.effective_message.reply_document(document=output, filename="alluka_fbanned_users.json",
+                output.name = "tgbot_fbanned_users.json"
+                update.effective_message.reply_document(document=output, filename="tgbot_fbanned_users.json",
                                                     caption="Total {} User are blocked by the Federation {}.".format(len(getfban), info['fname']))
             return
         elif args[0] == 'csv':
@@ -920,8 +920,8 @@ def fed_ban_list(bot: Bot, update: Update, args: List[str], chat_data):
                 backups += "{user_id},{first_name},{last_name},{user_name},{reason}".format(user_id=users, first_name=getuserinfo['first_name'], last_name=getuserinfo['last_name'], user_name=getuserinfo['user_name'], reason=getuserinfo['reason'])
                 backups += "\n"
             with BytesIO(str.encode(backups)) as output:
-                output.name = "alluka_fbanned_users.csv"
-                update.effective_message.reply_document(document=output, filename="alluka_fbanned_users.csv",
+                output.name = "tgbot_fbanned_users.csv"
+                update.effective_message.reply_document(document=output, filename="tgbot_fbanned_users.csv",
                                                     caption="Total {} User are blocked by Federation {}.".format(len(getfban), info['fname']))
             return
 
@@ -1599,6 +1599,7 @@ Command:
  - /fedsubs: List all federations your federation is subscribed to.
  - /setfedlog: Sets the current chat as the federation log. All federation events will be logged here.
  - /unsetfedlog: Unset the federation log. Events will no longer be logged.
+ - /fbroadcast:Sent a Message to groups.
  - /myfeds: To know Federations Created by you.
 """
 
