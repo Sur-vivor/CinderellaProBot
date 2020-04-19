@@ -74,10 +74,9 @@ def new_fed(bot: Bot, update: Update):
 	if chat.type != "private":
 		update.effective_message.reply_text("Please run this command in my PM only!")
 		return
-	fednam = message.text.split(None, 1)[1]
-	if not fednam == '':
+	fed_name = message.text.split(None, 1)[1]
+	if not fed_name == '':
 		fed_id = str(uuid.uuid4())
-		fed_name = fednam
 		LOGGER.info(fed_id)
 		if user.id == int(OWNER_ID):
 			fed_id = fed_name
@@ -460,7 +459,7 @@ def fed_ban(bot: Bot, update: Update, args: List[str]):
         return
 
     if is_user_fed_owner(fed_id, user_id):
-        message.reply_text("Why did you try the federation fban?")
+        message.reply_text("Pling..You can't ban the federation owner!")
         return
 
     if is_user_fed_admin(fed_id, user_id):
@@ -468,7 +467,7 @@ def fed_ban(bot: Bot, update: Update, args: List[str]):
         return
 
     if user_id == OWNER_ID:
-        message.reply_text("That's a very stupid idea!")
+        message.reply_text("That's a very stupid idea,He is my Owner!")
         return
 
     if int(user_id) in SUDO_USERS:
@@ -476,7 +475,7 @@ def fed_ban(bot: Bot, update: Update, args: List[str]):
         return
 
     if int(user_id) in WHITELIST_USERS:
-        message.reply_text("This person can't be fbanned!")
+        message.reply_text("I will not use whitelist fban!")
         return
 
     try:
