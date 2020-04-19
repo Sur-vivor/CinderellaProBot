@@ -28,9 +28,9 @@ def add_chat(bot: Bot, update: Update):
         ses_id = str(ses.id)
         expires = str(ses.expires)
         sql.set_ses(chat_id, ses_id, expires)
-        msg.reply_text("lydia successfully enabled for this chat!")
+        msg.reply_text("Lydia successfully enabled for this chat!")
     else:
-        msg.reply_text("lydia is already enabled for this chat!")
+        msg.reply_text("Lydia is already enabled for this chat!")
         
         
 @run_async
@@ -39,10 +39,10 @@ def remove_chat(bot: Bot, update: Update):
     chat_id = update.effective_chat.id
     is_chat = sql.is_chat(chat_id)
     if not is_chat:
-        msg.reply_text("lydia isn't enabled here in the first place!")
+        msg.reply_text("Lydia isn't enabled here in the first place!")
     else:
         sql.rem_chat(chat_id)
-        msg.reply_text("lydia disabled successfully!")
+        msg.reply_text("Lydia disabled successfully!")
         
         
 def check_message(bot: Bot, message):
@@ -87,14 +87,14 @@ def lydia(bot: Bot, update: Update):
             bot.send_message(OWNER_ID, f"lydia error: {e} occurred in {chat_id}!")
                     
 
-__mod_name__ = "lydia"
+__mod_name__ = "Lydia"
 
 __help__ = """
-Commands: These only work on @allukatm.
- - /elydia : Enables lydia mode in the chat.
- - /dlydia  : Disables lydia mode in the chat.
+Commands
+ - /elydia : Enables Lydia mode in the chat.
+ - /dlydia  : Disables Lydia mode in the chat.
  
- Lydia module by @TheRealPhoenix
+ 
 """
                   
 ADD_CHAT_HANDLER = CommandHandler("elydia", add_chat, filters=CustomFilters.dev_filter)
