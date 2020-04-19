@@ -123,13 +123,11 @@
          "description": "Enter wall api",
          "required": false,
          "value": ""
-      
       },
-        "LYDIA_API": {
+      "LYDIA_API": {
          "description": "Put here lydia API.",
          "required": false,
-         "value": " "
-      
+         "value": " " 
       }
    },
    "keywords": [
@@ -137,10 +135,11 @@
       "weeb",
       "group",
       "manager",
-     
+      "alluka",
+      "zoldyck"
    ],
    "name": "Survivor",
    "repository": "https://github.com/Sur-vivor/Alluka",
    "success_url": "https://telegram.dog/SurvivorPro_Bot",
-   "logo": "https://telegra.ph/Survivor-04-19.jpg"
+   "logo": "https://telegra.ph/Survivor-04-19"
 }
