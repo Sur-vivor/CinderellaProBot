@@ -117,8 +117,9 @@ def extract_unt_fedban(message: Message, args: List[str]) -> (Optional[int], Opt
         user = args[0]
         user_id = get_user_id(user)
         if not user_id and not str(user_id).isdigit():
-            message.reply_text("Saya tidak memiliki pengguna di db saya. Anda akan dapat berinteraksi dengan mereka jika "
-                               "Anda membalas pesan orang itu, atau meneruskan salah satu dari pesan pengguna itu.")
+            message.reply_text("I don't seem to have interacted with this user before - please forward a message from "
+                               "them to give me control! (like a voodoo doll, I need a piece of them to be able "
+                               "to execute certain commands...)")
             return None, None
 
         else:
