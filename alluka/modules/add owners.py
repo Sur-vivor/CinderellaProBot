@@ -196,7 +196,7 @@ __help__ = """
  - /rwhitelist: demotes the user from Whitelist User
 """
 
-__mod_name__ = "Add Owners"
+__mod_name__ = "Dev Promoter"
 
 addsudo_HANDLER = CommandHandler("addsudo", addsudo, pass_args=True, filters=Filters.user(OWNER_ID))
 rsudo_HANDLER = CommandHandler("rsudo", rsudo, pass_args=True, filters=Filters.user(OWNER_ID))
