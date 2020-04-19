@@ -31,13 +31,13 @@ I'm a modular group management bot with a few fun extras! Have a look at the fol
 the things I can help you with.
 
 *Main* commands available:
- - /start: start the bot
- - /help: PM's you this message.
- - /help <module name>: PM's you info about that module.
- - /donate: information about how to donate!
- - /settings:
-  - in PM: will send you your settings for all supported modules.
-  - in a group: will redirect you to pm, with all that chat's settings.
+ 🛠 - /start: start the bot
+ 🛠 - /help: PM's you this message.
+ 🛠 - /help <module name>: PM's you info about that module.
+ 🛠 - /donate: information about how to donate!
+ 🛠 - /settings:
+    ⚙️ - in PM: will send you your settings for all supported modules.
+    ⚙️ - in a group: will redirect you to pm, with all that chat's settings.
 
 {}
 And the following:
@@ -143,13 +143,13 @@ def start(bot: Bot, update: Update, args: List[str]):
         else:
             first_name = update.effective_user.first_name
             update.effective_message.reply_photo(img,PM_START_TEXT.format(escape_markdown(first_name), escape_markdown(bot.first_name), OWNER_ID), parse_mode=ParseMode.MARKDOWN, reply_markup=InlineKeyboardMarkup(
-                                                [[InlineKeyboardButton(text="❓ Help",url="t.me/{}?start=help".format(bot.username)),InlineKeyboardButton(text=" 👥 Contact Creater",url="https://t.me/Sur_vivor")],  
-                                                [InlineKeyboardButton(text=" Add in your Group",url="t.me/{}?startgroup=true".format(bot.username))]]))
+                                                [[InlineKeyboardButton(text="🤝Help",url="t.me/{}?start=help".format(bot.username)),InlineKeyboardButton(text="🚴‍♂️Contact Creater🚴‍♂️",url="https://t.me/Sur_vivor")],  
+                                                [InlineKeyboardButton(text="⚜️Add me to your Group⚜️",url="t.me/{}?startgroup=true".format(bot.username))]]))
     else:
          
 
         update.effective_message.reply_text("Heya,Տմɾѵíѵօɾ Here🧞‍♂️\nHow can I help you? 🙂",reply_markup=InlineKeyboardMarkup(
-                                                [[InlineKeyboardButton(text="❓ Help",url="t.me/{}?start=help".format(bot.username)),InlineKeyboardButton(text=" ✉️ Public Feeds",url="https://t.me/Sur_vivor")]]))
+                                                [[InlineKeyboardButton(text="⚜️Help",url="t.me/{}?start=help".format(bot.username)),InlineKeyboardButton(text="📨Public Feeds",url="https://t.me/Sur_vivor")]]))
                                             
         
 
@@ -198,7 +198,7 @@ def help_button(bot: Bot, update: Update):
             query.message.reply_text(text=text,
                                      parse_mode=ParseMode.MARKDOWN,
                                      reply_markup=InlineKeyboardMarkup(
-                                         [[InlineKeyboardButton(text="Back", callback_data="help_back")]]))
+                                         [[InlineKeyboardButton(text="🚶🏻‍♂️Back", callback_data="help_back")]]))
 
         elif prev_match:
             curr_page = int(prev_match.group(1))
@@ -243,8 +243,8 @@ def get_help(bot: Bot, update: Update):
 
         update.effective_message.reply_text("Contact me in PM to get the list of possible commands.",
                                             reply_markup=InlineKeyboardMarkup(
-                                                [[InlineKeyboardButton(text="Help",url="t.me/{}?start=help".format(bot.username))],  
-                                                [InlineKeyboardButton(text="Contact Creater",url="https://t.me/Sur_vivor")]]))
+                                                [[InlineKeyboardButton(text="⚜️Help",url="t.me/{}?start=help".format(bot.username))],  
+                                                [InlineKeyboardButton(text="🧚‍♂️Contact Creater",url="https://t.me/Sur_vivor")]]))
                                               
         return
 
