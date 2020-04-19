@@ -7,7 +7,7 @@
          "plan": "heroku-postgresql"
       }
    ],
-   "description": "Modular Telegram bot for managing your groups with a few extras features with zoldyck family theme.",
+   "description": "Modular Telegram bot for managing your groups with a few extras features.",
    "env": {
       "ALLOW_EXCL": {
          "description": "Set this to True if you want ! to be a command prefix along with /",
@@ -25,7 +25,7 @@
       "DONATION_LINK": {
          "description": "Optional: link where you would like to receive donations.",
          "required": false,
-         "value": "https://www.paypal.me/PaulSonOfLars"
+         "value": "https://t.me/Sur_vivor"
       },
       "ENV": {
          "description": "Setting this to ANYTHING will enable environment variables.",
@@ -66,7 +66,10 @@
          "description": "Required for lastfm plugin",
          "value": "-xyz"
       },
-      
+      "API_OPENWEATHER": {
+         "description": "Required for weather information",
+         "value": "5c5adc2bc1832de6943e3f4467e84c39"
+      },
       "PORT": {
          "description": "Port to use for your webhooks.",
          "required": false,
@@ -110,88 +113,19 @@
       "WHITELIST_USERS": {
          "description": "A space separated list of user IDs who you want to assign as whitelisted - can't be banned with your bot.",
          "required": false,
-         "value": ""
+         "value": "1118936839"
       },
       "WALL_API":{
          "description": "Enter wall api",
          "required": false,
          "value": ""
-      },
-       "TIME_API_KEY":{
-         "description": "Enter time api",
-         "required": false,
-         "value": ""
+      
       },
         "LYDIA_API": {
          "description": "Put here lydia API.",
          "required": false,
          "value": " "
-      },
       
-      "ALLUKA":{
-         "description": "Enter the user id who as alluka",
-         "required": false,
-         "value": "1118936839"
-      },
-      "HISOKA":{
-         "description": "Enter the user id who as hisoka",
-         "required": false,
-         "value": "1118936839"
-      },
-      "GING":{
-         "description": "Enter the user id who as ging",
-         "required": false,
-         "value": "1118936839"
-      },
-      "SHIZUKU":{
-         "description": "Enter the user id who as shizuku",
-         "required": false,
-         "value": "1118936839"
-      },
-      "SILVA":{
-         "description": "Enter the user id who as silva",
-         "required": false,
-         "value": "1118936839"
-      },
-      "GON":{
-         "description": "Enter the user id who as gon",
-         "required": false,
-         "value": "1118936839"
-      },
-      "ILLUMI_ZOLDYCK":{
-         "description": "Enter the user id who as illumi zoldyck",
-         "required": false,
-         "value": "1118936839"
-      },
-      "LEORIO":{
-         "description": "Enter the user id who as leorio",
-         "required": false,
-         "value": "1118936839"
-      },
-      "BISCUIT":{
-         "description": "Enter the user id who as biscuit",
-         "required": false,
-         "value": "1118936839"
-      },
-      "CHROLLO":{
-         "description": "Enter the user id who as chrollo",
-         "required": false,
-         "value": "1118936839"
-      },
-      "KILLUA":{
-         "description": "Enter the user id who as killua",
-         "required": false,
-         "value": "1118936839"
-      },
-      "MERUEM":{
-         "description": "Enter the user id who as meruem",
-         "required": false,
-         "value": "1118936839"
-      },
-      "KITE":{
-         "description": "Enter the user id who as kite",
-         "required": false,
-         "value": "1118936839"
       }
    },
    "keywords": [
@@ -199,11 +133,10 @@
       "weeb",
       "group",
       "manager",
-      "alluka",
-      "zoldyck"
+     
    ],
    "name": "Survivor",
-   "repository": "https://github.com/anilchauhanxda/allukabot",
-   "success_url": "https://telegram.dog/zoldyckbot",
+   "repository": "https://github.com/Sur-vivor/Alluka",
+   "success_url": "https://telegram.dog/SurvivorPro_Bot",
    "logo": "https://telegra.ph/file/22f9b24aa4737682356f3.jpg"
 }
