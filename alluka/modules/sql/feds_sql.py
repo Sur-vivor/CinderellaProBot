@@ -191,22 +191,15 @@ def get_user_fbanlist(user_id):
 
 
 def new_fed(owner_id, fed_name, fed_id):
-    with FEDS_LOCK:
-        global FEDERATION_BYOWNER, FEDERATION_BYFEDID, FEDERATION_BYNAME
-        fed = Federations(str(owner_id), fed_name, str(fed_id), 'Rules is not set in this federation.', None,
-                          str({'owner': str(owner_id), 'members': '[]'}))
-        SESSION.add(fed)
-        SESSION.commit()
-        FEDERATION_BYOWNER[str(owner_id)] = (
-        {'fid': str(fed_id), 'fname': fed_name, 'frules': 'Rules is not set in this federation.', 'flog': None,
-         'fusers': str({'owner': str(owner_id), 'members': '[]'})})
-        FEDERATION_BYFEDID[str(fed_id)] = (
-        {'owner': str(owner_id), 'fname': fed_name, 'frules': 'Rules is not set in this federation.', 'flog': None,
-         'fusers': str({'owner': str(owner_id), 'members': '[]'})})
-        FEDERATION_BYNAME[fed_name] = (
-        {'fid': str(fed_id), 'owner': str(owner_id), 'frules': 'Rules is not set in this federation.', 'flog': None,
-         'fusers': str({'owner': str(owner_id), 'members': '[]'})})
-        return fed
+	with FEDS_LOCK:
+		global FEDERATION_BYOWNER, FEDERATION_BYFEDID, FEDERATION_BYNAME
+		fed = Federations(str(owner_id), fed_name, str(fed_id), 'Rules is not set in this federation.', str({'owner': str(owner_id), 'members': '[]'}))
+		SESSION.add(fed)
+		SESSION.commit()
+		FEDERATION_BYOWNER[str(owner_id)] = ({'fid': str(fed_id), 'fname': fed_name, 'frules': 'Rules is not set in this federation.', 'fusers': str({'owner': str(owner_id), 'members': '[]'})})
+		FEDERATION_BYFEDID[str(fed_id)] = ({'owner': str(owner_id), 'fname': fed_name, 'frules': 'Rules is not set in this federation.', 'fusers': str({'owner': str(owner_id), 'members': '[]'})})
+		FEDERATION_BYNAME[fed_name] = ({'fid': str(fed_id), 'owner': str(owner_id), 'frules': 'Rules is not set in this federation.', 'fusers': str({'owner': str(owner_id), 'members': '[]'})})
+		return fed
 
 
 def del_fed(fed_id):
