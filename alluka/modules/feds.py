@@ -174,11 +174,14 @@ def join_fed(bot: Bot, update: Update, args: List[str]):
         return
 
     for admin in administrators:
-        status = admin.status
-        if status == "creator":
-            if str(admin.user.id) != str(user.id):
-                update.effective_message.reply_text("Only group creators can use this command!")
-                return
+            status = admin.status
+            if status == "creator":
+                print(admin)
+                if str(admin.user.id) == str(user.id):
+                    pass
+                else:
+                    update.effective_message.reply_text("Only the group creator can do it!")
+                    return
 
     if fed_id:
         message.reply_text("You cannot join two federations from one chat")
