@@ -73,7 +73,7 @@ def music(bot: Bot, update: Update, args):
 
 
 __help__ = """ Youtube audio Downloader
- - /music <Youtube link> : alluka can download audio file from youtube link.
+ - /music <Youtube link> : Bot can download audio file from youtube link.
 
 """
 __mod_name__ = "Music" 
