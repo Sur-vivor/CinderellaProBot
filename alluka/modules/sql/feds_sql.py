@@ -99,13 +99,6 @@ def get_fed_id(chat_id):
 	else:
 		return get['fid']
 
-def get_user_owner_fed_full(user_id):
-	user_feds = []
-	for f in FEDERATION_BYFEDID:
-		if int(user_id) == int(eval(FEDERATION_BYFEDID[f]['fusers'])['owner']):
-			user_feds.append({"fed_id": f, "fed": FEDERATION_BYFEDID[f]})
-	return user_feds
-
 def new_fed(owner_id, fed_name, fed_id):
 	with FEDS_LOCK:
 		global FEDERATION_BYOWNER, FEDERATION_BYFEDID, FEDERATION_BYNAME
