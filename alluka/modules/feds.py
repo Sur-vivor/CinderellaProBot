@@ -1026,17 +1026,20 @@ def del_fed_button(bot, update):
             query.message.edit_text("You have deleted your federation! Now all the groups that were connected with `{}` do not have a federation.".format(getfed['fname']), parse_mode='markdown')
 
 @run_async
-def get_myfeds_list(bot, update):
-    user = update.effective_user
+def get_myfeds_list(update, context):
+	chat = update.effective_chat  # type: Optional[Chat]
+	user = update.effective_user  # type: Optional[User]
+	msg = update.effective_message  # type: Optional[Message]
+	args = context.args
 
-    fedowner = sql.get_user_owner_fed_full(user.id)
-    if fedowner:
-        text = "*You are owner of feds:\n*"
-        for f in fedowner:
-            text += "- `{}`: *{}*\n".format(f['fed_id'], f['fed']['fname'])
-    else:
-        text = "*You are not have any feds!*"
-    send_message(update.effective_message, text, parse_mode="markdown")
+	fedowner = sql.get_user_owner_fed_full(user.id)
+	if fedowner:
+		text = (update.effective_message, "*Ini adalah federasi milik anda:\n*")
+		for f in fedowner:
+			text += "- `{}`: *{}*\n".format(f['fed_id'], f['fed']['fname'])
+	else:
+		text = (update.effective_message, "*Anda tidak mempunyai federasi!*")
+	send_message(update.effective_message, text, parse_mode="markdown")
 
 def is_user_fed_admin(fed_id, user_id):
     fed_admins = sql.all_fed_users(fed_id)
