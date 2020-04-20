@@ -116,7 +116,7 @@ def new_member(bot: Bot, update: Update):
                 update.effective_message.reply_text("Oof! A Whitelist User disaster just joined!")
            
         
-        # Don't welcome yourself
+            # Don't welcome yourself
             elif new_mem.id == bot.id:
                 bot.send_message(
                     MESSAGE_DUMP,
@@ -125,8 +125,7 @@ def new_member(bot: Bot, update: Update):
                 )
                 update.effective_message.reply_text("Hey {}, I'm {}! Thank you for adding me to {}" 
                 " and be sure to check /help in PM for more commands and tricks!".format(user.first_name, bot.first_name, chat_name))
-                continue
-
+    
             else:
                 # If welcome message is media, send with appropriate function
                 if welc_type != sql.Types.TEXT and welc_type != sql.Types.BUTTON_TEXT:
