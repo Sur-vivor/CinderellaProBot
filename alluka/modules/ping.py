@@ -58,7 +58,7 @@ def ping(bot: Bot, update: Update):
 @run_async
 def uptime(bot: Bot, update: Update):
 	uptime = get_readable_time((time.time() - StartTime))
-	update.effective_message.reply_text(f"S uptime: {uptime}")    
+	update.effective_message.reply_text(f"Տմɾѵíѵօɾ uptime: {uptime}")    
     
 
 __mod_name__ = "Ping"
