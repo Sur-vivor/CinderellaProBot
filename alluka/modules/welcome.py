@@ -132,13 +132,18 @@ def new_member(bot: Bot, update: Update):
             # Give the owner a special welcome
             if new_mem.id == OWNER_ID:
                 update.effective_message.reply_text("My master is just join your group.")
-                continue
+               
             # Welcome Sudos
             elif new_mem.id in SUDO_USERS:
                 update.effective_message.reply_text("Huh! A Sudo User just joined! Stay Alert!")
                 
-            # Make bot greet admins
-            elif new_mem.id == bot.id:   
+            # Welcome yourself
+            elif new_mem.id == bot.id:
+                bot.send_message(
+                    MESSAGE_DUMP,
+                    "I have been added to this chat - {} with \nID: <pre>{}</pre>".format(chat.title, chat.id),
+                    parse_mode=ParseMode.HTML
+                )
                 update.effective_message.reply_text("Hey {}, I'm {}! Thank you for adding me to {}" 
                 " and be sure to check /help in PM for more commands and tricks!".format(user.first_name, bot.first_name, chat_name))
 
