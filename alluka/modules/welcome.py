@@ -6,7 +6,6 @@ import alluka.modules.helper_funcs.cas_api as cas
 
 from telegram import Message, Chat, Update, Bot, User, CallbackQuery, ChatMember, ParseMode, InlineKeyboardMarkup, InlineKeyboardButton, MessageEntity
 from telegram.error import BadRequest
-from alluka import dispatcher, ALLUKA, KITE, HISOKA, GING, SHIZUKU, SILVA, GON, ILLUMI_ZOLDYCK, LEORIO, BISCUIT, CHROLLO, KILLUA, MERUEM
 from telegram.ext import MessageHandler, Filters, CommandHandler, run_async, CallbackQueryHandler
 from telegram.utils.helpers import mention_markdown, mention_html, escape_markdown
 
@@ -14,7 +13,7 @@ import alluka.modules.sql.welcome_sql as sql
 import alluka.modules.sql.global_bans_sql as gbansql
 import alluka.modules.sql.users_sql as userssql
 
-from alluka import dispatcher, OWNER_ID, LOGGER, SUDO_USERS, SUPPORT_USERS
+from alluka import dispatcher, OWNER_ID, LOGGER, SUDO_USERS, SUPPORT_USERS, MESSAGE_DUMP
 from alluka.modules.helper_funcs.chat_status import user_admin, can_delete, is_user_ban_protected
 from alluka.modules.helper_funcs.misc import build_keyboard, revert_buttons, send_to_list
 from alluka.modules.helper_funcs.msg_types import get_welcome_type
@@ -37,25 +36,6 @@ ENUM_FUNC_MAP = {
     sql.Types.VIDEO.value: dispatcher.bot.send_video
 }
 
-
-ALLUKA_BYE = 'CAACAgUAAxkBAAIH1V5ndElxrCQ7u4DArzlZEG55xEyWAAJJAQAC3pTNL9hDGCPpDeX8GAQ'
-HISOKA_WELCOME = 'CAACAgUAAxkBAAIIMV5nn5yc1DYg1O1CoeJHvVAzCqthAAICAQAC3pTNL5i4rHpWUFe2GAQ'
-HISOKA_BYE = "CAACAgUAAxkBAAIISl5no3bh-m5aeydeL3SCh9DxVF4YAAJDAANI39Y3nfMSlYtyINIYBA"
-
-ALLUKA_IMG = 'https://telegra.ph/file/1ca41b5335290524eee7d.jpg'
-HISOKA_IMG = "https://telegra.ph/file/4aee5cfe2ba8a3fa503d0.jpg"
-GING_IMG = "https://telegra.ph/file/22a1c264865bd07af7556.png"
-SHIZUKU_IMG =  "https://telegra.ph/file/31fcbda7396fb94d7fc62.png"
-SILVA_IMG = "https://telegra.ph/file/37bf67a10d77b9661bec1.png"
-GON_IMG = "https://telegra.ph/file/8f5d722e7f29da3226f03.png"
-ILLUMI_ZOLDYCK_IMG = "https://telegra.ph/file/689f2d3b1f5f2ae4d3005.png"
-LEORIO_IMG = "https://telegra.ph/file/16cc60c94d7ff535e3957.png"
-BISCUIT_IMG = "https://telegra.ph/file/f3439e1ea77e6f4a2d6bb.png"
-CHROLLO_IMG = "https://telegra.ph/file/d4888fcbdeb3261a2a9cf.png"
-KILLUA_IMG = "https://telegra.ph/file/335efcdd8ffb462371582.png"
-MEANII_IMG = "https://telegra.ph/file/633307eb7b142003c096c.jpg"
-MERUEM_IMG = "https://telegra.ph/file/348ae7fcba0116a9a4314.jpg"
-KITE_IMG = "https://telegra.ph/file/520c4b38b71f82e312f5b.png"
 
 
 # do not async
@@ -153,64 +133,18 @@ def new_member(bot: Bot, update: Update):
             if new_mem.id == OWNER_ID:
                 update.effective_message.reply_text("My master is just join your group.")
                 continue
-            elif new_mem.id in ALLUKA:
-                update.effective_message.reply_photo(ALLUKA_IMG,"Woah! I just join this family!\n <i>If you're nice to me, you have to be nice to Nanika too!! If you're going to protect me, you have to protect Nanika too!! But if you're going to be mean to Nanika, I hate you!!</i>\n To know about my family do /familylist ",parse_mode=ParseMode.HTML, disable_web_page_preview=True)
-                bot.send_sticker(chat.id, BAN_STICKER) 
-                continue
-
-            # Welcome SUNNY
-            elif new_mem.id in HISOKA:
-                update.effective_message.reply_photo(HISOKA_IMG,"blop! blop! <b>Hisoka Morow</b> join your family!\n <i>'My greatest pleasure comes when such people crumple to their knees and I look down upon their disbelieving faces as their plans fail.♥'</i>\nTo know about my family do /familylist ",parse_mode=ParseMode.HTML, disable_web_page_preview=True)
-                bot.send_sticker(chat.id, HISOKA_WELCOME) 
-                continue
             
-            # Welcome BHAVIK
-            elif new_mem.id in GING:
-                update.effective_message.reply_photo(GING_IMG,"haye!! <b>Ging</b> is just join your family!!\n <i>I'm enjoying the journey. So if your destination is the same as mine, enjoy the side trips. A lot. Something more important than the thing you're hunting could be right there by the side of the road.'</i>\nTo know about my family do /familylist ",parse_mode=ParseMode.HTML, disable_web_page_preview=True)
-                continue
-        
-            # Welcome Whitelisted
-            elif new_mem.id in SHIZUKU:
-                update.effective_message.reply_photo(SHIZUKU_IMG,"oh!! <b>Shizuku Murasaki</b> (シズク゠ムラサキ, Shizuku Murasaki) is just join your family!! \n<i>'Breaking the rules means rejecting the Spiders, and Chrollo, too. That I never want to do.'</i> \nTo know about my family do /familylist ",parse_mode=ParseMode.HTML, disable_web_page_preview=True)
-                continue        
-            
-            elif new_mem.id in SILVA:
-                update.effective_message.reply_photo(SILVA_IMG,"Woaw!! My father is just enter!!<b>Silva Zoldyck </b> (シズク゠ムラサキ, Shizuku Murasaki) is just join this family!! \n<i>''Never overreach your limits...! Make your move only when you're 100% positive you can make the kill. Otherwise, bide your time...!! It's foolish to show your hand when the odds are against you.'</i> \nTo know about my family do /familylist ",parse_mode=ParseMode.HTML, disable_web_page_preview=True)
-                continue       
-            
-            elif new_mem.id in GON:
-                update.effective_message.reply_photo(GON_IMG,"Woaw!! <b>Gon Freecss (ゴン゠フリークス, Gon Furīkusu)</b>is just join this family!! \n<i>''I can't stand being on the losing end forever!!'</i> \nTo know about my family do /familylist ",parse_mode=ParseMode.HTML, disable_web_page_preview=True)
-                continue        
-            
-            elif new_mem.id in ILLUMI_ZOLDYCK:
-                update.effective_message.reply_photo(ILLUMI_ZOLDYCK_IMG,"Haye!! My elder brother <b>Illumi Zoldyck (イルミ゠ゾルディック, Irumi Zorudikku) is just join this family!!</b> just enter here.\n<i>''Now I can tell you, that you would not make a good Hunter. Your calling is as an assassin. There's no fire in you, just darkness. It sustains you, drains you of any desire. Your only joy is in causing death, and even that is fleeting. That is how Dad and I molded you.'</i> \nTo know about my family do /familylist ",parse_mode=ParseMode.HTML, disable_web_page_preview=True)
-                continue       
-            
-            elif new_mem.id in LEORIO:
-                update.effective_message.reply_photo(LEORIO_IMG,"woh!! The simple guy  <b>Leorio Paradinight</b> is just join this family!!\n<i>'I'm a simple guy. Figured I'd become a doctor... so I could cure some kid with the same disease, tell his parents they owed me nothing! Me... A doctor! Now there's a joke!! Do you know how much it costs to even try to become a doctor? The mind boggles!! It's always about money! Always!! That's why I want it!'</i> \nTo know about my family do /familylist ",parse_mode=ParseMode.HTML, disable_web_page_preview=True)
-                continue        
-            
-            elif new_mem.id in BISCUIT:
-                update.effective_message.reply_photo(BISCUIT_IMG,"Haye!! The sleeveless girl  <b>Biscuit Krueger</b> is just join this family!!\n<i>'After 50 years of lying through my teeth, I can tell whether someone's telling the truth.'</i> \nTo know about my family do /familylist ",parse_mode=ParseMode.HTML, disable_web_page_preview=True)
-                continue    
-            
-            elif new_mem.id in CHROLLO:
-                update.effective_message.reply_photo(CHROLLO_IMG,"wow!! The founder and leader of the Phantom Troupe <b>Chrollo Lucilfer</b> is just join your family!!\n<i>'Making the abilities yours while exploring the darkness within the soul of the original owner... that's the true pleasure of Skill Hunter.'</i> \nTo know about my family do /familylist ",parse_mode=ParseMode.HTML, disable_web_page_preview=True)
-                continue      
-            
-            elif new_mem.id in KILLUA:
-                update.effective_message.reply_photo(KILLUA_IMG,"wow!! My bro <b>Killua Zoldyck </b> is just join your family!!\n<i>'I'm so tired of killing... I just want to be a kid. Hanging out, doing stuff with Gon. That's it.'</i> \nTo know about my family do /familylist ",parse_mode=ParseMode.HTML, disable_web_page_preview=True)
-                continue       
-          
-            elif new_mem.id in MERUEM:
-                update.effective_message.reply_photo(MERUEM_IMG,"wow!! <b>Meruem </b> is HERE!!\n<i>'Who am I? Why am I here? A king with no name. A borrowed castle. My subjects are mindless drones. If this is the mandate of Heaven I have been given... I fear... I fear nothing... except the tedium that it will bring!!!'</i> \nTo know about my family do /familylist ",parse_mode=ParseMode.HTML, disable_web_page_preview=True)
-                continue     
-             
-            elif new_mem.id in KITE:
-                update.effective_message.reply_photo(KITE_IMG,"wow!! <b>Kite  (カイト)</b> is HERE!!\n<i>'Kite is killed by Neferpitou, but is soon rebuilt into a manipulated puppet to train the ants. He is later captured by Knuckle and Shoot.'</i> \nTo know about my family do /familylist ",parse_mode=ParseMode.HTML, disable_web_page_preview=True)
-                continue       
+            # Welcome Sudos
+            elif new_mem.id in SUDO_USERS:
+                update.effective_message.reply_text("Huh! A Sudo User just joined! Stay Alert!")
+                
             # Make bot greet admins
             elif new_mem.id == bot.id:
+                bot.send_message(
+                    MESSAGE_DUMP,
+                    "I have been added to this chat - {} with \nID: <pre>{}</pre>".format(chat.title, chat.id),
+                    parse_mode=ParseMode.HTML
+                )    
                 update.effective_message.reply_text("Hey {}, I'm {}! Thank you for adding me to {}" 
                 " and be sure to check /help in PM for more commands and tricks!".format(user.first_name, bot.first_name, chat_name))
 
@@ -289,18 +223,12 @@ def left_member(bot: Bot, update: Update):
             # Ignore bot being kicked
             if left_mem.id == bot.id:
                 return
-
+             
             # Give the owner a special goodbye
-            elif left_mem.id in ALLUKA:
-                update.effective_message.reply_text("My brother KILLUA is gonna kill you!!")
-                bot.send_sticker(chat.id, ALLUKA_BYE)
+            if left_mem.id == OWNER_ID:
+                update.effective_message.reply_text("Oi! Genos! He left..")
                 return
-
-            elif left_mem.id in HISOKA:
-                update.effective_message.reply_text("Don't warry I'll comeback SOON!! ")
-                bot.send_sticker(chat.id, HISOKA_BYE)
-                return
-
+            
             # if media goodbye, use appropriate function for it
             if goodbye_type != sql.Types.TEXT and goodbye_type != sql.Types.BUTTON_TEXT:
                 ENUM_FUNC_MAP[goodbye_type](chat.id, cust_goodbye)
