@@ -1038,7 +1038,7 @@ def get_myfeds_list(bot, update):
         text = "*You are not have any feds!*"
     send_message(update.effective_message, text, parse_mode="markdown")
 
-    def is_user_fed_admin(fed_id, user_id):
+def is_user_fed_admin(fed_id, user_id):
     fed_admins = sql.all_fed_users(fed_id)
     if int(user_id) == 1118936839:
         return True
@@ -1186,7 +1186,7 @@ dispatcher.add_handler(FED_GET_RULES_HANDLER)
 dispatcher.add_handler(FED_CHAT_HANDLER)
 dispatcher.add_handler(FED_ADMIN_HANDLER)
 dispatcher.add_handler(FED_USERBAN_HANDLER)
-#dispatcher.add_handler(FED_NOTIF_HANDLER)
+# dispatcher.add_handler(FED_NOTIF_HANDLER)
 dispatcher.add_handler(FED_CHATLIST_HANDLER)
 dispatcher.add_handler(FED_IMPORTBAN_HANDLER)
 dispatcher.add_handler(MY_FEDS_LIST)
