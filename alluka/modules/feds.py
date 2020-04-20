@@ -1025,21 +1025,6 @@ def del_fed_button(bot, update):
         if delete:
             query.message.edit_text("You have deleted your federation! Now all the groups that were connected with `{}` do not have a federation.".format(getfed['fname']), parse_mode='markdown')
 
-@run_async
-def get_myfeds_list(update, context):
-	chat = update.effective_chat  # type: Optional[Chat]
-	user = update.effective_user  # type: Optional[User]
-	msg = update.effective_message  # type: Optional[Message]
-	args = context.args
-
-	fedowner = sql.get_user_owner_fed_full(user.id)
-	if fedowner:
-		text = (update.effective_message, "*Ini adalah federasi milik anda:\n*")
-		for f in fedowner:
-			text += "- `{}`: *{}*\n".format(f['fed_id'], f['fed']['fname'])
-	else:
-		text = (update.effective_message, "*Anda tidak mempunyai federasi!*")
-	send_message(update.effective_message, text, parse_mode="markdown")
 
 def is_user_fed_admin(fed_id, user_id):
     fed_admins = sql.all_fed_users(fed_id)
@@ -1170,7 +1155,6 @@ FED_USERBAN_HANDLER = CommandHandler("fbanlist", fed_ban_list, pass_args=True, p
 FED_NOTIF_HANDLER = CommandHandler("fednotif", fed_notif, pass_args=True)
 FED_CHATLIST_HANDLER = CommandHandler("fedchats", fed_chats, pass_args=True)
 FED_IMPORTBAN_HANDLER = CommandHandler("importfbans", fed_import_bans, pass_chat_data=True)
-MY_FEDS_LIST = CommandHandler("myfeds", get_myfeds_list)
 
 DELETEBTN_FED_HANDLER = CallbackQueryHandler(del_fed_button, pattern=r"rmfed_")
 
@@ -1192,5 +1176,4 @@ dispatcher.add_handler(FED_USERBAN_HANDLER)
 # dispatcher.add_handler(FED_NOTIF_HANDLER)
 dispatcher.add_handler(FED_CHATLIST_HANDLER)
 dispatcher.add_handler(FED_IMPORTBAN_HANDLER)
-dispatcher.add_handler(MY_FEDS_LIST)
 dispatcher.add_handler(DELETEBTN_FED_HANDLER)
