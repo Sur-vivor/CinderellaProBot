@@ -218,17 +218,7 @@ def left_member(bot: Bot, update: Update):
             if left_mem.id == bot.id:
                 return
 
-            # Give the owner a special goodbye
-            elif left_mem.id in ALLUKA:
-                update.effective_message.reply_text("My brother KILLUA is gonna kill you!!")
-                bot.send_sticker(chat.id, ALLUKA_BYE)
-                return
-
-            elif left_mem.id in HISOKA:
-                update.effective_message.reply_text("Don't warry I'll comeback SOON!! ")
-                bot.send_sticker(chat.id, HISOKA_BYE)
-                return
-
+          
             # if media goodbye, use appropriate function for it
             if goodbye_type != sql.Types.TEXT and goodbye_type != sql.Types.BUTTON_TEXT:
                 ENUM_FUNC_MAP[goodbye_type](chat.id, cust_goodbye)
