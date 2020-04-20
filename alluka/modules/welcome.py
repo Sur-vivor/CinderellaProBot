@@ -13,7 +13,7 @@ import alluka.modules.sql.welcome_sql as sql
 import alluka.modules.sql.global_bans_sql as gbansql
 import alluka.modules.sql.users_sql as userssql
 
-from alluka import dispatcher, OWNER_ID, LOGGER, SUDO_USERS, SUPPORT_USERS, MESSAGE_DUMP
+from alluka import dispatcher, OWNER_ID, LOGGER, SUDO_USERS, SUPPORT_USERS
 from alluka.modules.helper_funcs.chat_status import user_admin, can_delete, is_user_ban_protected
 from alluka.modules.helper_funcs.misc import build_keyboard, revert_buttons, send_to_list
 from alluka.modules.helper_funcs.msg_types import get_welcome_type
@@ -132,18 +132,13 @@ def new_member(bot: Bot, update: Update):
             # Give the owner a special welcome
             if new_mem.id == OWNER_ID:
                 update.effective_message.reply_text("My master is just join your group.")
-            
+                continue
             # Welcome Sudos
             elif new_mem.id in SUDO_USERS:
                 update.effective_message.reply_text("Huh! A Sudo User just joined! Stay Alert!")
                 
             # Make bot greet admins
-            elif new_mem.id == bot.id:
-                bot.send_message(
-                    MESSAGE_DUMP,
-                    "I have been added to this chat - {} with \nID: <pre>{}</pre>".format(chat.title, chat.id),
-                    parse_mode=ParseMode.HTML
-                )    
+            elif new_mem.id == bot.id:   
                 update.effective_message.reply_text("Hey {}, I'm {}! Thank you for adding me to {}" 
                 " and be sure to check /help in PM for more commands and tricks!".format(user.first_name, bot.first_name, chat_name))
 
