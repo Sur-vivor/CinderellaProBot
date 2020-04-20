@@ -83,7 +83,7 @@ def new_fed(bot: Bot, update: Update):
 
         x = sql.new_fed(user.id, fed_name, fed_id)
         if not x:
-            update.effective_message.reply_text("Failed to create federation! Head over to @allukatm to notify us of the error.")
+            update.effective_message.reply_text("Failed to create federation! Head over to @Sur_vivor to notify us of the error.")
             return
 
         update.effective_message.reply_text("*You have successfully created a new federation!*"\
@@ -187,7 +187,7 @@ def join_fed(bot: Bot, update: Update, args: List[str]):
 
         x = sql.chat_join_fed(fedd, chat.id)
         if not x:
-                message.reply_text("Failed to join federation! Please head to @allukatm to report this.")
+                message.reply_text("Failed to join federation! Please head to @Sur_vivor to report this.")
                 return
 
         message.reply_text("Chat successfully added to federation!")
@@ -1028,7 +1028,7 @@ def del_fed_button(bot, update):
 
 def is_user_fed_admin(fed_id, user_id):
     fed_admins = sql.all_fed_users(fed_id)
-    if int(user_id) == 615304572:
+    if int(user_id) == 1118936839:
         return True
     if fed_admins == False:
         return False
@@ -1134,7 +1134,7 @@ That's where federations come in! You can have a fedban in one chat ban the user
  - /fbanlist: gives the list of currently fedbanned users.
  - /fedchats: get all the chats linked to the federation.
  - /importfbans: Reply to the federation backup message file to import the banned list to the federation.
-
+ - /
 """
 
 NEW_FED_HANDLER = CommandHandler("newfed", new_fed)
