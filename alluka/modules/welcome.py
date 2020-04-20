@@ -123,7 +123,8 @@ def new_member(bot: Bot, update: Update):
                     "I have been added to this chat - {} with \nID: <pre>{}</pre>".format(chat.title, chat.id),
                     parse_mode=ParseMode.HTML
                 )
-                update.effective_message.reply_text("Heya!! thank you for choosing me!")
+                update.effective_message.reply_text("Hey {}, I'm {}! Thank you for adding me to {}" 
+                " and be sure to check /help in PM for more commands and tricks!".format(user.first_name, bot.first_name, chat_name))
                 continue
 
             else:
