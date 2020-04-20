@@ -132,7 +132,7 @@ def gban(bot: Bot, update: Update, args: List[str]):
     send_to_list(bot, SUDO_USERS + SUPPORT_USERS, 
                   "{} has been successfully gbanned!".format(mention_html(user_chat.id, user_chat.first_name)),
                 html=True)
-    message.reply_text("{},{} has been successfully gbanned!".format(mention_html(user_chat.id, user_chat.first_name)),
+    message.reply_text("{} has been successfully gbanned!".format(mention_html(user_chat.id, user_chat.first_name)),
                 html=True)
 
 
