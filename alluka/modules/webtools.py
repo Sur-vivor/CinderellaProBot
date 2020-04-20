@@ -37,7 +37,7 @@ def get_bot_ip(bot: Bot, update: Update):
     res = requests.get("http://ipinfo.io/ip")
     update.message.reply_text(res.text)
 
-""""@run_async
+@run_async
 def rtt(bot: Bot, update: Update):
     out = ""
     under = False
@@ -66,7 +66,7 @@ def rtt(bot: Bot, update: Update):
     if os.name == 'nt' and under:
         update.effective_message.reply_text(" 🇵 🇴 🇳 🇬 👉🏻 <{}ms".format(ping_time))
     else:
-        update.effective_message.reply_text(" 🇵 🇴 🇳 🇬 👉🏻 {}ms".format(ping_time)) """
+        update.effective_message.reply_text(" 🇵 🇴 🇳 🇬 👉🏻 {}ms".format(ping_time))
 
 def ping(bot: Bot, update: Update):
     message = update.effective_message
@@ -119,10 +119,10 @@ def ping(bot: Bot, update: Update):
 
 
 IP_HANDLER = CommandHandler("ip", get_bot_ip, filters=Filters.chat(OWNER_ID))
-#RTT_HANDLER = CommandHandler("ping", rtt, filters=CustomFilters.sudo_filter)
+RTT_HANDLER = CommandHandler("pong", rtt, filters=CustomFilters.sudo_filter)
 PING_HANDLER = CommandHandler("cping", ping, filters=CustomFilters.sudo_filter)
 
 
 dispatcher.add_handler(IP_HANDLER)
-#dispatcher.add_handler(RTT_HANDLER)
+dispatcher.add_handler(RTT_HANDLER)
 dispatcher.add_handler(PING_HANDLER)
