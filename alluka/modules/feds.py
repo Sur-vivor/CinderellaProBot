@@ -156,50 +156,43 @@ def fed_chat(bot: Bot, update: Update, args: List[str]):
 
     update.effective_message.reply_text(text, parse_mode=ParseMode.HTML)
 
-
 @run_async
 def join_fed(bot: Bot, update: Update, args: List[str]):
-    chat = update.effective_chat
-    user = update.effective_user
-
-    if chat.type == 'private':
-        send_message(update.effective_message, "This command is specific to the group, not to the PM!")
-        return
-
+    chat = update.effective_chat  # type: Optional[Chat]
+    user = update.effective_user  # type: Optional[User]
     message = update.effective_message
     administrators = chat.get_administrators()
     fed_id = sql.get_fed_id(chat.id)
 
-    if not user.id in SUDO_USERS:
-        return
-
-    for admin in administrators:
-        status = admin.status
-        if status == "creator":
-            if str(admin.user.id) != str(user.id):
-                update.effective_message.reply_text("Only group creators can use this command!")
-                return
-
+    if user.id in SUDO_USERS:
+        pass
+    else:
+        for admin in administrators:
+            status = admin.status
+            if status == "creator":
+                print(admin)
+                if str(admin.user.id) == str(user.id):
+                    pass
+                else:
+                    update.effective_message.reply_text("Only the group creator can do it!")
+                    return
     if fed_id:
-        message.reply_text("You cannot join two federations from one chat")
+        message.reply_text("Uh, you can only join one federation in a chat.")
         return
 
     if len(args) >= 1:
-        getfed = sql.search_fed_by_id(args[0])
-        if not getfed:
-            message.reply_text("Please enter a valid federation ID")
+        fedd = args[0]
+        print(fedd)
+        if sql.search_fed_by_id(fedd) == False:
+            message.reply_text("Please enter a valid federation ID.")
             return
 
-        fed = sql.chat_join_fed(args[0], chat.title, chat.id)
-        if not fed:
-            message.reply_text("Failed to join federation! Please contact @Sur_vivor should this problem persists!")
-            return
+        x = sql.chat_join_fed(fedd, chat.id)
+        if not x:
+                message.reply_text("Failed to join federation! Please head to @allukatm to report this.")
+                return
 
-        get_fedlog = sql.get_fed_log(args[0])
-        if get_fedlog:
-            bot.send_message(get_fedlog, "Chat *{}* has joined the federation *{}*".format(chat.title, getfed['fname']), parse_mode=ParseMode.MARKDOWN)
-
-        message.reply_text("This chat has joined the federation: {}!".format(getfed['fname']))
+        message.reply_text("Chat successfully added to federation!")
 
 
 @run_async
