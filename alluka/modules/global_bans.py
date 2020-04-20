@@ -347,7 +347,7 @@ __help__ = """
 Gbans, also known as global bans, are used by the bot owners to ban spammers across all groups. This helps protect \
 you and your groups by removing spam flooders as quickly as possible. They can be disabled for you group by calling \
 /gbanstat
-- /checkgb : To check whether Deletd Accounts are present in gban list.
+- /checkgb : To check whether Deleted Accounts are present in gban list.
 - /cleangb : To Remove all Deleted Accounts from gban list
 """
 
