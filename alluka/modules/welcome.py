@@ -116,7 +116,7 @@ def new_member(bot: Bot, update: Update):
                 update.effective_message.reply_text("Oof! A Whitelist User disaster just joined!")
            
         
-            # Don't welcome yourself
+            # Welcome yourself
             elif new_mem.id == bot.id:
                 bot.send_message(
                     MESSAGE_DUMP,
