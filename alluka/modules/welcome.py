@@ -132,7 +132,6 @@ def new_member(bot: Bot, update: Update):
             # Give the owner a special welcome
             if new_mem.id == OWNER_ID:
                 update.effective_message.reply_text("My master is just join your group.")
-                continue
             
             # Welcome Sudos
             elif new_mem.id in SUDO_USERS:
