@@ -31,20 +31,20 @@ I'm a modular group management bot with a few fun extras! Have a look at the fol
 the things I can help you with.
 
 *Main* commands available:
- 🛠 - /start: start the bot
- 🛠 - /help: PM's you this message.
- 🛠 - /help <module name>: PM's you info about that module.
- 🛠 - /donate: information about how to donate!
- 🛠 - /settings:
-    ⚓️ - in PM: will send you your settings for all supported modules.
-    ⚓️ - in a group: will redirect you to pm, with all that chat's settings.
+ ✔️ - /start: start the bot
+ ✔️ - /help: PM's you this message.
+ ✔️ - /help <module name>: PM's you info about that module.
+ ✔️ - /donate: information about how to donate!
+ ✔️ - /settings:
+    ✔️ - in PM: will send you your settings for all supported modules.
+    ✔️ - in a group: will redirect you to pm, with all that chat's settings.
 
 {}
 And the following:
 """.format(dispatcher.bot.first_name, "" if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\n")
 
 DONATE_STRING = """Heya, glad to hear you want to donate!
-It took lots of work for my creators.to get me to where I am now, and every donation helps \
+It took lots of work for my creators to get me to where I am now, and every donation helps \
 motivate them to make me even better. All the donation money will go to a better VPS to host me, and/or beer. \
 There are two ways of paying them; [PayPal](paypal.me/PaulSonOfLars), or [Monzo](monzo.me/paulnionvestergaardlarsen)."""
 
