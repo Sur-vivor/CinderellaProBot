@@ -85,13 +85,9 @@ def new_fed(update, context):
 		fed_id = str(uuid.uuid4())
 		fed_name = fednam
 		LOGGER.info(fed_id)
-
-		# Currently only for creator
-		if fednam == "Team Nusantara Disciplinary Circle":
-			fed_id = "TeamNusantaraDevs"
-		elif fednam == "alluka Official Support":
-			fed_id = "allukaSupport"
-
+                if user.id == int(OWNER_ID):
+			fed_id = fed_name
+		
 		x = sql.new_fed(user.id, fed_name, fed_id)
 		if not x:
 			send_message(update.effective_message, "Tidak dapat membuat federasi! Tolong hubungi pembuat saya jika masalah masih berlanjut.")
