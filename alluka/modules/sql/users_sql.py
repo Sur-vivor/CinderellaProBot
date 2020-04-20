@@ -138,6 +138,14 @@ def get_user_num_chats(user_id):
         SESSION.close()
 
 
+def get_user_com_chats(user_id):
+    try:
+        chat_members = SESSION.query(ChatMembers).filter(ChatMembers.user == int(user_id)).all()
+        return [i.chat for i in chat_members]
+    finally:
+        SESSION.close()
+
+
 def num_chats():
     try:
         return SESSION.query(Chats).count()
@@ -184,3 +192,13 @@ def del_user(user_id):
         SESSION.commit()
         SESSION.close()
     return False
+
+
+def rem_chat(chat_id):
+    with INSERTION_LOCK:
+        chat = SESSION.query(Chats).get(str(chat_id))
+        if chat:
+            SESSION.delete(chat)
+            SESSION.commit()
+        else:
+            SESSION.close()
