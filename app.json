@@ -24,7 +24,7 @@
       },
       "DEL_CMDS": {
          "description": "Set this to True if you want to delete command messages from users who don't have the perms to run that command.",
-         "value": "True"
+         "value": "False"
       },
       "DONATION_LINK": {
          "description": "Optional: link where you would like to receive donations.",
