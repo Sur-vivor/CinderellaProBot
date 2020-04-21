@@ -171,7 +171,8 @@ def kick(bot: Bot, update: Update, args: List[str]) -> str:
     chat = update.effective_chat  # type: Optional[Chat]
     user = update.effective_user  # type: Optional[User]
     message = update.effective_message  # type: Optional[Message]
-
+    chat_name = chat.title or chat.first or chat.username
+    
     user_id, reason = extract_user_and_text(message, args)
 
     if not user_id:
@@ -197,7 +198,7 @@ def kick(bot: Bot, update: Update, args: List[str]) -> str:
     res = chat.unban_member(user_id)  # unban on current user = kick
     if res:
         bot.send_sticker(chat.id, KICK_STICKER)  # banhammer marie sticker
-        message.reply_text("Kicked!")
+        message.reply_text(f"<b>{html.escape(member.user.first_name)}</b> is Kicked in " + f"{chat_name}",parse_mode=ParseMode.HTML)
         log = "<b>{}:</b>" \
               "\n#KICKED" \
               "\n<b>Admin:</b> {}" \
