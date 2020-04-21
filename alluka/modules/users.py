@@ -90,6 +90,7 @@ def log_user(bot: Bot, update: Update):
 
 
 @run_async
+@dev_plus
 def chats(bot: Bot, update: Update):
     all_chats = sql.get_all_chats() or []
     chatfile = 'List of chats.\n0. Chat name | Chat ID | Members count | Invitelink\n'
