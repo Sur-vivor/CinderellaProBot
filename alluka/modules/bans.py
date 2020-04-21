@@ -6,7 +6,7 @@ from telegram.error import BadRequest
 from telegram.ext import run_async, CommandHandler, Filters
 from telegram.utils.helpers import mention_html
 
-from alluka import dispatcher, BAN_STICKER, LOGGER
+from alluka import dispatcher, BAN_STICKER, KICK_STICKER, LOGGER
 from alluka.modules.disable import DisableAbleCommandHandler
 from alluka.modules.helper_funcs.chat_status import bot_admin, user_admin, is_user_ban_protected, can_restrict, \
     is_user_admin, is_user_in_chat
@@ -196,7 +196,7 @@ def kick(bot: Bot, update: Update, args: List[str]) -> str:
 
     res = chat.unban_member(user_id)  # unban on current user = kick
     if res:
-        bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie sticker
+        bot.send_sticker(chat.id, KICK_STICKER)  # banhammer marie sticker
         message.reply_text("Kicked!")
         log = "<b>{}:</b>" \
               "\n#KICKED" \
@@ -358,46 +358,6 @@ def unban(bot: Bot, update: Update, args: List[str]) -> str:
 
 
 
-@run_async
-@bot_admin
-@can_restrict
-@loggable
-def selfunban(bot: Bot, update: Update, args: List[str]) -> str:
-    message = update.effective_message
-    user = update.effective_user
-
-    if user.id not in SUDO_USERS:
-        return
-
-    try:
-        chat_id = int(args[0])
-    except:
-        message.reply_text("Give a valid chat ID.")
-        return
-
-    chat = bot.getChat(chat_id)
-
-    try:
-        member = chat.get_member(user.id)
-    except BadRequest as excp:
-        if excp.message == "User not found":
-            message.reply_text("I can't seem to find this user.")
-            return
-        else:
-            raise
-
-    if is_user_in_chat(chat, user.id):
-        message.reply_text("Aren't you already in the chat??")
-        return
-
-    chat.unban_member(user.id)
-    message.reply_text("Yep, I have unbanned you.")
-
-    log = (f"<b>{html.escape(chat.title)}:</b>\n"
-           f"#UNBANNED\n"
-           f"<b>User:</b> {mention_html(member.user.id, member.user.first_name)}")
-
-    return log
 
 __help__ = """
  - /kickme: kicks the user who issued the command
@@ -419,7 +379,7 @@ KICK_HANDLER = CommandHandler("kick", kick, pass_args=True, filters=Filters.grou
 UNBAN_HANDLER = CommandHandler("unban", unban, pass_args=True, filters=Filters.group)
 KICKME_HANDLER = DisableAbleCommandHandler("kickme", kickme, filters=Filters.group)
 BANME_HANDLER = DisableAbleCommandHandler("banme", banme, filters=Filters.group)
-SBAN_HANDLER = CommandHandler("sban", sban, pass_args=True, filters=Filters.group)
+#SBAN_HANDLER = CommandHandler("sban", sban, pass_args=True, filters=Filters.group)
 ROAR_HANDLER = CommandHandler("roar", selfunban, pass_args=True)
 
 dispatcher.add_handler(BAN_HANDLER)
@@ -428,7 +388,7 @@ dispatcher.add_handler(KICK_HANDLER)
 dispatcher.add_handler(UNBAN_HANDLER)
 dispatcher.add_handler(KICKME_HANDLER)
 dispatcher.add_handler(BANME_HANDLER)
-dispatcher.add_handler(SBAN_HANDLER)
+#dispatcher.add_handler(SBAN_HANDLER)
 dispatcher.add_handler(ROAR_HANDLER)
 
 __mod_name__ = "Bans"
