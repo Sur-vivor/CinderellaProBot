@@ -47,6 +47,7 @@ def check_user(user_id: int, bot: Bot, chat: Chat) -> Optional[str]:
 @loggable
 def mute(bot: Bot, update: Update, args: List[str]) -> str:
     chat = update.effective_chat
+    chat_name = chat.title or chat.first or chat.username
     user = update.effective_user
     message = update.effective_message
 
@@ -69,7 +70,7 @@ def mute(bot: Bot, update: Update, args: List[str]) -> str:
 
     if member.can_send_messages is None or member.can_send_messages:
         bot.restrict_chat_member(chat.id, user_id, can_send_messages=False)
-        bot.sendMessage(chat.id, f"Muted <b>{html.escape(member.user.first_name)}</b> with no expiration date!",
+        bot.sendMessage(chat.id, f"<b>{html.escape(member.user.first_name)}</b> is muted in " + f"{chat_name}",
                         parse_mode=ParseMode.HTML)
         return log
 
@@ -86,6 +87,7 @@ def mute(bot: Bot, update: Update, args: List[str]) -> str:
 @loggable
 def unmute(bot: Bot, update: Update, args: List[str]) -> str:
     chat = update.effective_chat
+    chat_name = chat.title or chat.first or chat.username
     user = update.effective_user
     message = update.effective_message
 
@@ -108,7 +110,7 @@ def unmute(bot: Bot, update: Update, args: List[str]) -> str:
                                      can_send_media_messages=True,
                                      can_send_other_messages=True,
                                      can_add_web_page_previews=True)
-            bot.sendMessage(chat.id, f"I shall allow <b>{html.escape(member.user.first_name)}</b> to text!",
+           bot.sendMessage(chat.id, f"Yep, <b>{html.escape(member.user.first_name)}</b> can start talking again in " + f"{chat_name}",
                             parse_mode=ParseMode.HTML)
             return (f"<b>{html.escape(chat.title)}:</b>\n"
                     f"#UNMUTE\n"
