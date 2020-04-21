@@ -6,7 +6,7 @@ from telegram.error import BadRequest
 from telegram.ext import run_async, CommandHandler, Filters
 from telegram.utils.helpers import mention_html
 
-from alluka import dispatcher, BAN_STICKER, LOGGER
+from alluka import dispatcher, BAN_STICKER, KICK_STICKER, LOGGER
 from alluka.modules.disable import DisableAbleCommandHandler
 from alluka.modules.helper_funcs.chat_status import bot_admin, user_admin, is_user_ban_protected, can_restrict, \
     is_user_admin, is_user_in_chat
@@ -196,7 +196,7 @@ def kick(bot: Bot, update: Update, args: List[str]) -> str:
 
     res = chat.unban_member(user_id)  # unban on current user = kick
     if res:
-        bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie sticker
+        bot.send_sticker(chat.id, KICK_STICKER)  # banhammer marie sticker
         message.reply_text("Kicked!")
         log = "<b>{}:</b>" \
               "\n#KICKED" \
