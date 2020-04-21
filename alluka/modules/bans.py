@@ -361,7 +361,7 @@ def unban(bot: Bot, update: Update, args: List[str]) -> str:
 @run_async
 @bot_admin
 @can_restrict
-@gloggable
+@loggable
 def selfunban(bot: Bot, update: Update, args: List[str]) -> str:
     message = update.effective_message
     user = update.effective_user
