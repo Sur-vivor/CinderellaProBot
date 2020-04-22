@@ -33,3 +33,4 @@ CurrencyConverter
 googletrans
 jikanpy
 speedtest-cli
+pytz
