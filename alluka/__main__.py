@@ -20,10 +20,8 @@ from alluka.modules.helper_funcs.misc import paginate_modules
 
 PM_START_TEXT = """
 _Hello_ *{}*
-_My name is_ *{}*._A Powerful Telegram ProBot to Manage Your Groups,feel free to add to ur groups!!!_
+_My name is_ *{}*._A Powerful Telegram ProBot to Manage Your Groups,feel free to add to ur groups!!!_"""
 
-Source [here](https://github.com/Sur-vivor/allukabot) 
-"""
 
 
 HELP_STRINGS = """
