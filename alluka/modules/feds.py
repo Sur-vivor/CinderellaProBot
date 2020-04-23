@@ -16,18 +16,18 @@ from telegram import ParseMode, Update, Bot, Chat, User, MessageEntity, InlineKe
 from telegram.ext import run_async, CommandHandler, MessageHandler, Filters, CallbackQueryHandler
 from telegram.utils.helpers import escape_markdown, mention_html, mention_markdown
 
-from smudge import dispatcher, OWNER_ID, SUDO_USERS, WHITELIST_USERS, MESSAGE_DUMP, LOGGER
-from smudge.modules.helper_funcs.handlers import CMD_STARTERS
-from smudge.modules.helper_funcs.misc import is_module_loaded, send_to_list
-from smudge.modules.helper_funcs.chat_status import is_user_admin
-from smudge.modules.helper_funcs.extraction import extract_user, extract_unt_fedban, extract_user_fban
-from smudge.modules.helper_funcs.string_handling import markdown_parser
-from smudge.modules.disable import DisableAbleCommandHandler
+from alluka import dispatcher, OWNER_ID, SUDO_USERS, WHITELIST_USERS, MESSAGE_DUMP, LOGGER
+from alluka.modules.helper_funcs.handlers import CMD_STARTERS
+from alluka.modules.helper_funcs.misc import is_module_loaded, send_to_list
+from alluka.modules.helper_funcs.chat_status import is_user_admin
+from alluka.modules.helper_funcs.extraction import extract_user, extract_unt_fedban, extract_user_fban
+from alluka.modules.helper_funcs.string_handling import markdown_parser
+from alluka.modules.disable import DisableAbleCommandHandler
 
-import smudge.modules.sql.feds_sql as sql
+import alluka.modules.sql.feds_sql as sql
 
-from smudge.modules.connection import connected
-from smudge.modules.helper_funcs.alternate import send_message
+from alluka.modules.connection import connected
+from alluka.modules.helper_funcs.alternate import send_message
 # Hello bot owner, I spended for feds many hours of my life, Please don't remove this if you still respect MrYacha and peaktogoo and AyraHikari too
 # Federation by MrYacha 2018-2019
 # Federation rework by Mizukito Akito 2019
@@ -1056,8 +1056,8 @@ def fed_ban_list(update, context):
 				backups += json.dumps(json_parser)
 				backups += "\n"
 			with BytesIO(str.encode(backups)) as output:
-				output.name = "smudge_fbanned_users.json"
-				update.effective_message.reply_document(document=output, filename="smudge_fbanned_users.json",
+				output.name = "alluka_fbanned_users.json"
+				update.effective_message.reply_document(document=output, filename="alluka_fbanned_users.json",
 													caption="Total {} User are blocked by the Federation {}.".format(len(getfban), info['fname']))
 			return
 		elif args[0] == 'csv':
@@ -1081,8 +1081,8 @@ def fed_ban_list(update, context):
 				backups += "{user_id},{first_name},{last_name},{user_name},{reason}".format(user_id=users, first_name=getuserinfo['first_name'], last_name=getuserinfo['last_name'], user_name=getuserinfo['user_name'], reason=getuserinfo['reason'])
 				backups += "\n"
 			with BytesIO(str.encode(backups)) as output:
-				output.name = "smudge_fbanned_users.csv"
-				update.effective_message.reply_document(document=output, filename="smudge_fbanned_users.csv",
+				output.name = "alluka_fbanned_users.csv"
+				update.effective_message.reply_document(document=output, filename="alluka_fbanned_users.csv",
 													caption="Total {} User are blocked by Federation {}.".format(len(getfban), info['fname']))
 			return
 
