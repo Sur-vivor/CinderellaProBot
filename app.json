@@ -30,6 +30,11 @@
          "description": "Setting this to ANYTHING will enable environment variables.",
          "value": "ANYTHING"
       },
+      "KICK_STICKER": {
+         "description": "ID of the sticker you want to use when kicking people.",
+         "required": false,
+         "value": ""
+      },
       "SQLALCHEMY_DATABASE_URI": {
          "description": "Your postgres sql db, empty this field if you dont have one.",
          "required": false,
