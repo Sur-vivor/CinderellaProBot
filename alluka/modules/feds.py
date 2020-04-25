@@ -83,7 +83,7 @@ def new_fed(bot: Bot, update: Update):
 
         x = sql.new_fed(user.id, fed_name, fed_id)
         if not x:
-            update.effective_message.reply_text("Failed to create federation! Head over to @Sur_vivor to notify us of the error.")
+            update.effective_message.reply_text("Failed to create federation! Head over to @CinderellaHelp to notify us of the error.")
             return
 
         update.effective_message.reply_text("*You have successfully created a new federation!*"\
@@ -187,7 +187,7 @@ def join_fed(bot: Bot, update: Update, args: List[str]):
 
         x = sql.chat_join_fed(fedd, chat.id)
         if not x:
-                message.reply_text("Failed to join federation! Please head to @Sur_vivor to report this.")
+                message.reply_text("Failed to join federation! Please head to @CinderellaHelp to report this.")
                 return
 
         message.reply_text("Chat successfully added to federation!")
