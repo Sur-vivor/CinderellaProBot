@@ -7,7 +7,7 @@
 
 Modular Telegram bot for managing your groups with a extras features with HunterxHunter theme.
 
-[![Deploy](https://telegra.ph/file/c33e6ab828c2e2fde385b.jpg)](https://heroku.com/deploy?template=https://github.com/Sur-vivor/Alluka.git)
+[![Deploy](https://telegra.ph/file/511ad504656e712b88235.jpg)](https://heroku.com/deploy?template=https://github.com/Sur-vivor/Alluka.git)
 
 ### Configuration
 
