@@ -636,7 +636,7 @@ def set_frules(bot: Bot, update: Update, args: List[str]):
             markdown_rules = markdown_parser(txt, entities=msg.parse_entities(), offset=offset)
         x = sql.set_frules(fed_id, markdown_rules)
         if not x:
-            update.effective_message.reply_text("Failed to set federation rules. If this persists, reach out to us @allukatm.")
+            update.effective_message.reply_text("Failed to set federation rules. If this persists, reach out to us @CinderellaHelp.")
             return
 
         rules = sql.get_fed_info(fed_id)['frules']
@@ -740,8 +740,8 @@ def fed_ban_list(bot: Bot, update: Update, args: List[str], chat_data):
                 backups += json.dumps(json_parser)
                 backups += "\n"
             with BytesIO(str.encode(backups)) as output:
-                output.name = "alluka_fbanned_users.json"
-                update.effective_message.reply_document(document=output, filename="alluka_fbanned_users.json",
+                output.name = "bot_fbanned_users.json"
+                update.effective_message.reply_document(document=output, filename="bot_fbanned_users.json",
                                                     caption="Total {} User are blocked by the Federation {}.".format(len(getfban), info['fname']))
             return
         elif args[0] == 'csv':
@@ -765,8 +765,8 @@ def fed_ban_list(bot: Bot, update: Update, args: List[str], chat_data):
                 backups += "{user_id},{first_name},{last_name},{user_name},{reason}".format(user_id=users, first_name=getuserinfo['first_name'], last_name=getuserinfo['last_name'], user_name=getuserinfo['user_name'], reason=getuserinfo['reason'])
                 backups += "\n"
             with BytesIO(str.encode(backups)) as output:
-                output.name = "alluka_fbanned_users.csv"
-                update.effective_message.reply_document(document=output, filename="alluka_fbanned_users.csv",
+                output.name = "bot_fbanned_users.csv"
+                update.effective_message.reply_document(document=output, filename="bot_fbanned_users.csv",
                                                     caption="Total {} User are blocked by Federation {}.".format(len(getfban), info['fname']))
             return
 
@@ -1134,7 +1134,6 @@ That's where federations come in! You can have a fedban in one chat ban the user
  - /fbanlist: gives the list of currently fedbanned users.
  - /fedchats: get all the chats linked to the federation.
  - /importfbans: Reply to the federation backup message file to import the banned list to the federation.
- - /
 """
 
 NEW_FED_HANDLER = CommandHandler("newfed", new_fed)
