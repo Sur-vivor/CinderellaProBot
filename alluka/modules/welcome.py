@@ -121,7 +121,8 @@ def new_member(bot: Bot, update: Update, job_queue: JobQueue):
                     "I have been added to this chat - {} with \nID: <pre>{}</pre>".format(chat.title, chat.id),
                     parse_mode=ParseMode.HTML
                 )
-                update.effective_message.reply_text("Heya!! thank you for choosing me Sweetheart!")
+                update.effective_message.reply_text("Heya!! thank you for choosing me Sweetheart! Hey {}, I'm {}! Thank you for adding me to {}" 
+                !".format(user.first_name, context.bot.first_name, chat_name))
 
             else:
                 # If welcome message is media, send with appropriate function
