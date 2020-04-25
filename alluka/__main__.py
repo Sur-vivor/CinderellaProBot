@@ -55,7 +55,7 @@ def vercheck() -> str:
     return str(VERSION)
 
 SOURCE_STRING = """
-I'm built in python3, using the python-telegram-bot library, and am fully opensource - you can find what makes me tick [here](https://github.com/Sur-vivor/allukabot)
+I'm built in python3, using the python-telegram-bot library, and am fully opensource - you can find what makes me tick [here](https://github.com/anilchauhanxda/allukabot)
 """
 
 IMPORTED = {}
@@ -71,7 +71,7 @@ USER_SETTINGS = {}
 
 GDPR = []
 
-img = "https://telegra.ph/Survivor-04-19"
+img = "https://telegra.ph/file/511ad504656e712b88235.jpg"
 
 for module_name in ALL_MODULES:
     imported_module = importlib.import_module("alluka.modules." + module_name)
@@ -155,7 +155,7 @@ def start(bot: Bot, update: Update, args: List[str]):
          
 
         update.effective_message.reply_text("Heya,Տմɾѵíѵօɾ Here🧞‍♂️\nHow can I help you? 🙂",reply_markup=InlineKeyboardMarkup(
-                                                [[InlineKeyboardButton(text="⚜️Help",url="t.me/{}?start=help".format(bot.username)),InlineKeyboardButton(text="📨Public Feeds",url="https://t.me/Sur_vivor")]]))
+                                                [[InlineKeyboardButton(text="⚜️Help",url="t.me/{}?start=help".format(bot.username)),InlineKeyboardButton(text="📨Public Feeds",url="https://t.me/CinderellaHelp")]]))
                                             
 def send_start(bot, update):
     #Try to remove old message
@@ -171,7 +171,7 @@ def send_start(bot, update):
 
     keyboard = [[InlineKeyboardButton(text="⚜️Add Me To Your Group⚜️",url="t.me/{}?startgroup=true".format(bot.username))]]
     keyboard += [[InlineKeyboardButton(text="🤝Help",url="t.me/{}?start=help".format(bot.username)), 
-        InlineKeyboardButton(text="🛡My Creator🛡",url="https://t.me/Sur_vivor")]]
+        InlineKeyboardButton(text="🛡Support Group🛡",url="https://t.me/CinderellaHelp")]]
 
     update.effective_message.reply_photo(img,PM_START_TEXT.format(escape_markdown(first_name), escape_markdown(bot.first_name)), reply_markup=InlineKeyboardMarkup(keyboard), disable_web_page_preview=True, parse_mode=ParseMode.MARKDOWN)
         
@@ -267,7 +267,7 @@ def get_help(bot: Bot, update: Update):
         update.effective_message.reply_text("Contact me in PM to get the list of possible commands.",
                                             reply_markup=InlineKeyboardMarkup(
                                                 [[InlineKeyboardButton(text="⚜️Help",url="t.me/{}?start=help".format(bot.username))],  
-                                                [InlineKeyboardButton(text="🛡Contact Creator",url="https://t.me/Sur_vivor")]]))
+                                                [InlineKeyboardButton(text="🛡Contact Creator",url="https://t.me/CinderellaHelp")]]))
                                               
         return
 
