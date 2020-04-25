@@ -154,7 +154,7 @@ def start(bot: Bot, update: Update, args: List[str]):
     else:
          
 
-        update.effective_message.reply_text("Heya,Տմɾѵíѵօɾ Here🧞‍♂️\nHow can I help you? 🙂",reply_markup=InlineKeyboardMarkup(
+        update.effective_message.reply_text("Heya,༄Çΐή∂εɾεℓℓส™࿐ Here💃\nHow can I help you? 🙂",reply_markup=InlineKeyboardMarkup(
                                                 [[InlineKeyboardButton(text="⚜️Help",url="t.me/{}?start=help".format(bot.username)),InlineKeyboardButton(text="📨Public Feeds",url="https://t.me/CinderellaHelp")]]))
                                             
 def send_start(bot, update):
