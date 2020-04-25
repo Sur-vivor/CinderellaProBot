@@ -16,7 +16,7 @@ def cov(bot: Bot, update: Update):
     recovered = 0
     message = update.effective_message
     selected = (''.join([message.text.split(' ')[i] + ' ' for i in range(1, len(message.text.split(' ')))])).strip()
-    url_global = 'https://ncov2019.live/'
+    url_global = "https://ncov2019.live"
     text_global = requests.get(url_global).text
     selector_global = Selector(text = text_global)
     table = selector_global.css('#sortable_table_Global')
