@@ -42,7 +42,7 @@ def cov(bot: Bot, update: Update):
         country_input = loc_input[0][4:].strip()
 
     try:
-        url_global = "https://bing.com/covid/data"
+        url_global = "https://bing.com/covid"
         json_response = requests.get(url_global)
         global_dict = json.loads(json_response.text)
         
