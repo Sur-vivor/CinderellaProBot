@@ -155,7 +155,7 @@ def start(bot: Bot, update: Update, args: List[str]):
          
 
         update.effective_message.reply_text("Heya,༄Çΐή∂εɾεℓℓส™࿐ Here💃\nHow can I help you? 🙂",reply_markup=InlineKeyboardMarkup(
-                                                [[InlineKeyboardButton(text="⚜️Help",url="t.me/{}?start=help".format(bot.username)),InlineKeyboardButton(text="📨Public Feeds",url="https://t.me/CinderellaHelp")]]))
+                                                [[InlineKeyboardButton(text="⚜️Help",callback_data="help_back"),InlineKeyboardButton(text="📨Public Feeds",url="https://t.me/CinderellaHelp")]]))
                                             
 def send_start(bot, update):
     #Try to remove old message
@@ -170,7 +170,7 @@ def send_start(bot, update):
     text = PM_START_TEXT
 
     keyboard = [[InlineKeyboardButton(text="⚜️Add Me To Your Group⚜️",url="t.me/{}?startgroup=true".format(bot.username))]]
-    keyboard += [[InlineKeyboardButton(text="🤝Help",url="t.me/{}?start=help".format(bot.username)), 
+    keyboard += [[InlineKeyboardButton(text="🤝Help",callback_data="help_back"), 
         InlineKeyboardButton(text="🛡Support Group🛡",url="https://t.me/CinderellaHelp")]]
 
     update.effective_message.reply_photo(img,PM_START_TEXT.format(escape_markdown(first_name), escape_markdown(bot.first_name)), reply_markup=InlineKeyboardMarkup(keyboard), disable_web_page_preview=True, parse_mode=ParseMode.MARKDOWN)
