@@ -26,11 +26,6 @@
          "description": "Set this to True if you want to delete command messages from users who don't have the perms to run that command.",
          "value": "False"
       },
-      "DONATION_LINK": {
-         "description": "Optional: link where you would like to receive donations.",
-         "required": false,
-         "value": "https://t.me/Sur_vivor"
-      },
       "ENV": {
          "description": "Setting this to ANYTHING will enable environment variables.",
          "value": "ANYTHING"
@@ -138,8 +133,8 @@
       "alluka"
       
    ],
-   "name": "Survivor",
+   "name": "Cinderella",
    "repository": "https://github.com/Sur-vivor/Alluka",
-   "success_url": "https://telegram.dog/SurvivorPro_Bot",
-   "logo": "https://telegra.ph/file/c33e6ab828c2e2fde385b.jpg"
+   "success_url": "https://telegram.dog/CinderellaProBot",
+   "logo": "https://telegra.ph/file/511ad504656e712b88235.jpg"
 }
