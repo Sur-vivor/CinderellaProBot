@@ -456,35 +456,33 @@ def invite(bot: Bot, update: Update):
 @run_async
 @connection_status
 def adminlist(bot: Bot, update: Update):
-
-    chat = update.effective_chat
-    user = update.effective_user
-
-    chat_id = chat.id
-    update_chat_title = chat.title
-    message_chat_title = update.effective_message.chat.title
-
-    administrators = bot.getChatAdministrators(chat_id)
-
-    if update_chat_title == message_chat_title:
-        chat_name = chat.title
-    else:
-        chat_name = update_chat_title
-    
-    text = "Admins in *{}*:".format(chat_name)
-
+    administrators = update.effective_chat.get_administrators()
+    msg = update.effective_message
+    text = "Admins in *{}*:".format(update.effective_chat.title or "this chat")
     for admin in administrators:
         user = admin.user
         status = admin.status
+        name = "[{}](tg://user?id={})".format(user.first_name + (user.last_name or ""), user.id)
+        if user.username:
+            name = name = escape_markdown("@" + user.username)
         if status == "creator":
-            name = "[{}](tg://user?id={})".format(user.first_name + (user.last_name or ""), user.id, "(Creator)")
-        else:
-            name = "[{}](tg://user?id={})".format(user.first_name + (user.last_name or ""), user.id)
-        text += f"\n - {}".format(name)
-
-    update.effective_message.reply_text(text, parse_mode=ParseMode.MARKDOWN)
-
-
+            text += "\n 🔱 Creator:"
+            text += "\n` • `{} \n\n • *Administrators*:".format(name)
+    for admin in administrators:
+        user = admin.user
+        status = admin.status
+        chat = update.effective_chat
+        count = chat.get_members_count()
+        name = "[{}](tg://user?id={})".format(user.first_name + (user.last_name or ""), user.id)
+        if user.username:
+            name = escape_markdown("@" + user.username)
+            
+        if status == "administrator":
+            text += "\n`👮🏻 `{}".format(name)
+            members = "\n\n*Members:*\n`🧒 ` {} users".format(count)
+            
+    msg.reply_text(text + members, parse_mode=ParseMode.MARKDOWN)
+   
 def __chat_settings__(chat_id, user_id):
     return "You are *admin*: `{}`".format(
         dispatcher.bot.get_chat_member(chat_id, user_id).status in ("administrator", "creator"))
