@@ -56,20 +56,7 @@ def info(bot: Bot, update: Update, args: List[str], context):
 
     num_chats = sql.get_user_num_chats(user.id)
     text += f"\n🌐Chat count: <code>{num_chats}</code>"
-
-    try:
-        user_member = chat.get_member(user.id)
-        if user_member.status == 'administrator':
-            result = requests.post(f"https://api.telegram.org/bot{TOKEN}/getChatMember?chat_id={chat.id}&user_id={user.id}")
-            result = result.json()["result"]
-            if "custom_title" in result.keys():
-                custom_title = result['custom_title']
-                text += f"\n🛡This user holds the title⚜️ <b>{custom_title}</b> here."
-    except BadRequest:
-        pass
-
    
-
     if user.id == OWNER_ID:
         text += "\n🚶🏻‍♂️Uff,This person is my Owner🤴\nI would never do anything against him!."
         
@@ -84,15 +71,22 @@ def info(bot: Bot, update: Update, args: List[str], context):
         text += "\n🚴‍♂️Pling,This person is one of my support users! " \
                         "Not quite a sudo user, but can still gban you off the map."
         
-  
        
     elif user.id in WHITELIST_USERS:
         text += "\n🚴‍♂️Pling,This person has been whitelisted! " \
                         "That means I'm not allowed to ban/kick them."
-       
-
     
-
+    
+    try:
+        user_member = chat.get_member(user.id)
+        if user_member.status == 'administrator':
+            result = requests.post(f"https://api.telegram.org/bot{TOKEN}/getChatMember?chat_id={chat.id}&user_id={user.id}")
+            result = result.json()["result"]
+            if "custom_title" in result.keys():
+                custom_title = result['custom_title']
+                text += f"\n🛡This user holds the title⚜️ <b>{custom_title}</b> here."
+    except BadRequest:
+        pass
 
     text += "\n"
     for mod in USER_INFO:
@@ -105,13 +99,15 @@ def info(bot: Bot, update: Update, args: List[str], context):
             mod_info = mod.__user_info__(user.id, chat.id)
         if mod_info:
             text += "\n" + mod_info
-       try:
+     try:
         profile = context.bot.get_user_profile_photos(user.id).photos[0][-1]
         context.bot.sendChatAction(chat.id, "upload_photo")
         context.bot.send_photo(chat.id, photo=profile, caption=(text), parse_mode=ParseMode.HTML, disable_web_page_preview=True)
+        del_msg.delete()
     except IndexError:
         context.bot.sendChatAction(chat.id, "typing")
-    update.effective_message.reply_text(text, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
-
+        msg.reply_text(text, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
+        del_msg.delete()  
+    
 INFO_HANDLER = DisableAbleCommandHandler("info", info, pass_args=True)
 dispatcher.add_handler(INFO_HANDLER)
