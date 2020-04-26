@@ -103,11 +103,10 @@ def info(bot: Bot, update: Update, args: List[str], context):
         profile = context.bot.get_user_profile_photos(user.id).photos[0][-1]
         context.bot.sendChatAction(chat.id, "upload_photo")
         context.bot.send_photo(chat.id, photo=profile, caption=(text), parse_mode=ParseMode.HTML, disable_web_page_preview=True)
-        del_msg.delete()
-    except IndexError:
+     except IndexError:
         context.bot.sendChatAction(chat.id, "typing")
         msg.reply_text(text, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
-        del_msg.delete()  
+          
     
 INFO_HANDLER = DisableAbleCommandHandler("info", info, pass_args=True)
 dispatcher.add_handler(INFO_HANDLER)
