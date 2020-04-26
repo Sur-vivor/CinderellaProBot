@@ -21,7 +21,8 @@ from alluka.modules.helper_funcs.filters import CustomFilters
 import alluka.modules.sql.users_sql as sql
 
 @run_async
-def info(bot: Bot, update: Update, args: List[str]):
+def info(bot: Bot, update: Update, args: List[str], context):
+    args = context.args
     message = update.effective_message
     chat = update.effective_chat
     user_id = extract_user(update.effective_message, args)
@@ -106,8 +107,14 @@ def info(bot: Bot, update: Update, args: List[str]):
             mod_info = mod.__user_info__(user.id, chat.id)
         if mod_info:
             text += "\n" + mod_info
-    
-    update.effective_message.reply_text(text, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
+       try:
+        profile = context.bot.get_user_profile_photos(user.id).photos[0][-1]
+        context.bot.sendChatAction(chat.id, "upload_photo")
+        context.bot.send_photo(chat.id, photo=profile, caption=(text), parse_mode=ParseMode.HTML, disable_web_page_preview=True)
+        del_msg.delete()
+    except IndexError:
+        context.bot.sendChatAction(chat.id, "typing")
+        update.effective_message.reply_text(text, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
 
 INFO_HANDLER = DisableAbleCommandHandler("info", info, pass_args=True)
 dispatcher.add_handler(INFO_HANDLER)
