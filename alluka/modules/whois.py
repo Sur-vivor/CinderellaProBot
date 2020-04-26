@@ -42,8 +42,6 @@ def info(bot: Bot, update: Update, args: List[str], context):
     else:
         return
     
-    del_msg = msg.reply_text("Hold tight while I steal some data from <b>FBI Database</b>...", parse_mode=ParseMode.HTML)
-    
     text = (f"<b>User Information:</b>\n"
             f"🆔: <code>{user.id}</code>\n"
             f"👤Name: {html.escape(user.first_name)}")
