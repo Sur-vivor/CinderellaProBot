@@ -457,6 +457,7 @@ def invite(bot: Bot, update: Update):
 @connection_status
 def adminlist(bot: Bot, update: Update):
     administrators = update.effective_chat.get_administrators()
+    user = update.effective_user
     msg = update.effective_message
     text = "Admins in *{}*:".format(update.effective_chat.title or "this chat")
     for admin in administrators:
