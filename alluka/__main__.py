@@ -26,7 +26,7 @@ from alluka.modules.connection import connected
 
 PM_START_TEXT = """
 _Hello_ *{}*
-_My name is_ *{}*.\n_A Powerful Telegram ProBot to Manage Your Groups,feel free to add to your groups!!!_"""
+_My name is_ *{}*\n_A Powerful Telegram ProBot to Manage Your Groups,feel free to add to your groups!!!_"""
 
 
 
