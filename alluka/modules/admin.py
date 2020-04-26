@@ -475,7 +475,11 @@ def adminlist(bot: Bot, update: Update):
 
     for admin in administrators:
         user = admin.user
-        name = "[{}](tg://user?id={})".format(user.first_name + (user.last_name or ""), user.id)
+        status = admin.status
+        if status == "creator":
+            name = "[{}](tg://user?id={})".format(user.first_name + (user.last_name or ""), user.id, "(Creator)")
+        else:
+            name = "[{}](tg://user?id={})".format(user.first_name + (user.last_name or ""), user.id)
         text += "\n - {}".format(name)
 
     update.effective_message.reply_text(text, parse_mode=ParseMode.MARKDOWN)
