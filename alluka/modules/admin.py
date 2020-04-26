@@ -467,7 +467,7 @@ def adminlist(bot: Bot, update: Update):
     administrators = bot.getChatAdministrators(chat_id)
 
     if update_chat_title == message_chat_title:
-        chat_name = "this chat"
+        chat_name = chat.title
     else:
         chat_name = update_chat_title
     
