@@ -21,57 +21,40 @@ from alluka.modules.helper_funcs.filters import CustomFilters
 import alluka.modules.sql.users_sql as sql
 
 @run_async
-def info(update, context):
-    args = context.args
-    msg = update.effective_message  # type: Optional[Message]
-    user_id = extract_user(update.effective_message, args)
+def info(bot: Bot, update: Update, args: List[str]):
+    message = update.effective_message
     chat = update.effective_chat
+    user_id = extract_user(update.effective_message, args)
 
     if user_id:
-        user = context.bot.get_chat(user_id)
+        user = bot.get_chat(user_id)
 
-    elif not msg.reply_to_message and not args:
-        user = msg.from_user
+    elif not message.reply_to_message and not args:
+        user = message.from_user
 
-    elif not msg.reply_to_message and (not args or (
-            len(args) >= 1 and not args[0].startswith("@") and not args[0].isdigit() and not msg.parse_entities(
+    elif not message.reply_to_message and (not args or (
+            len(args) >= 1 and not args[0].startswith("@") and not args[0].isdigit() and not message.parse_entities(
         [MessageEntity.TEXT_MENTION]))):
-        msg.reply_text("I can't extract a user from this.")
+        message.reply_text("I can't extract a user from this.")
         return
 
     else:
         return
 
-    del_msg = msg.reply_text("Hold tight while I steal some data from <b>FBI Database</b>...", parse_mode=ParseMode.HTML)
-
-    text = "<b>USER INFO</b>:" \
-           "\n\nID: <code>{}</code>" \
-           "\nFirst Name: {}".format(user.id, html.escape(user.first_name))
+    text = (f"<b>User Information:</b>\n"
+            f"🆔: <code>{user.id}</code>\n"
+            f"👤Name: {html.escape(user.first_name)}")
 
     if user.last_name:
-        text += "\nLast Name: {}".format(html.escape(user.last_name))
+        text += f"\n🚹Last Name: {html.escape(user.last_name)}"
 
     if user.username:
-        text += "\nUsername: @{}".format(html.escape(user.username))
+        text += f"\n♻️Username: @{html.escape(user.username)}"
 
-    text += "\nPermanent user link: {}".format(mention_html(user.id, "link"))
+    text += f"\n☣️Permanent user link: {mention_html(user.id, 'link🚪')}"
 
-    text += "\nNumber of profile pics: {}".format(context.bot.get_user_profile_photos(user.id).total_count)
-
-    if user.id == OWNER_ID:
-        text += "\n\nAye this guy is my owner - I would never do anything against him!"
-
-    elif user.id in SUDO_USERS:
-        text += "\n\nThis person is one of my sudo users! " \
-                    "Nearly as powerful as my owner - so watch it."
-
-    elif user.id in SUPPORT_USERS:
-        text += "\n\nThis person is one of my support users! " \
-                    "Not quite a sudo user, but can still gban you off the map."
-
-    elif user.id in WHITELIST_USERS:
-        text += "\n\nThis person has been whitelisted! " \
-                    "That means I'm not allowed to ban/kick them."
+    num_chats = sql.get_user_num_chats(user.id)
+    text += f"\n🌐Chat count: <code>{num_chats}</code>"
 
     try:
         user_member = chat.get_member(user.id)
@@ -80,28 +63,49 @@ def info(update, context):
             result = result.json()["result"]
             if "custom_title" in result.keys():
                 custom_title = result['custom_title']
-                text += f"\n\nThis user has custom title <b>{custom_title}</b> in this chat."
+                text += f"\n🛡This user holds the title⚜️ <b>{custom_title}</b> here."
     except BadRequest:
         pass
 
-    for mod in USER_INFO:
-        try:
-            mod_info = mod.__user_info__(user.id).strip()
-        except TypeError:
-            mod_info = mod.__user_info__(user.id, chat.id).strip()
-        if mod_info:
-            text += "\n\n" + mod_info
+   
 
-    try:
-        profile = context.bot.get_user_profile_photos(user.id).photos[0][-1]
-        context.bot.sendChatAction(chat.id, "upload_photo")
-        context.bot.send_photo(chat.id, photo=profile, caption=(text), parse_mode=ParseMode.HTML, disable_web_page_preview=True)
-        del_msg.delete()
-    except IndexError:
-        context.bot.sendChatAction(chat.id, "typing")
-        msg.reply_text(text, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
-        del_msg.delete()
-          
+    if user.id == OWNER_ID:
+        text += "\n🚶🏻‍♂️Uff,This person is my Owner🤴\nI would never do anything against him!."
+        
+    elif user.id in DEV_USERS:
+        text += "\n🚴‍♂️Pling,This person is my dev🤷‍♂️\nI would never do anything against him!."
+        
+    elif user.id in SUDO_USERS:
+        text += "\n🚴‍♂️Pling,This person is one of my sudo users! " \
+                    "Nearly as powerful as my owner🕊so watch it.."
+        
+    elif user.id in SUPPORT_USERS:
+        text += "\n🚴‍♂️Pling,This person is one of my support users! " \
+                        "Not quite a sudo user, but can still gban you off the map."
+        
+  
+       
+    elif user.id in WHITELIST_USERS:
+        text += "\n🚴‍♂️Pling,This person has been whitelisted! " \
+                        "That means I'm not allowed to ban/kick them."
+       
+
     
+
+
+    text += "\n"
+    for mod in USER_INFO:
+        if mod.__mod_name__ == "Users":
+            continue
+
+        try:
+            mod_info = mod.__user_info__(user.id)
+        except TypeError:
+            mod_info = mod.__user_info__(user.id, chat.id)
+        if mod_info:
+            text += "\n" + mod_info
+
+    update.effective_message.reply_text(text, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
+
 INFO_HANDLER = DisableAbleCommandHandler("info", info, pass_args=True)
 dispatcher.add_handler(INFO_HANDLER)
