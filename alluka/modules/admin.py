@@ -475,7 +475,7 @@ def adminlist(bot: Bot, update: Update):
         name = "[{}](tg://user?id={})".format(user.first_name + (user.last_name or ""), user.id)
            
         if status == "administrator":
-            text += "\n`👮🏻 `{}".format(name)
+            text += "\n` 👮🏻‍♂️ `{}".format(name)
             members = "\n\n*Members:*\n`👨‍👩‍👧‍👦 ` {} users".format(count)
             
     msg.reply_text(text + members, parse_mode=ParseMode.MARKDOWN)
