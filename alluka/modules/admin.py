@@ -464,8 +464,6 @@ def adminlist(bot: Bot, update: Update):
         user = admin.user
         status = admin.status
         name = "[{}](tg://user?id={})".format(user.first_name + (user.last_name or ""), user.id)
-        if user.username:
-            name = name = escape_markdown("@" + user.username)
         if status == "creator":
             text += "\n 🔱 Creator:"
             text += "\n` • `{} \n\n • *Administrators*:".format(name)
@@ -475,9 +473,7 @@ def adminlist(bot: Bot, update: Update):
         chat = update.effective_chat
         count = chat.get_members_count()
         name = "[{}](tg://user?id={})".format(user.first_name + (user.last_name or ""), user.id)
-        if user.username:
-            name = escape_markdown("@" + user.username)
-            
+           
         if status == "administrator":
             text += "\n`👮🏻 `{}".format(name)
             members = "\n\n*Members:*\n`🧒 ` {} users".format(count)
