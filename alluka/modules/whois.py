@@ -104,7 +104,10 @@ def info(bot: Bot, update: Update, args: List[str]):
             mod_info = mod.__user_info__(user.id, chat.id)
         if mod_info:
             text += "\n" + mod_info
-
+    try:
+        profile = context.bot.get_user_profile_photos(user.id).photos[0][-1]
+        context.bot.sendChatAction(chat.id, "upload_photo")
+        context.bot.send_photo(chat.id, photo=profile, caption=(text), parse_mode=ParseMode.HTML, disable_web_page_preview=True)
     update.effective_message.reply_text(text, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
 
 INFO_HANDLER = DisableAbleCommandHandler("info", info, pass_args=True)
