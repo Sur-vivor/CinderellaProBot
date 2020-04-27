@@ -489,7 +489,7 @@ def main():
     dispatcher.add_handler(migrate_handler)
     dispatcher.add_handler(source_handler)
 
-    dispatcher.add_error_handler(error_callback)
+    # dispatcher.add_error_handler(error_callback)
 
     # add antiflood processor
     Dispatcher.process_update = process_update
