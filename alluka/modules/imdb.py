@@ -85,7 +85,7 @@ __help__ = """
 __mod_name__ = "IMDb"
 
 IMDB_HANDLER = CommandHandler("imdb", imdb, pass_args=True)
-IMDB_SEARCHDATA_HANDLER = CallbackQueryHandler(imdb_searchdata)
+IMDB_SEARCHDATA_HANDLER = CallbackQueryHandler(imdb_searchdata, pattern="imdb_searchdata")
 
 dispatcher.add_handler(IMDB_HANDLER)
 dispatcher.add_handler(IMDB_SEARCHDATA_HANDLER)
