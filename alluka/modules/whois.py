@@ -40,7 +40,7 @@ def info(bot: Bot, update: Update, args: List[str]):
 
     else:
         return
-
+    
     text = (f"<b>User Information:</b>\n"
             f"🆔: <code>{user.id}</code>\n"
             f"👤Name: {html.escape(user.first_name)}")
@@ -55,7 +55,8 @@ def info(bot: Bot, update: Update, args: List[str]):
 
     num_chats = sql.get_user_num_chats(user.id)
     text += f"\n🌐Chat count: <code>{num_chats}</code>"
-
+    text += "\n🎭Number of profile pics: {}".format(bot.get_user_profile_photos(user.id).total_count)
+   
     try:
         user_member = chat.get_member(user.id)
         if user_member.status == 'administrator':
@@ -88,9 +89,8 @@ def info(bot: Bot, update: Update, args: List[str]):
     elif user.id in WHITELIST_USERS:
         text += "\n🚴‍♂️Pling,This person has been whitelisted! " \
                         "That means I'm not allowed to ban/kick them."
-       
-
-    
+    elif user.id == bot.id:     
+        text += "\n💃Lol🧞‍♂️It's Me😉"
 
 
     text += "\n"
@@ -104,8 +104,12 @@ def info(bot: Bot, update: Update, args: List[str]):
             mod_info = mod.__user_info__(user.id, chat.id)
         if mod_info:
             text += "\n" + mod_info
-
-    update.effective_message.reply_text(text, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
+    try:
+        profile = bot.get_user_profile_photos(user.id).photos[0][-1]
+        bot.sendChatAction(chat.id, "upload_photo")
+        bot.send_photo(chat.id, photo=profile, caption=(text), parse_mode=ParseMode.HTML, disable_web_page_preview=True)
+    except IndexError:
+        update.effective_message.reply_text(text, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
 
 INFO_HANDLER = DisableAbleCommandHandler("info", info, pass_args=True)
 dispatcher.add_handler(INFO_HANDLER)
