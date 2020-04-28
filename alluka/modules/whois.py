@@ -13,7 +13,7 @@ from telegram import ParseMode
 from telegram.ext import CommandHandler, run_async, Filters
 from telegram.utils.helpers import escape_markdown, mention_html
 from alluka.modules.helper_funcs.chat_status import user_admin, sudo_plus, is_user_admin
-from alluka import dispatcher, OWNER_ID, SUDO_USERS, SUPPORT_USERS, DEV_USERS, WHITELIST_USERS, BAN_STICKER
+from alluka import dispatcher, OWNER_ID, SUDO_USERS, SUPPORT_USERS, DEV_USERS, WHITELIST_USERS
 from alluka.__main__ import STATS, USER_INFO, TOKEN
 from alluka.modules.disable import DisableAbleCommandHandler, DisableAbleRegexHandler
 from alluka.modules.helper_funcs.extraction import extract_user
