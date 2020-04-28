@@ -70,7 +70,7 @@ def mute(bot: Bot, update: Update, args: List[str]) -> str:
 
     if member.can_send_messages is None or member.can_send_messages:
         bot.restrict_chat_member(chat.id, user_id, can_send_messages=False)
-        bot.sendMessage(chat.id, f"<b>{mention_html(member.user.first_name)}</b> is muted in " + f"<b>{chat_name}</b>",
+        bot.sendMessage(chat.id, f"<b>{html.escape(member.user.first_name)}</b> is muted in " + f"<b>{chat_name}</b>",
                         parse_mode=ParseMode.HTML)
         return log
 
