@@ -2,7 +2,7 @@ import html
 from io import BytesIO
 from typing import Optional, List
 
-from telegram import Message, Update, Bot, User, Chat
+from telegram import Message, Update, Bot, User, Chat, ParseMode
 from telegram.error import BadRequest, TelegramError
 from telegram.ext import run_async, CommandHandler, MessageHandler, Filters
 from telegram.utils.helpers import mention_html
@@ -126,7 +126,8 @@ def gmute(bot: Bot, update: Update, args: List[str]):
                   "{} has been successfully gmuted!".format(mention_html(user_chat.id, user_chat.first_name)),
                 html=True)
 
-    message.reply_text("They won't be talking again anytime soon.")
+    message.reply_text("{} won't be talking again anytime soon.".format(mention_html(user_chat.id, user_chat.first_name)), 
+                       parse_mode=ParseMode.HTML)
 
 
 @run_async
@@ -211,7 +212,7 @@ def ungmute(bot: Bot, update: Update, args: List[str]):
                                                                          user_chat.first_name)),
                   html=True)
 
-    message.reply_text("Person has been un-gmuted.")
+    message.reply_text("{} has been un-gmuted.".format(mention_html(user_chat.id, user_chat.first_name)), parse_mode=ParseMode.HTML)
 
 
 @run_async
