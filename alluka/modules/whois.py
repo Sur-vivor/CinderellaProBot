@@ -19,6 +19,7 @@ from alluka.modules.disable import DisableAbleCommandHandler, DisableAbleRegexHa
 from alluka.modules.helper_funcs.extraction import extract_user
 from alluka.modules.helper_funcs.filters import CustomFilters
 import alluka.modules.sql.users_sql as sql
+import alluka.modules.helper_funcs.cas_api as cas
 
 @run_async
 def info(bot: Bot, update: Update, args: List[str]):
@@ -93,7 +94,10 @@ def info(bot: Bot, update: Update, args: List[str]):
         text += "\n💃Lol🧞‍♂️It's Me😉"
 
 
-    text += "\n"
+    text +="\n"
+    text += "\nCAS banned: "
+    result = cas.banchecker(user.id)
+    text += str(result)
     for mod in USER_INFO:
         if mod.__mod_name__ == "Users":
             continue
