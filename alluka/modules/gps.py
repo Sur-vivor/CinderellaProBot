@@ -43,7 +43,7 @@ def gps(bot: Bot, update: Update, args: List[str]):
 
 
 __help__ = """
- - /gps: get gps location 
+ - /gps <location>: get gps location 
 """
 
 __mod_name__ = "Gps Location"
