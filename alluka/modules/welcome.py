@@ -188,13 +188,13 @@ def new_member(bot: Bot, update: Update):
                     buttons = sql.get_welc_buttons(chat.id)
                     keyb = build_keyboard(buttons)
                 else:
-                    res = sql.DEFAULT_WELCOME.format(first=first_name)
+                    res = sql.DEFAULT_WELCOME.format(first=first_name, chatname=chat.title)
                     keyb = []
 
                 keyboard = InlineKeyboardMarkup(keyb)
 
                 sent = send(update, res, keyboard,
-                            sql.DEFAULT_WELCOME.format(first=first_name))  # type: Optional[Message]
+                            sql.DEFAULT_WELCOME.format(first=first_name, chatname=chat.title))  # type: Optional[Message]
             
                 
                 #Sudo user exception from mutes:
