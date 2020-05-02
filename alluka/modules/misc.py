@@ -119,8 +119,9 @@ def stats(bot: Bot, update: Update):
 __help__ = """
  - /id: get the current group id. If used by replying to a message, gets that user's id.
  - /info: get information about a user.
- -/gifid: Get gif ID.
+ - /gifid: Get gif ID.
  - /markdownhelp: quick summary of how markdown works in telegram - can only be called in private chats.
+ - /imdb <movie or TV series name>: View IMDb results for selected movie or TV series
 """
 
 ID_HANDLER = DisableAbleCommandHandler("id", get_id, pass_args=True)
