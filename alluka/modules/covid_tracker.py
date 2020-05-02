@@ -1,13 +1,12 @@
+import json
+import requests
+from urllib.request import urlopen
 from telegram import ParseMode, Update, Bot, Chat
 from telegram.ext import CommandHandler, MessageHandler, BaseFilter, run_async
 
 from alluka import dispatcher
-
-import requests
-
-import json
-from urllib.request import urlopen
-
+from alluka.modules.disable import DisableAbleCommandHandler
+from requests import get
 
 def covindia(bot: Bot, update: Update):
     message = update.effective_message
