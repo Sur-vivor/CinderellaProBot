@@ -34,4 +34,4 @@ googletrans
 jikanpy
 speedtest-cli
 pytz
-tabulate
+parsel
