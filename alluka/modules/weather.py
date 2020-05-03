@@ -26,6 +26,8 @@ def weather(bot, update, args):
         update.effective_message.reply_text("Location not valid.")
         return
     
+    
+    
     cityname = result['name']
     curtemp = result['main']['temp']
     feels_like = result['main']['feels_like']
@@ -70,7 +72,7 @@ def weather(bot, update, args):
         temp = str(round(tF))
         return temp
 
-    reply = f"*Current weather for {cityname}, {country_name} is*:\n\n*Temperature:* `{celsius(curtemp)}°C ({fahr(curtemp)}ºF), feels like {celsius(feels_like)}°C ({fahr(feels_like)}ºF) \n`*Condition:* `{condmain}, {conddet}` {icon}\n*Humidity:* `{humidity}%`\n*Wind:* `{kmph[0]} km/h`\n"
+    reply = f"⛅️*Current🌦Weather*🏖\n\n🌐*Country Name:* {country_name}\n🗺*City:* {cityname}\n\n🔥*Temperature:* `{celsius(curtemp)}°C ({fahr(curtemp)}ºF), feels like {celsius(feels_like)}°C ({fahr(feels_like)}ºF) \n`⛱*Condition:* `{condmain}, {conddet}` {icon}\n⛲️*Humidity:* `{humidity}%`\n🎐*Wind:* `{kmph[0]} km/h`\n"
     update.effective_message.reply_text("{}".format(reply),
                 parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
     return
