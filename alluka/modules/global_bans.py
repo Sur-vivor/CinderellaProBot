@@ -2,6 +2,9 @@ import html
 from io import BytesIO
 from typing import Optional, List
 
+import time
+from datetime import datetime
+
 from telegram import Message, Update, Bot, User, Chat, ParseMode
 from telegram.error import BadRequest, TelegramError
 from telegram.ext import run_async, CommandHandler, MessageHandler, Filters
@@ -45,8 +48,9 @@ UNGBAN_ERRORS = {
 
 @run_async
 def gban(bot: Bot, update: Update, args: List[str]):
-    message = update.effective_message  # type: Optional[Message]
-
+    message = update.effective_message  # type: Optional[Message] 
+    chat = update.effective_chat
+   
     user_id, reason = extract_user_and_text(message, args)
 
     if not user_id:
@@ -92,23 +96,35 @@ def gban(bot: Bot, update: Update, args: List[str]):
         return
     
     message.reply_text("⚡️ *Snaps the Banhammer* ⚡️")
+    
+    start_time = time.time()
+    datetime_fmt = "%H:%M - %d-%m-%Y"
+    current_time = datetime.utcnow().strftime(datetime_fmt)
 
+    if chat.type != 'private':
+        chat_origin = "<b>{} ({})</b>\n".format(html.escape(chat.title), chat.id)
+    else:
+        chat_origin = "<b>{}</b>\n".format(chat.id)
+        
     banner = update.effective_user  # type: Optional[User]
     send_to_list(bot, SUDO_USERS + SUPPORT_USERS,
                  "<b>Global Ban</b>" \
                  "\n#GBAN" \
+                 "\n<b>Originated from:</b> {}" \
                  "\n<b>Status:</b> <code>Enforcing</code>" \
                  "\n<b>Sudo Admin:</b> {}" \
                  "\n<b>User:</b> {}" \
                  "\n<b>ID:</b> <code>{}</code>" \
-                 "\n<b>Reason:</b> {}".format(mention_html(banner.id, banner.first_name),
-                                              mention_html(user_chat.id, user_chat.first_name), 
-                                                           user_chat.id, reason or "No reason given"), 
+                 "\n<b>Event Stamp:</b> {}" \
+                 "\n<b>Reason:</b> {}".format(chat_origin, mention_html(banner.id, banner.first_name),
+                                              mention_html(user_chat.id, user_chat.first_name),
+                                                           user_chat.id, current_time, reason or "No reason given"), 
                 html=True)
 
     sql.gban_user(user_id, user_chat.username or user_chat.first_name, reason)
 
     chats = get_all_chats()
+    gbanned_chats = 0
     for chat in chats:
         chat_id = chat.chat_id
 
@@ -118,6 +134,7 @@ def gban(bot: Bot, update: Update, args: List[str]):
 
         try:
             bot.kick_chat_member(chat_id, user_id)
+            gbanned_chats += 1
         except BadRequest as excp:
             if excp.message in GBAN_ERRORS:
                 pass
@@ -128,12 +145,22 @@ def gban(bot: Bot, update: Update, args: List[str]):
                 return
         except TelegramError:
             pass
-
+    
     send_to_list(bot, SUDO_USERS + SUPPORT_USERS, 
                   "{} has been successfully gbanned!".format(mention_html(user_chat.id, user_chat.first_name)),
-                html=True)
+                html=True)    
     message.reply_text("Done! {} has been globally banned.".format(mention_html(user_chat.id, user_chat.first_name)),
-                       parse_mode=ParseMode.HTML)
+                       parse_mode=ParseMode.HTML)               
+  
+               
+    end_time = time.time()
+    gban_time = round((end_time - start_time), 2)
+
+    if gban_time > 60:
+        gban_time = round((gban_time / 60), 2)
+        message.reply_text(f"Done! This gban affected {gbanned_chats} chats, Took {gban_time} min")
+    else:
+        message.reply_text(f"Done! This gban affected {gbanned_chats} chats, Took {gban_time} sec") 
                 
 
 
