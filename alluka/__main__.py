@@ -6,6 +6,8 @@ import resource
 import platform
 import sys
 import traceback
+from sys import argv
+
 import requests
 from parsel import Selector
 import json
@@ -17,16 +19,14 @@ from telegram.error import Unauthorized, BadRequest, TimedOut, NetworkError, Cha
 from telegram.ext import CommandHandler, Filters, MessageHandler, CallbackQueryHandler
 from telegram.ext.dispatcher import run_async, DispatcherHandlerStop, Dispatcher
 from telegram.utils.helpers import escape_markdown
-
-from alluka import dispatcher, updater, TOKEN, WEBHOOK, SUDO_USERS, OWNER_ID, DONATION_LINK, CERT_PATH, PORT, URL, LOGGER, \
+from alluka import dispatcher, updater, TOKEN, WEBHOOK, SUDO_USERS, OWNER_ID, CERT_PATH, PORT, URL, LOGGER, \
     ALLOW_EXCL
-# needed to dynamically load modules
-# NOTE: Module order is not guaranteed, specify that in the config file!
 from alluka.modules import ALL_MODULES
 from alluka.modules.helper_funcs.chat_status import is_user_admin
 from alluka.modules.helper_funcs.misc import paginate_modules
 
 from alluka.modules.connection import connected
+from alluka.modules.connection import connect_button
 
 
 PM_START_TEXT = """
@@ -40,7 +40,6 @@ HELP_STRINGS = """
 Hey there! My name is *{}*.
 I'm a modular group management bot with a few fun extras! Have a look at the following for an idea of some of \
 the things I can help you with.
-
 *Main* commands available:
  💠 - /start: start the bot
  💠 - /help: PM's you this message.
@@ -49,19 +48,22 @@ the things I can help you with.
  💠 - /settings:
    🔹 - in PM: will send you your settings for all supported modules.
    🔹 - in a group: will redirect you to pm, with all that chat's settings.
-
 {}
 And the following:
 """.format(dispatcher.bot.first_name, "" if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\n")
+
+
 
 VERSION = "5.5.2"
 
 def vercheck() -> str:
     return str(VERSION)
 
+
 SOURCE_STRING = """
 I'm built in python3, using the python-telegram-bot library, and am fully opensource - you can find what makes me tick [here](https://github.com/anilchauhanxda/allukabot)
 """
+
 
 IMPORTED = {}
 MIGRATEABLE = []
@@ -137,6 +139,9 @@ def test(bot: Bot, update: Update):
 
 @run_async
 def start(bot: Bot, update: Update, args: List[str]):
+    print("Start")
+    chat = update.effective_chat  # type: Optional[Chat]
+    query = update.callback_query
     if update.effective_chat.type == "private":
         if len(args) >= 1:
             if args[0].lower() == "help":
@@ -147,9 +152,9 @@ def start(bot: Bot, update: Update, args: List[str]):
                 chat = dispatcher.bot.getChat(match.group(1))
 
                 if is_user_admin(chat, update.effective_user.id):
-                    send_settings(match.group(1), update.effective_user.id, False)
+                    send_settings(match.group(1), update.effective_user.id, user=False)
                 else:
-                    send_settings(match.group(1), update.effective_user.id, True)
+                    send_settings(match.group(1), update.effective_user.id, user=True)
 
             elif args[0][1:].isdigit() and "rules" in IMPORTED:
                 IMPORTED["rules"].send_rules(update, args[0], from_pm=True)
@@ -157,11 +162,9 @@ def start(bot: Bot, update: Update, args: List[str]):
         else:
             send_start(bot, update)
     else:
-         
-
         update.effective_message.reply_text("Heya,༄Çΐή∂εɾεℓℓส™࿐ Here💃\nHow can I help you? 🙂",reply_markup=InlineKeyboardMarkup(
                                                 [[InlineKeyboardButton(text="⚜️Help",url="t.me/{}?start=help".format(bot.username)),InlineKeyboardButton(text="📨Public Feeds",url="https://t.me/CinderellaHelp")]]))
-                                            
+
 def send_start(bot, update):
     #Try to remove old message
     try:
@@ -174,12 +177,15 @@ def send_start(bot, update):
     first_name = update.effective_user.first_name 
     text = PM_START_TEXT
 
-    keyboard = [[InlineKeyboardButton(text="⚜️Add Me To Your Group⚜️",url="t.me/{}?startgroup=true".format(bot.username))]]
-    keyboard += [[InlineKeyboardButton(text="🤝Help",callback_data="help_back"), 
-        InlineKeyboardButton(text="🛡Support Group🛡",url="https://t.me/CinderellaHelp")]]
+    keyboard = [[InlineKeyboardButton(text="🤝Help",callback_data="help_back"),InlineKeyboardButton(text="🛡Support Group🛡",url="https://t.me/CinderellaHelp")]]
+    keyboard += [[InlineKeyboardButton(text="🌐Connect Group", callback_data="main_connect"),InlineKeyboardButton(text="⚜️Add Me⚜️",url="t.me/{}?startgroup=true".format(bot.username))]]
 
     update.effective_message.reply_photo(img,PM_START_TEXT.format(escape_markdown(first_name), escape_markdown(bot.first_name)), reply_markup=InlineKeyboardMarkup(keyboard), disable_web_page_preview=True, parse_mode=ParseMode.MARKDOWN)
-        
+
+
+def m_connect_button(bot, update):
+    bot.delete_message(update.effective_chat.id, update.effective_message.message_id)
+    connect_button(bot, update)
 
 
 # for test purposes
@@ -273,7 +279,6 @@ def get_help(bot: Bot, update: Update):
                                             reply_markup=InlineKeyboardMarkup(
                                                 [[InlineKeyboardButton(text="⚜️Help",url="t.me/{}?start=help".format(bot.username))],  
                                                 [InlineKeyboardButton(text="🛡Contact Creator",url="https://t.me/CinderellaHelp")]]))
-                                              
         return
 
     elif len(args) >= 2 and any(args[1].lower() == x for x in HELPABLE):
@@ -310,6 +315,9 @@ def send_settings(chat_id, user_id, user=False):
             dispatcher.bot.send_message(user_id, "Seems like there aren't any chat settings available :'(\nSend this "
                                                  "in a group chat you're admin in to find its current settings!",
                                         parse_mode=ParseMode.MARKDOWN)
+
+
+    
 
 
 @run_async
@@ -401,6 +409,27 @@ def get_settings(bot: Bot, update: Update):
         send_settings(chat.id, user.id, True)
 
 
+
+
+def migrate_chats(bot: Bot, update: Update):
+    msg = update.effective_message  # type: Optional[Message]
+    if msg.migrate_to_chat_id:
+        old_chat = update.effective_chat.id
+        new_chat = msg.migrate_to_chat_id
+    elif msg.migrate_from_chat_id:
+        old_chat = msg.migrate_from_chat_id
+        new_chat = update.effective_chat.id
+    else:
+        return
+
+    LOGGER.info("Migrating from %s, to %s", str(old_chat), str(new_chat))
+    for mod in MIGRATEABLE:
+        mod.__migrate__(old_chat, new_chat)
+
+    LOGGER.info("Successfully migrated!")
+    raise DispatcherHandlerStop
+
+
 @run_async
 def source(bot: Bot, update: Update):
     user = update.effective_message.from_user
@@ -482,8 +511,9 @@ def imdb(bot: Bot, update: Update, args):
             reply_markup = reply_markup
         )
     else:
-        pass 
-    
+        pass             
+            
+            
 # Avoid memory dead
 def memory_limit(percentage: float):
     if platform.system() != "Linux":
@@ -515,45 +545,31 @@ def memory(percentage=0.5):
         return wrapper
     return decorator
 
-def migrate_chats(bot: Bot, update: Update):
-    msg = update.effective_message  # type: Optional[Message]
-    if msg.migrate_to_chat_id:
-        old_chat = update.effective_chat.id
-        new_chat = msg.migrate_to_chat_id
-    elif msg.migrate_from_chat_id:
-        old_chat = msg.migrate_from_chat_id
-        new_chat = update.effective_chat.id
-    else:
-        return
 
-    LOGGER.info("Migrating from %s, to %s", str(old_chat), str(new_chat))
-    for mod in MIGRATEABLE:
-        mod.__migrate__(old_chat, new_chat)
-
-    LOGGER.info("Successfully migrated!")
-    raise DispatcherHandlerStop
-
-
+@memory(percentage=0.8)
 def main():
     test_handler = CommandHandler("test", test)
     start_handler = CommandHandler("start", start, pass_args=True)
-
+    
     IMDB_HANDLER = CommandHandler('imdb', imdb, pass_args=True)
     IMDB_SEARCHDATAHANDLER = CallbackQueryHandler(imdb_searchdata)
-    
+   
     start_callback_handler = CallbackQueryHandler(send_start, pattern=r"bot_start")
     dispatcher.add_handler(start_callback_handler)
-   
+
+
     help_handler = CommandHandler("help", get_help)
     help_callback_handler = CallbackQueryHandler(help_button, pattern=r"help_")
 
     settings_handler = CommandHandler("settings", get_settings)
     settings_callback_handler = CallbackQueryHandler(settings_button, pattern=r"stngs_")
-
+   
     source_handler = CommandHandler("source", source)
     
     migrate_handler = MessageHandler(Filters.status_update.migrate, migrate_chats)
-    
+
+    M_CONNECT_BTN_HANDLER = CallbackQueryHandler(m_connect_button, pattern=r"main_connect")
+
     # dispatcher.add_handler(test_handler)
     dispatcher.add_handler(start_handler)
     dispatcher.add_handler(help_handler)
@@ -562,10 +578,11 @@ def main():
     dispatcher.add_handler(settings_callback_handler)
     dispatcher.add_handler(migrate_handler)
     dispatcher.add_handler(source_handler)
+    dispatcher.add_handler(M_CONNECT_BTN_HANDLER)
     dispatcher.add_handler(IMDB_HANDLER)
     dispatcher.add_handler(IMDB_SEARCHDATAHANDLER)
     
-    
+
     # dispatcher.add_error_handler(error_callback)
 
     # add antiflood processor
@@ -584,8 +601,14 @@ def main():
             updater.bot.set_webhook(url=URL + TOKEN)
 
     else:
-        LOGGER.info("Using long polling.")
+        LOGGER.info("alluka running...")
         updater.start_polling(timeout=15, read_latency=4)
+
+  
+    if len(argv) not in (1, 3, 4):
+        tbot.disconnect()
+    else:
+        tbot.run_until_disconnected()
 
     updater.idle()
 
