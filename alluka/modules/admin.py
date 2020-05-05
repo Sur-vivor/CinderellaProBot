@@ -212,10 +212,14 @@ def promote(bot: Bot, update: Update, args: List[str]) -> str:
     user = update.effective_user
     log_message = ""
 
+    if user_can_promote(chat, user, bot.id) == False:
+    	message.reply_text("You don't have enough rights to promote someone!")
+    	return ""
+    
     user_id = extract_user(message, args)
 
     if not user_id:
-        message.reply_text("You don't seem to be referring to a user.")
+        message.reply_text("You don't seem to be referring to a user🤷🏻‍♂.")
         return log_message
 
     try:
@@ -252,7 +256,7 @@ def promote(bot: Bot, update: Update, args: List[str]) -> str:
             message.reply_text("An error occured while promoting.")
             return log_message
                          
-    bot.sendMessage(chat.id, "Sucessfully promoted <b>{}</b>!".format(user_member.user.first_name or user_id), parse_mode=ParseMode.HTML)
+    bot.sendMessage(chat.id, "Sucessfully promoted <b>{}</b>❤!".format(user_member.user.first_name or user_id), parse_mode=ParseMode.HTML)
     
     log_message += "<b>{}:</b>" \
                    "\n#PROMOTED" \
@@ -479,7 +483,64 @@ def adminlist(bot: Bot, update: Update):
             members = "\n\n*Members:*\n`👨‍👩‍👧‍👦 ` {} users".format(count)
             
     msg.reply_text(text + members, parse_mode=ParseMode.MARKDOWN)
-   
+
+@run_async
+@bot_admin
+@user_admin
+def setchatpic(bot: Bot, update: Update):
+    chat = update.effective_chat
+    msg = update.effective_message
+    user = update.effective_user
+
+    user_member = chat.get_member(user.id)
+    if user_member.can_change_info == False:
+       msg.reply_text("You are missing right to change group info!")
+       return
+
+    if msg.reply_to_message:
+       if msg.reply_to_message.photo:
+          pic_id = msg.reply_to_message.photo[-1].file_id
+       elif msg.reply_to_message.document:
+          pic_id = msg.reply_to_message.document.file_id
+       else:
+          msg.reply_text("You can only set some photo as chat pic!")
+          return
+       dlmsg = msg.reply_text("Hold on...")
+       tpic = bot.get_file(pic_id)
+       tpic.download('gpic.png')
+       try:
+          with open('gpic.png', 'rb') as chatp:
+               bot.set_chat_photo(int(chat.id), photo=chatp)
+               msg.reply_text("Successfully set new chatpic!")
+       except BadRequest as excp:
+          msg.reply_text(f"Error! {excp.message}")
+       finally:
+          dlmsg.delete()
+          if os.path.isfile('gpic.png'):
+             os.remove("gpic.png")
+    else:
+          msg.reply_text("Reply to some photo or file to set new chat pic!")
+
+
+@run_async
+@bot_admin
+@user_admin
+def rmchatpic(bot: Bot, update: Update):
+    chat = update.effective_chat
+    msg = update.effective_message
+    user = update.effective_user
+
+    user_member = chat.get_member(user.id)
+    if user_member.can_change_info == False:
+       msg.reply_text("You don't have enough rights to delete group photo")
+       return
+    try:
+        bot.delete_chat_photo(int(chat.id))
+        msg.reply_text("Successfully deleted chat's profile photo!")
+    except BadRequest as excp:
+       msg.reply_text(f"Error! {excp.message}.")
+       return    
+    
 def __chat_settings__(chat_id, user_id):
     return "You are *admin*: `{}`".format(
         dispatcher.bot.get_chat_member(chat_id, user_id).status in ("administrator", "creator"))
@@ -494,6 +555,8 @@ __help__ = """
  - /promote: promotes the user replied to
  - /demote: demotes the user replied to
  - /settitle: sets a custom title for an admin that the bot promoted
+ - /setgpic: As a reply to file or photo to set group profile pic.
+ - /delgpic: Remove group profile pic. 
 """
 
 ADMINLIST_HANDLER = DisableAbleCommandHandler(["adminlist","admins"], adminlist)
@@ -514,7 +577,8 @@ RESTART_HANDLER = CommandHandler("restart", restart)
 LOAD_HANDLER = CommandHandler("load", load)
 UNLOAD_HANDLER = CommandHandler("unload", unload)
 LISTMODULES_HANDLER = CommandHandler("listmodules", listmodules)
-
+CHAT_PIC_HANDLER = CommandHandler("setgpic", setchatpic, filters=Filters.group)
+DEL_CHAT_PIC_HANDLER = CommandHandler("delgpic", rmchatpic, filters=Filters.group)
 
 
 dispatcher.add_handler(ADMINLIST_HANDLER)
@@ -529,6 +593,8 @@ dispatcher.add_handler(RESTART_HANDLER)
 dispatcher.add_handler(LOAD_HANDLER)
 dispatcher.add_handler(UNLOAD_HANDLER)
 dispatcher.add_handler(LISTMODULES_HANDLER)
+dispatcher.add_handler(CHAT_PIC_HANDLER)
+dispatcher.add_handler(DEL_CHAT_PIC_HANDLER)
 
 
 __mod_name__ = "Admin"
