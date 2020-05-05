@@ -8,6 +8,7 @@ import datetime
 from typing import Optional, List
 import re
 import requests
+from telegram.error import BadRequest
 from telegram import Message, Chat, Update, Bot, MessageEntity
 from telegram import ParseMode
 from telegram.ext import CommandHandler, run_async, Filters
