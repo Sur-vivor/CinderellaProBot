@@ -86,7 +86,7 @@ def add_blackliststicker(bot: Bot, update: Update):
 		added = 0
 		for trigger in to_blacklist:
 			try:
-				get = context.bot.getStickerSet(trigger)
+				get = bot.getStickerSet(trigger)
 				sql.add_to_stickers(chat_id, trigger.lower())
 				added += 1
 			except BadRequest:
