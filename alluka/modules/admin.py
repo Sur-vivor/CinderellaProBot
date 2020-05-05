@@ -211,10 +211,6 @@ def promote(bot: Bot, update: Update, args: List[str]) -> str:
     chat = update.effective_chat
     user = update.effective_user
     log_message = ""
-
-    if user_can_promote(chat, user, bot.id) == False:
-    	message.reply_text("You don't have enough rights to promote someone!")
-    	return ""
     
     user_id = extract_user(message, args)
 
