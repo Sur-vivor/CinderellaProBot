@@ -6,7 +6,6 @@ import resource
 import platform
 import sys
 import traceback
-from sys import argv
 
 import requests
 from parsel import Selector
@@ -603,12 +602,6 @@ def main():
     else:
         LOGGER.info("alluka running...")
         updater.start_polling(timeout=15, read_latency=4)
-
-  
-    if len(argv) not in (1, 3, 4):
-        tbot.disconnect()
-    else:
-        tbot.run_until_disconnected()
 
     updater.idle()
 
