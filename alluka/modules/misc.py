@@ -122,7 +122,6 @@ __help__ = """
  - /gifid: Get gif ID.
  - /markdownhelp: quick summary of how markdown works in telegram - can only be called in private chats.
  - /imdb <movie or TV series name>: View IMDb results for selected movie or TV series
- - /police : 🚔
 """
 
 ID_HANDLER = DisableAbleCommandHandler("id", get_id, pass_args=True)
