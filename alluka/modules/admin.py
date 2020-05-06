@@ -501,13 +501,13 @@ def setchatpic(bot: Bot, update: Update):
        else:
           msg.reply_text("You can only set some photo as chat pic!")
           return
-       dlmsg = msg.reply_text("Hold on...")
+       dlmsg = msg.reply_text("Please wait..\nScanning virus..🔎")
        tpic = bot.get_file(pic_id)
        tpic.download('gpic.png')
        try:
           with open('gpic.png', 'rb') as chatp:
                bot.set_chat_photo(int(chat.id), photo=chatp)
-               msg.reply_text("Successfully set new chatpic!")
+               msg.reply_text("✅Successfully set new chat Picture!")
        except BadRequest as excp:
           msg.reply_text(f"Error! {excp.message}")
        finally:
@@ -532,7 +532,7 @@ def rmchatpic(bot: Bot, update: Update):
        return
     try:
         bot.delete_chat_photo(int(chat.id))
-        msg.reply_text("Successfully deleted chat's profile photo!")
+        msg.reply_text("✅Successfully deleted chat's profile photo!")
     except BadRequest as excp:
        msg.reply_text(f"Error! {excp.message}.")
        return    
