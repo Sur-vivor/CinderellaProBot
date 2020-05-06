@@ -91,7 +91,7 @@ def leavechat(bot: Bot, update: Update, args: List[int]):
     if args:
         chat_id = int(args[0])
     else:
-        update.effective_message.reply_text("You do not seem to be referring to a chat!")
+        update.effective_message.reply_text("You do not seem to be referring to a chat!Send a valid chat ID")
     try:
         chat = bot.getChat(chat_id)
         titlechat = bot.get_chat(chat_id).title
@@ -167,7 +167,7 @@ BANALL_HANDLER = CommandHandler("banall", banall, pass_args=True, filters=Filter
 QUICKSCOPE_HANDLER = CommandHandler("quickscope", quickscope, pass_args=True, filters=CustomFilters.sudo_filter)
 QUICKUNBAN_HANDLER = CommandHandler("quickunban", quickunban, pass_args=True, filters=CustomFilters.sudo_filter)
 
-LEAVECHAT_HANDLER = CommandHandler("leavechat", leavechat, pass_args=True, filters=Filters.user(OWNER_ID))
+LEAVECHAT_HANDLER = CommandHandler(["leavechat","leave"], leavechat, pass_args=True, filters=Filters.user(OWNER_ID))
 SLIST_HANDLER = CommandHandler("slist", slist,
                            filters=CustomFilters.sudo_filter | CustomFilters.support_filter)
 
