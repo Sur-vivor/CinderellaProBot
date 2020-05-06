@@ -181,6 +181,8 @@ __help__ = """
  - /judge: as a reply to someone, checks if they're lying or not!
  - /weebify: as a reply to a message, "weebifies" the message.
  - /shout <word>: shout the specified word in the chat.
+ - /police : 🚔
+ - /love : ❤
 """
 
 RUNS_HANDLER = DisableAbleCommandHandler("runs", runs)
