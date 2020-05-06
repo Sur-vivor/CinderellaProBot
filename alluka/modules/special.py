@@ -138,7 +138,7 @@ __help__ = """
 - /getlink **chatid**: Get the invite link for a specific chat.
 - /banall: Ban all members from a chat
 - /snipe **chatid** **string**: Make me send a message to a specific chat.
-- /leavechat **chatid** : leave a chat
+- /leavechat or /leave **chatid** : leave a chat
 **Sudo/owner only:**
 - /quickscope **userid** **chatid**: Ban user from chat.
 - /quickunban **userid** **chatid**: Unban user from chat.
