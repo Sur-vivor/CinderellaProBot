@@ -11,7 +11,7 @@ from telegram.ext import run_async, CommandHandler, MessageHandler, Filters
 from telegram.utils.helpers import mention_html
 
 import alluka.modules.sql.global_bans_sql as sql
-from alluka import dispatcher, OWNER_ID, SUDO_USERS, SUPPORT_USERS, STRICT_GBAN
+from alluka import dispatcher, OWNER_ID, DEV_USERS, SUDO_USERS, SUPPORT_USERS, WHITELIST_USERS, STRICT_GBAN, sw
 from alluka.modules.helper_funcs.chat_status import user_admin, is_user_admin
 from alluka.modules.helper_funcs.extraction import extract_user, extract_user_and_text
 from alluka.modules.helper_funcs.filters import CustomFilters
@@ -43,6 +43,7 @@ UNGBAN_ERRORS = {
     "Not in the chat",
     "Channel_private",
     "Chat_admin_required",
+    "Peer_id_invalid",
 }
 
 
@@ -56,6 +57,10 @@ def gban(bot: Bot, update: Update, args: List[str]):
     if not user_id:
         message.reply_text("You don't seem to be referring to a user.")
         return
+    
+    if int(user_id) in DEV_USERS:
+        message.reply_text("There is no way I can gban this user.")
+        return
 
     if int(user_id) in SUDO_USERS:
         message.reply_text("I spy, with my little eye... a sudo user war! Why are you guys turning on each other?")
@@ -63,6 +68,10 @@ def gban(bot: Bot, update: Update, args: List[str]):
 
     if int(user_id) in SUPPORT_USERS:
         message.reply_text("OOOH someone's trying to gban a support user! *grabs popcorn*")
+        return
+    
+    if int(user_id) in WHITELIST_USERS:
+        message.reply_text("I can't ban my master's close frd.")
         return
 
     if user_id == bot.id:
@@ -252,11 +261,34 @@ def gbanlist(bot: Bot, update: Update):
 
 
 def check_and_ban(update, user_id, should_message=True):
-    if sql.is_user_gbanned(user_id):
-        update.effective_chat.kick_member(user_id)
-        if should_message:
-            update.effective_message.reply_text("This is a bad person, they shouldn't be here!")
+    chat = update.effective_chat
+    message = update.effective_message
+    if sw != None:
+        sw_ban = sw.get_ban(user_id)
+        if sw_ban:
+            spamwatch_reason = sw_ban.reason
+            chat.kick_member(user_id)
+            if should_message:
+                message.reply_text(
+                    (chat.id,
+                        "<b>This user is detected as a spambot by SpamWatch and has been removed!</b>\n\n<b>Reason</b>: {}").format(spamwatch_reason),
+                    parse_mode=ParseMode.HTML)
+                return
+            else:
+                return
 
+    if sql.is_user_gbanned(user_id):
+        chat.kick_member(user_id)
+        if should_message:
+            userr = sql.get_gbanned_user(user_id)
+            usrreason = userr.reason
+            if not usrreason:
+                usrreason = (chat.id, "No reason given")
+
+            message.reply_text((
+                chat.id, "*This user is gbanned and has been removed.*\nReason: `{}`").format(usrreason),
+                               parse_mode=ParseMode.MARKDOWN)
+            return
 
 @run_async
 def enforce_gban(bot: Bot, update: Update):
