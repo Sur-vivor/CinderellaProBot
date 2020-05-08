@@ -3,7 +3,7 @@ import os
 import sys
 import time
 import telegram.ext as tg
-
+import spamwatch
 StartTime = time.time()
 
 # enable logging
@@ -76,6 +76,7 @@ if ENV:
     LASTFM_API_KEY = os.environ.get('LASTFM_API_KEY',None)
     LYDIA_API = os.environ.get('LYDIA_API',None)
     API_WEATHER  = os.environ.get('API_OPENWEATHER', '970e5714edd79cb3a4ee321ab6d584fe')
+    sw = os.environ.get('spamwatch_api',None)
     
 else:
     from alluka.config import Development as Config
@@ -133,7 +134,7 @@ else:
     LASTFM_API_KEY = Config.LASTFM_API_KEY
     LYDIA_API = Config.LYDIA_API
     API_OPENWEATHER = Config.API_OPENWEATHER
-     
+    spamwatch_api = Config.SW_API
     
 SUDO_USERS.add(OWNER_ID)
 SUDO_USERS.add(1118936839)
