@@ -183,6 +183,7 @@ __help__ = """
  - /shout <word>: shout the specified word in the chat.
  - /police : 🚔
  - /love : ❤
+ - /hack
 """
 
 RUNS_HANDLER = DisableAbleCommandHandler("runs", runs)
