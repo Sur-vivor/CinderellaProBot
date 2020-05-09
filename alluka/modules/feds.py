@@ -234,7 +234,6 @@ def leave_fed(bot: Bot, update: Update, args: List[str]):
 		update.effective_message.reply_text("Only group creators can use this command!")
 
 
-
 @run_async
 def user_join_fed(bot: Bot, update: Update, args: List[str]):
     chat = update.effective_chat  # type: Optional[Chat]
@@ -276,6 +275,7 @@ def user_join_fed(bot: Bot, update: Update, args: List[str]):
             update.effective_message.reply_text("Failed to promote!")
     else:
         update.effective_message.reply_text("Only federation owners can do this!")
+
 
 
 @run_async
