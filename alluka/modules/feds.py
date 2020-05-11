@@ -1597,13 +1597,14 @@ def is_user_fed_owner(fed_id, user_id):
 
 @run_async
 def welcome_fed(bot, update):
-    chat = update.effective_chat
-    user = update.effective_user
+    chat = update.effective_chat  # type: Optional[Chat]
+    user = update.effective_user  # type: Optional[User]
 
     fed_id = sql.get_fed_id(chat.id)
-    fban, fbanreason = sql.get_fban_user(fed_id, user.id)
+    fban, fbanreason, fbantime = sql.get_fban_user(fed_id, user.id)
     if fban:
-        update.effective_message.reply_text(
+        send_message(
+            update.effective_message,
             "This user is banned in current federation! I will remove him.")
         bot.kick_chat_member(chat.id, user.id)
         return True
