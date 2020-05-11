@@ -484,19 +484,20 @@ def un_fban_user(fed_id, user_id):
 		return I
 
 def get_fban_user(fed_id, user_id):
-    list_fbanned = FEDERATION_BANNED_USERID.get(fed_id)
-    if list_fbanned == None:
-        FEDERATION_BANNED_USERID[fed_id] = []
-    if user_id in FEDERATION_BANNED_USERID[fed_id]:
-        r = SESSION.query(BansF).all()
-        reason = None
-        for I in r:
-            if I.fed_id == fed_id:
-                if int(I.user_id) == int(user_id):
-                    reason = I.reason
-        return True, reason
-    else:
-        return False, None
+	list_fbanned = FEDERATION_BANNED_USERID.get(fed_id)
+	if list_fbanned == None:
+		FEDERATION_BANNED_USERID[fed_id] = []
+	if user_id in FEDERATION_BANNED_USERID[fed_id]:
+		r = SESSION.query(BansF).all()
+		reason = None
+		for I in r:
+			if I.fed_id == fed_id:
+				if int(I.user_id) == int(user_id):
+					reason = I.reason
+					time = I.time
+		return True, reason, time
+	else:
+		return False, None, None
 
 def get_all_fban_users(fed_id):
 	list_fbanned = FEDERATION_BANNED_USERID.get(fed_id)
