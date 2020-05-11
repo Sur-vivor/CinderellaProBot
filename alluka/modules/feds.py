@@ -1596,7 +1596,6 @@ def is_user_fed_owner(fed_id, user_id):
         return False
 
 
-@run_async
 def welcome_fed(bot, update):
 	chat = update.effective_chat  # type: Optional[Chat]
 	user = update.effective_user  # type: Optional[User]
