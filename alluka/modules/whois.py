@@ -104,7 +104,7 @@ def info(bot: Bot, update: Update, args: List[str]):
             continue
 
         try:
-            mod_info = mod.__user_info__(user.id)
+            mod_info = mod.__user_info__(user.id, chat.id)
         except TypeError:
             mod_info = mod.__user_info__(user.id, chat.id)
         if mod_info:
