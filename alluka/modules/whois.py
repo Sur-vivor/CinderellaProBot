@@ -96,9 +96,6 @@ def info(bot: Bot, update: Update, args: List[str]):
 
 
     text +="\n"
-    text += "\nCAS banned: "
-    result = cas.banchecker(user.id)
-    text += str(result)
     for mod in USER_INFO:
         if mod.__mod_name__ == "Users":
             continue
