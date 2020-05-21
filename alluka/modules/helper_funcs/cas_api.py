@@ -10,7 +10,7 @@ DL_DIR = "./csvExports"
 
 def get_user_data(user_id):
     with requests.request('GET', CAS_QUERY_URL + str(user_id)) as userdata_raw:
-        userdata = json.loads(userdata_raw.read().decode())
+        userdata = json.loads(userdata_raw.text().decode())
         return userdata
 
 def isbanned(userdata):
