@@ -116,5 +116,5 @@ def info(bot: Bot, update: Update, args: List[str]):
     except IndexError:
         update.effective_message.reply_text(text, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
 
-INFO_HANDLER = DisableAbleCommandHandler("info", info, pass_args=True)
+INFO_HANDLER = DisableAbleCommandHandler(["info", "whois"],  info, pass_args=True)
 dispatcher.add_handler(INFO_HANDLER)
