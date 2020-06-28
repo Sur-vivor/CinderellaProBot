@@ -248,7 +248,7 @@ A button can be added to a note by using standard markdown link syntax - the lin
  - /clear <notename>: clear note with this name
 """
 
-__mod_name__ = "Notes"
+__mod_name__ = "NOTES"
 
 GET_HANDLER = CommandHandler("get", cmd_get, pass_args=True)
 HASH_GET_HANDLER = RegexHandler(r"^#[^\s]+", hash_get)
