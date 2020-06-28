@@ -33,7 +33,7 @@ _Hello_ *{}*
 _My name is_ *{}*\n_A Powerful Telegram ProBot to Manage Your Groups,feel free to add to your groups!!!_
 
 _I am Completely Open Source.._
-_You Can Clone Me by Clicking_ [Here](https://heroku.com/deploy?template=https://github.com/Sur-vivor/CinderellaProBot.git)
+_You Can Clone Me_ [Here](https://heroku.com/deploy?template=https://github.com/Sur-vivor/CinderellaProBot.git)
 """
 
 
