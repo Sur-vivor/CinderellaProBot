@@ -103,7 +103,7 @@ def status(bot: Bot, update: Update):
 	reply = str(stat)+ str(softw) + str(cpuu) + str(memm) + "\n"
 	bot.send_message(chat.id, reply, parse_mode=ParseMode.MARKDOWN)        
 
-__help__"""
+__help__ = """
 - /system : To know System status
 - /speed or - /speedtest: To find Speed
 """
