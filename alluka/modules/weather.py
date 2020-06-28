@@ -1,3 +1,4 @@
+#modificatins by Sur_vivor
 import time
 import requests
 import json
@@ -82,7 +83,7 @@ __help__ = """
  - /weather <city>: gets weather info in a particular place using openweathermap.org api
 """
 
-__mod_name__ = "Weather"
+__mod_name__ = "WEATHER"
 
 WEATHER_HANDLER = DisableAbleCommandHandler("weather", weather, pass_args=True)
 
