@@ -898,7 +898,7 @@ Commands:
  - /cas: Info about CAS. (What is CAS?)
 """.format(WELC_HELP_TXT)
 
-__mod_name__ = "Greeting"
+__mod_name__ = "GREETINGS"
 
 NEW_MEM_HANDLER = MessageHandler(Filters.status_update.new_chat_members, new_member)
 LEFT_MEM_HANDLER = MessageHandler(Filters.status_update.left_chat_member, left_member)
