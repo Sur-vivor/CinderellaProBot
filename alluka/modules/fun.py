@@ -181,9 +181,6 @@ __help__ = """
  - /judge: as a reply to someone, checks if they're lying or not!
  - /weebify: as a reply to a message, "weebifies" the message.
  - /shout <word>: shout the specified word in the chat.
- - /police : 🚔
- - /love : ❤
- - /hack
 """
 
 RUNS_HANDLER = DisableAbleCommandHandler("runs", runs)
@@ -212,7 +209,7 @@ dispatcher.add_handler(JUDGE_HANDLER)
 dispatcher.add_handler(WEEBIFY_HANDLER)
 dispatcher.add_handler(SHOUT_HANDLER)
 
-__mod_name__ = "Fun"
+__mod_name__ = "FUN"
 __command_list__ = ["runs", "slap", "roll", "toss", "shrug", "bluetext", "rlg", "decide", "table", "judge", "weebify", "shout"]
 __handlers__ = [RUNS_HANDLER, SLAP_HANDLER, ROLL_HANDLER, TOSS_HANDLER, SHRUG_HANDLER, BLUETEXT_HANDLER, RLG_HANDLER,
                 DECIDE_HANDLER, TABLE_HANDLER, JUDGE_HANDLER, WEEBIFY_HANDLER, SHOUT_HANDLER]
