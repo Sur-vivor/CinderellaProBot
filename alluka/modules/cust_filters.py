@@ -250,7 +250,40 @@ def reply_filter(bot: Bot, update: Update):
                 message.reply_text(filt.reply)
             break
 
+@user_admin
+def stop_all_filters(bot: Bot, update: Update):
+    chat = update.effective_chat
+    user = update.effective_user
+    message = update.effective_message
 
+    if chat.type == "private":
+        chat.title = (chat.id, "local filters")
+    else:
+        owner = chat.get_member(user.id)
+        chat.title = chat.title
+        if owner.status != 'creator':
+            message.reply_text(chat.id, "You must be this chat creator.")
+            return
+
+    x = 0
+    flist = sql.get_chat_triggers(chat.id)
+
+    if not flist:
+        message.reply_text(
+            chat.id, "There aren't any active filters in {}!".format(chat.title))
+        return
+
+    f_flist = []
+    for f in flist:
+        x += 1
+        f_flist.append(f)
+
+    for fx in f_flist:
+        sql.remove_filter(chat.id, fx)
+
+    message.reply_text(chat.id, "{} filters from this chat have been removed.".format(x))
+    
+    
 def __stats__():
     return "{} filters, across {} chats.".format(sql.num_filters(), sql.num_chats())
 
@@ -273,16 +306,19 @@ is mentioned. If you reply to a sticker with a keyword, the bot will reply with 
 keywords are in lowercase. If you want your keyword to be a sentence, use quotes. eg: /filter "hey there" How you \
 doin?
  - /stop <filter keyword>: stop that filter.
+ - /stopall: stop all filters
 """
 
-__mod_name__ = "Filters"
+__mod_name__ = "FILTERS"
 
 FILTER_HANDLER = CommandHandler("filter", filters)
 STOP_HANDLER = CommandHandler("stop", stop_filter)
+STOPALL_HANDLER = DisableAbleCommandHandler("stopall", stop_all_filters)
 LIST_HANDLER = DisableAbleCommandHandler("filters", list_handlers, admin_ok=True)
 CUST_FILTER_HANDLER = MessageHandler(CustomFilters.has_text, reply_filter)
 
 dispatcher.add_handler(FILTER_HANDLER)
 dispatcher.add_handler(STOP_HANDLER)
+dispatcher.add_handler(STOPALL_HANDLER)
 dispatcher.add_handler(LIST_HANDLER)
 dispatcher.add_handler(CUST_FILTER_HANDLER, HANDLER_GROUP)
