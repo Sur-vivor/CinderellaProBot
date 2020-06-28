@@ -59,9 +59,13 @@ def ping(bot: Bot, update: Update):
 def uptime(bot: Bot, update: Update):
 	uptime = get_readable_time((time.time() - StartTime))
 	update.effective_message.reply_text(f"Çΐή∂εɾεℓℓส uptime: {uptime}")    
-    
 
-__mod_name__ = "Ping"
+__help__"""
+- /ping :PONG
+- /uptime: Find last repo update time
+"""
+
+__mod_name__ = "PING"
 
 PING_HANDLER = DisableAbleCommandHandler("ping", ping)
 UPTIME_HANDLER = DisableAbleCommandHandler("uptime", uptime)
