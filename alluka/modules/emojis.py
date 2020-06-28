@@ -352,6 +352,7 @@ __help__ = """
 - /earthanimation 🌍
 - /blockanimation 🟥
 - /kill ⚰
+- /police 🚓
 """
 
 
