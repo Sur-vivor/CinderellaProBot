@@ -257,19 +257,19 @@ def stop_all_filters(bot: Bot, update: Update):
     message = update.effective_message
 
     if chat.type == "private":
-        chat.title = (chat.id, "local filters")
+        chat.title = "local filters"
     else:
         owner = chat.get_member(user.id)
         chat.title = chat.title
         if owner.status != 'creator':
-            update.effective_message.reply_text(chat.id, "You must be this chat creator.")
+            message.reply_text("You must be this chat creator.")
             return
 
     x = 0
     flist = sql.get_chat_triggers(chat.id)
 
     if not flist:
-        update.effective_message.reply_text(chat.id, "There aren't any active filters in {}!".format(chat.title))
+        message.reply_text("There aren't any active filters in {}!".format(chat.title))
         return
 
     f_flist = []
@@ -280,7 +280,7 @@ def stop_all_filters(bot: Bot, update: Update):
     for fx in f_flist:
         sql.remove_filter(chat.id, fx)
 
-    update.effective_message.reply_text(chat.id, "{} filters from this chat have been removed.".format(x))
+    message.reply_text("{} filters from this chat have been removed.".format(x))
     
     
 def __stats__():
