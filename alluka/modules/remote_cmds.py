@@ -426,7 +426,7 @@ def runmute(bot: Bot, update: Update, args: List[str]):
             message.reply_text("Well damn, I can't unmute that user.")
 
 __help__ ="""
-*For Owner/Sudo Users*
+**For Owner/Sudo Users**
 - /rban
 - /runban
 - /rkick
