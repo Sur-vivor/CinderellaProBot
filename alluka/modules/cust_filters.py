@@ -311,6 +311,7 @@ is mentioned. If you reply to a sticker with a keyword, the bot will reply with 
 keywords are in lowercase. If you want your keyword to be a sentence, use quotes. eg: /filter "hey there" How you \
 doin?
  - /stop <filter keyword>: stop that filter.
+ - /stopall To stop all filters
 """
 
 __mod_name__ = "FILTERS"
