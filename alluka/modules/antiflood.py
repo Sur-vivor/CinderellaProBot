@@ -189,7 +189,7 @@ will result in banning or kicking the user.
  - /strongflood <on/yes/off/no>: If set to on, exceeding the flood limit will result in a ban. Else, will just kick.
 """
 
-__mod_name__ = "Antiflood"
+__mod_name__ = "ANTIFLOOD"
 
 FLOOD_BAN_HANDLER = MessageHandler(Filters.all & ~Filters.status_update & Filters.group, check_flood)
 SET_FLOOD_HANDLER = CommandHandler("setflood", set_flood, pass_args=True, filters=Filters.group)
