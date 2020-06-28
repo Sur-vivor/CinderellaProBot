@@ -122,7 +122,7 @@ __help__ = """
  - /pastestats: Get stats of a paste or shortened url from [dogbin](https://del.dog)
 """
 
-__mod_name__ = "Dogbin"
+__mod_name__ = "DOGBIN"
 
 PASTE_HANDLER = DisableAbleCommandHandler("paste", paste, pass_args=True)
 GET_PASTE_HANDLER = DisableAbleCommandHandler("getpaste", get_paste_content, pass_args=True)
