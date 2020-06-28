@@ -60,7 +60,7 @@ def uptime(bot: Bot, update: Update):
 	uptime = get_readable_time((time.time() - StartTime))
 	update.effective_message.reply_text(f"Çΐή∂εɾεℓℓส uptime: {uptime}")    
 
-__help__"""
+__help__ = """
 - /ping :PONG
 - /uptime: Find last repo update time
 """
