@@ -53,7 +53,7 @@ __help__ = """
  - /repo: Return the GitHub user or organization repository list (Limited at 40)
 """
 
-__mod_name__ = "GitHub Module"
+__mod_name__ = "GITHUB"
 
 github_handle = DisableAbleCommandHandler("git", github)
 REPO_HANDLER = DisableAbleCommandHandler("repo", repo, pass_args=True, admin_ok=True)
