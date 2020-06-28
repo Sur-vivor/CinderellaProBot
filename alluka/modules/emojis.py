@@ -6,10 +6,10 @@ from typing import List
 from telegram import Bot, Update, ParseMode
 from telegram.ext import run_async
 
-from Alluka import dispatcher
-from Alluka.modules.disable import DisableAbleCommandHandler
-from Alluka.modules.helper_funcs.chat_status import is_user_admin, user_admin
-from Alluka.modules.helper_funcs.extraction import extract_user
+from alluka import dispatcher
+from alluka.modules.disable import DisableAbleCommandHandler
+from alluka.modules.helper_funcs.chat_status import is_user_admin, user_admin
+from alluka.modules.helper_funcs.extraction import extract_user
 
 #sleep how many times after each edit in 'love' 
 EDIT_SLEEP = 1
