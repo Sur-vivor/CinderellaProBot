@@ -73,7 +73,7 @@
       },
       "API_OPENWEATHER": {
          "description": "Required for weather information",
-         "value": "5c5adc2bc1832de6943e3f4467e84c39"
+         "value": "-xyz"
       },
       "PORT": {
          "description": "Port to use for your webhooks.",
@@ -140,7 +140,7 @@
       
    ],
    "name": "Cinderella",
-   "repository": "https://github.com/Sur-vivor/Alluka",
+   "repository": "https://github.com/Sur-vivor/CiderellaProBot",
    "success_url": "https://telegram.dog/CinderellaProBot",
    "logo": "https://telegra.ph/file/511ad504656e712b88235.jpg"
 }
