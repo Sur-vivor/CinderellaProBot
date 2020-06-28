@@ -37,7 +37,7 @@ from alluka.modules.helper_funcs.alternate import send_message
 # Time time spent on updating version to v2 = 26+ hours by @AyraHikari
 # Total time spent for making this features is 68+ hours
 # LOGGER.info("Original federation module by MrYacha, reworked by Mizukito Akito (@peaktogoo) on Telegram.")
-#Further Edited by @ItsMeSurvivor
+#Further Edited by @Sur_vivor
 
 FBAN_ERRORS = {
     "User is an administrator of the chat",
@@ -1658,7 +1658,7 @@ def get_chat(chat_id, chat_data):
         return {"status": False, "value": False}
 
 
-__mod_name__ = "Federations"
+__mod_name__ = "FEDERATIONS"
 
 __help__ = """
 Ah, group management. Everything is fun, until the spammer starts entering your group, and you have to block it. Then you need to start banning more, and more, and it hurts.
