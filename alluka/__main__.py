@@ -32,8 +32,8 @@ PM_START_TEXT = """
 _Hello_ *{}*
 _My name is_ *{}*\n_A Powerful Telegram ProBot to Manage Your Groups,feel free to add to your groups!!!_
 
-My Source Code is Available to you
-[Here](https://github.com/Sur-vivor/CinderellaProBot)
+_I am Completely Open Source.._
+_You Can Clone Me By Clicking [Here](https://heroku.com/deploy?template=https://github.com/Sur-vivor/CinderellaProBot.git)_
 """
 
 
