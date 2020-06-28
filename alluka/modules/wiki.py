@@ -45,7 +45,7 @@ WIKIPEDIA!!
 
 """
 
-__mod_name__ = "Wikipedia"
+__mod_name__ = "WIKIPEDIA"
 
 WIKI_HANDLER = DisableAbleCommandHandler("wiki", wiki)
 dispatcher.add_handler(WIKI_HANDLER)
