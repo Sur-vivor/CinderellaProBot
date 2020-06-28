@@ -64,7 +64,6 @@ __help__"""
 - /ping :PONG
 - /uptime: Find last repo update time
 """
-
 __mod_name__ = "PING"
 
 PING_HANDLER = DisableAbleCommandHandler("ping", ping)
