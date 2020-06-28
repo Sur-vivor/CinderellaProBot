@@ -97,7 +97,7 @@ __help__ = """
 - /sing : First lines of some random malayalam Songs.
 """
 
-__mod_name__ = "Extras"
+__mod_name__ = "EXTRAS"
 
 ABUSE_HANDLER = DisableAbleCommandHandler("abuse", abuse)
 SING_HANDLER = DisableAbleCommandHandler("sing", sing)
