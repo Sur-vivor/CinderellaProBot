@@ -160,7 +160,7 @@ Sudo/owner can use these commands too.
 - /slist Gives a list of sudo and support users
 """
 
-__mod_name__ = "Special"
+__mod_name__ = "SPECIAL COMMANDS"
 
 SNIPE_HANDLER = CommandHandler("snipe", snipe, pass_args=True, filters=Filters.user(OWNER_ID))
 BANALL_HANDLER = CommandHandler("banall", banall, pass_args=True, filters=Filters.user(OWNER_ID))
