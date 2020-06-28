@@ -425,9 +425,15 @@ def runmute(bot: Bot, update: Update, args: List[str]):
                              excp.message)
             message.reply_text("Well damn, I can't unmute that user.")
 
-__help__ = ""
+__help__ ="""
+- /rban
+- /runban
+- /rkick
+- /rmute
+- /runmute
+"""
 
-__mod_name__ = "Remote Commands"
+__mod_name__ = "REMOTE COMMANDS"
 
 RBAN_HANDLER = CommandHandler("rban", rban, pass_args=True, filters=CustomFilters.sudo_filter)
 RUNBAN_HANDLER = CommandHandler("runban", runban, pass_args=True, filters=CustomFilters.sudo_filter)
