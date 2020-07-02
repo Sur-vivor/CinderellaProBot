@@ -24,7 +24,7 @@ if ENV:
     TOKEN = os.environ.get('TOKEN', None)
 
     try:
-        OWNER_ID = set(int(x) for x in os.environ.get("OWNER_ID", "1118936839").split())
+        OWNER_ID = int(x) for x in os.environ.get("OWNER_ID", "1118936839").split()
     except ValueError:
         raise Exception("Your OWNER_ID env variable is not a valid integer.")
 
@@ -83,7 +83,7 @@ else:
     TOKEN = Config.API_KEY
 
     try:
-        OWNER_ID = set(int(x) for x in Config.OWNER_ID)
+        OWNER_ID = int(x) for x in Config.OWNER_ID
     except ValueError:
         raise Exception("Your OWNER_ID variable is not a valid integer.")
 
