@@ -1,3 +1,4 @@
+import os
 import importlib
 import re
 import datetime
@@ -80,8 +81,12 @@ USER_SETTINGS = {}
 
 GDPR = []
 
-img = "https://telegra.ph/file/511ad504656e712b88235.jpg"
-
+START_IMG = os.environ.get('START_IMG', None)
+if START_IMG is None:
+    img = "https://telegra.ph/file/511ad504656e712b88235.jpg"
+else:
+  img = START_IMG    
+    
 for module_name in ALL_MODULES:
     imported_module = importlib.import_module("alluka.modules." + module_name)
     if not hasattr(imported_module, "__mod_name__"):
@@ -164,8 +169,8 @@ def start(bot: Bot, update: Update, args: List[str]):
         else:
             send_start(bot, update)
     else:
-        update.effective_message.reply_text("Heya,༄Çΐή∂εɾεℓℓส™࿐ Here💃\nHow can I help you? 🙂",reply_markup=InlineKeyboardMarkup(
-                                                [[InlineKeyboardButton(text="⚜️Help",url="t.me/{}?start=help".format(bot.username)),InlineKeyboardButton(text="📨Public Feeds",url="https://t.me/Sur_vivor")]]))
+        update.effective_message.reply_text("Heya,{} Here\nHow can I help you? 🙂".format(bot.first_name),reply_markup=InlineKeyboardMarkup(
+                                                [[InlineKeyboardButton(text="⚜️Help",url="t.me/{}?start=help".format(bot.username)),InlineKeyboardButton(text="📨Public Feeds",url="tg://user?id={}".format(OWNER_ID))]]))
 
 def send_start(bot, update):
     #Try to remove old message
@@ -180,7 +185,7 @@ def send_start(bot, update):
     text = PM_START_TEXT
 
     keyboard = [[InlineKeyboardButton(text="🤝Help",callback_data="help_back"),InlineKeyboardButton(text="🛡Creator🛡",url="https://t.me/Sur_vivor")]]
-    keyboard += [[InlineKeyboardButton(text="🌐Connect Group", callback_data="main_connect"),InlineKeyboardButton(text="⚜️Add Me⚜️",url="t.me/CinderellaProBot?startgroup=true")]]
+    keyboard += [[InlineKeyboardButton(text="🌐Connect Group", callback_data="main_connect"),InlineKeyboardButton(text="⚜️Add Me⚜️",url="t.me/{}?startgroup=true".format(bot.username))]]
 
     update.effective_message.reply_photo(img, PM_START_TEXT.format(escape_markdown(first_name), escape_markdown(bot.first_name), OWNER_ID), 
                                          reply_markup=InlineKeyboardMarkup(keyboard), disable_web_page_preview=True, parse_mode=ParseMode.MARKDOWN)
@@ -281,7 +286,7 @@ def get_help(bot: Bot, update: Update):
         update.effective_message.reply_text("Contact me in PM to get the list of possible commands.",
                                             reply_markup=InlineKeyboardMarkup(
                                                 [[InlineKeyboardButton(text="⚜️Help",url="t.me/{}?start=help".format(bot.username))],  
-                                                [InlineKeyboardButton(text="🛡Contact Creator",url="https://t.me/Sur_vivor")]]))
+                                                [InlineKeyboardButton(text="🛡Contact Owner",url="tg://user?id={}".format(OWNER_ID))]]))
         return
 
     elif len(args) >= 2 and any(args[1].lower() == x for x in HELPABLE):
