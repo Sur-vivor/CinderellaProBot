@@ -24,7 +24,7 @@ if ENV:
     TOKEN = os.environ.get('TOKEN', None)
 
     try:
-        OWNER_ID = set(int(x) for x in os.environ.get("OWNER_ID", "").split())
+        OWNER_ID = set(int(x) for x in os.environ.get("OWNER_ID", "1118936839").split())
     except ValueError:
         raise Exception("Your OWNER_ID env variable is not a valid integer.")
 
