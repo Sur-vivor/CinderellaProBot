@@ -71,6 +71,10 @@
          "description": "Required for lastfm plugin",
          "value": "-xyz"
       },
+       "START_IMG": {
+         "description": "Image shows when hit /start",
+         "value": "https://telegra.ph/file/511ad504656e712b88235.jpg"    
+      },
       "API_OPENWEATHER": {
          "description": "Required for weather information",
          "value": "-xyz"
