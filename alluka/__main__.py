@@ -167,8 +167,8 @@ def start(bot: Bot, update: Update, args: List[str]):
         else:
             send_start(bot, update)
     else:
-        update.effective_message.reply_text("Heya,{} Here\nHow can I help you? 🙂".format(bot.first_name),reply_markup=InlineKeyboardMarkup(
-                                                [[InlineKeyboardButton(text="⚜️Help",url="t.me/{}?start=help".format(bot.username)),InlineKeyboardButton(text="📨Public Feeds",url="tg://user?id={}".format(OWNER_ID))]]))
+        update.effective_message.reply_text("Heya,{} Here..\nHow can I help you? 🙂".format(bot.first_name),reply_markup=InlineKeyboardMarkup(
+                                                [[InlineKeyboardButton(text="⚜️Help",url="t.me/{}?start=help".format(bot.username)),InlineKeyboardButton(text="📨Public Feeds",url="https://t.me/{}".format(OWNER_ID.username))]]))
 
 def send_start(bot, update):
     #Try to remove old message
