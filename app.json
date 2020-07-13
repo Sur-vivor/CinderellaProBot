@@ -54,10 +54,6 @@
          "required": false,
          "value": "1118936839"
       },
-      "GBAN_LOGS": {
-         "description": "Gban log channel, include the hyphen too: ex: -123456",
-         "value": ""
-      },
       "CASH_API_KEY": {
          "description": "Required for currency converter",
          "required": false,
