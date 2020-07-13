@@ -1444,19 +1444,19 @@ def unset_fed_log(bot, update, args):
 
 @run_async
 def subs_feds(bot, update, args):
-	chat = update.effective_chat  # type: Optional[Chat]
-	user = update.effective_user  # type: Optional[User]
-	msg = update.effective_message  # type: Optional[Message]
+	chat = update.effective_chat  
+	user = update.effective_user  
+	msg = update.effective_message  
 
 	if chat.type == 'private':
-		send_message(update.effective_message, "This command is specific to the group, not to the PM! ")
+		send_message(update.effective_message, "This command is specific to the group, not to our pm!")
 		return
 
 	fed_id = sql.get_fed_id(chat.id)
 	fedinfo = sql.get_fed_info(fed_id)
 
 	if not fed_id:
-		send_message(update.effective_message, "This chat is not in any federation!")
+		send_message(update.effective_message, "This group is not in any federation!")
 		return
 
 	if is_user_fed_owner(fed_id, user.id) == False:
