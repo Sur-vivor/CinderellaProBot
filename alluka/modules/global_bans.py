@@ -51,7 +51,6 @@ UNGBAN_ERRORS = {
 def gban(bot: Bot, update: Update, args: List[str]):
     message = update.effective_message  # type: Optional[Message] 
     chat = update.effective_chat
-    user = update.effective_user
 
     user_id, reason = extract_user_and_text(message, args)
 
@@ -221,8 +220,6 @@ def ungban(bot: Bot, update: Update, args: List[str]):
     if not sql.is_user_gbanned(user_id):
         message.reply_text("This user is not gbanned!")
         return
-
-    banner = update.effective_user  # type: Optional[User]
 
     message.reply_text("I pardon {}, globally with a second chance.".format(user_chat.first_name))
    
