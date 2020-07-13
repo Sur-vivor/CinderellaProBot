@@ -60,7 +60,7 @@ def ping(bot: Bot, update: Update):
 @run_async
 def uptime(bot: Bot, update: Update):
 	uptime = get_readable_time((time.time() - StartTime))
-	update.effective_message.reply_text(f"Çΐή∂εɾεℓℓส uptime: {uptime}")    
+	update.effective_message.reply_text(f"🔮Service Uptime: {uptime}")    
 
 __help__ = """
 - /ping :PONG
