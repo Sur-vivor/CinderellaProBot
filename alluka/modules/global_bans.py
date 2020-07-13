@@ -58,7 +58,7 @@ def gban(bot: Bot, update: Update, args: List[str]):
         message.reply_text("You don't seem to be referring to a user.")
         return
     
-    if int(user_id) in OWNER_ID:
+    if int(user_id) == OWNER_ID:
         message.reply_text("There is no way I can gban this user.He is my Owner")
         return
     
