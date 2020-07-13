@@ -63,8 +63,8 @@ def uptime(bot: Bot, update: Update):
 	update.effective_message.reply_text(f"🔮Service Uptime: {uptime}")    
 
 __help__ = """
-- /ping :PONG
-- /uptime: Find last repo update time
+- /ping :get ping time of bot to telegram server
+- /uptime: Find last service update time
 """
 __mod_name__ = "PING"
 
