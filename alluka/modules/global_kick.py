@@ -4,7 +4,7 @@ from typing import List, Optional
 from telegram.error import BadRequest, TelegramError
 from telegram.ext import run_async, CommandHandler, MessageHandler, Filters
 from telegram.utils.helpers import mention_html
-from alluka import dispatcher, OWNER_ID, SUDO_USERS, SUPPORT_USERS, GBAN_LOG
+from alluka import dispatcher, OWNER_ID, SUDO_USERS, SUPPORT_USERS, GBAN_LOGS
 from alluka.modules.helper_funcs.chat_status import user_admin, is_user_admin
 from alluka.modules.helper_funcs.extraction import extract_user, extract_user_and_text
 from alluka.modules.helper_funcs.filters import CustomFilters
