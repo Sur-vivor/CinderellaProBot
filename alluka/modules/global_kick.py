@@ -86,7 +86,7 @@ def gkick(bot: Bot, update: Update, args: List[str]):
     else:
         send_to_list(bot, SUDO_USERS + SUPPORT_USERS, log_message, html=True)
 	
-    message.reply_text("Globally kicking user @{}".format(user_chat.username))
+    message.reply_text("Globally kicking user {}".format(user_chat.first_name))
     sql.gkick_user(user_id, user_chat.username, 1)
     for chat in chats:
         try:
