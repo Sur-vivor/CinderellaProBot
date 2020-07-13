@@ -8,7 +8,7 @@ from telegram.ext import run_async, CommandHandler, MessageHandler, Filters
 from telegram.utils.helpers import mention_html
 
 import alluka.modules.sql.global_mutes_sql as sql
-from alluka import dispatcher, OWNER_ID, SUDO_USERS, SUPPORT_USERS, STRICT_GMUTE
+from alluka import dispatcher, OWNER_ID, SUDO_USERS, SUPPORT_USERS, STRICT_GMUTE, GBAN_LOGS
 from alluka.modules.helper_funcs.chat_status import user_admin, is_user_admin
 from alluka.modules.helper_funcs.extraction import extract_user, extract_user_and_text
 from alluka.modules.helper_funcs.filters import CustomFilters
@@ -66,7 +66,7 @@ def gmute(bot: Bot, update: Update, args: List[str]):
     message.reply_text("Gets duct tape ready 😉")
 
     muter = update.effective_user  # type: Optional[User]
-    send_to_list(bot, SUDO_USERS + SUPPORT_USERS,
+    log_message = (
                  "<b>Global Mute</b>" \
                  "\n#GMUTE" \
                  "\n<b>Status:</b> <code>Enforcing</code>" \
@@ -75,13 +75,27 @@ def gmute(bot: Bot, update: Update, args: List[str]):
                  "\n<b>ID:</b> <code>{}</code>" \
                  "\n<b>Reason:</b> {}".format(mention_html(muter.id, muter.first_name),
                                               mention_html(user_chat.id, user_chat.first_name), 
-                                                           user_chat.id, reason or "No reason given"), 
-                 html=True)
+                                                           user_chat.id, reason or "No reason given"))
 
 
+    if GBAN_LOGS:
+        try:
+            log = bot.send_message(
+                GBAN_LOGS, log_message, parse_mode=ParseMode.HTML)
+        except BadRequest as e:
+            print(e)
+            log = bot.send_message(
+                GBAN_LOGS,
+                log_message +
+                "\n\nFormatting has been disabled due to an unexpected error.")
+
+    else:
+        send_to_list(bot, SUDO_USERS + SUPPORT_USERS, log_message, html=True)
+        
     sql.gmute_user(user_id, user_chat.username or user_chat.first_name, reason)
 
     chats = get_all_chats()
+    gmuted_chats = 0
     for chat in chats:
         chat_id = chat.chat_id
 
@@ -91,6 +105,7 @@ def gmute(bot: Bot, update: Update, args: List[str]):
 
         try:
             bot.restrict_chat_member(chat_id, user_id, can_send_messages=False)
+            gmuted_chats += 1
         except BadRequest as excp:
             if excp.message == "User is an administrator of the chat":
                 pass
@@ -121,8 +136,13 @@ def gmute(bot: Bot, update: Update, args: List[str]):
                 return
         except TelegramError:
             pass
-
-    send_to_list(bot, SUDO_USERS + SUPPORT_USERS, 
+    if GBAN_LOGS:
+        log.edit_text(
+            log_message +
+            f"\n<b>Chats affected:</b> {gmuted_chats}",
+            parse_mode=ParseMode.HTML)    
+    else:
+        send_to_list(bot, SUDO_USERS + SUPPORT_USERS, 
                   "{} has been successfully gmuted!".format(mention_html(user_chat.id, user_chat.first_name)),
                 html=True)
 
@@ -152,7 +172,7 @@ def ungmute(bot: Bot, update: Update, args: List[str]):
 
     message.reply_text("I'll let {} speak again, globally.".format(user_chat.first_name))
 
-    send_to_list(bot, SUDO_USERS + SUPPORT_USERS,
+    log_message = (
                  "<b>Regression of Global Mute</b>" \
                  "\n#UNGMUTE" \
                  "\n<b>Status:</b> <code>Ceased</code>" \
@@ -160,11 +180,24 @@ def ungmute(bot: Bot, update: Update, args: List[str]):
                  "\n<b>User:</b> {}" \
                  "\n<b>ID:</b> <code>{}</code>".format(mention_html(muter.id, muter.first_name),
                                                        mention_html(user_chat.id, user_chat.first_name), 
-                                                                    user_chat.id),
-                 html=True)
+                                                                    user_chat.id))
 
+    if GBAN_LOGS:
+        try:
+            log = bot.send_message(
+                GBAN_LOGS, log_message, parse_mode=ParseMode.HTML)
+        except BadRequest as e:
+            print(e)
+            log = bot.send_message(
+                GBAN_LOGS,
+                log_message +
+                "\n\nFormatting has been disabled due to an unexpected error.")
 
+    else:
+        send_to_list(bot, SUDO_USERS + SUPPORT_USERS, log_message, html=True)
+    
     chats = get_all_chats()
+    ungmuted_chats = 0
     for chat in chats:
         chat_id = chat.chat_id
 
@@ -180,7 +213,7 @@ def ungmute(bot: Bot, update: Update, args: List[str]):
                                      can_send_media_messages=True,
                                      can_send_other_messages=True,
                                      can_add_web_page_previews=True)
-
+            ungmuted_chats += 1
         except BadRequest as excp:
             if excp.message == "User is an administrator of the chat":
                 pass
@@ -206,8 +239,13 @@ def ungmute(bot: Bot, update: Update, args: List[str]):
             pass
 
     sql.ungmute_user(user_id)
-
-    send_to_list(bot, SUDO_USERS + SUPPORT_USERS, 
+    if GBAN_LOGS:
+        log.edit_text(
+            log_message +
+            f"\n<b>Chats affected:</b> {ungmuted_chats}",
+            parse_mode=ParseMode.HTML)
+    else:
+        send_to_list(bot, SUDO_USERS + SUPPORT_USERS, 
                   "{} has been successfully un-gmuted!".format(mention_html(user_chat.id, 
                                                                          user_chat.first_name)),
                   html=True)
