@@ -127,8 +127,8 @@ def gban(bot: Bot, update: Update, args: List[str]):
                  "\n<b>Event Stamp:</b> {}" \
                  "\n<b>Reason:</b> {}".format(chat_origin, mention_html(banner.id, banner.first_name),
                                               mention_html(user_chat.id, user_chat.first_name),
-                                                           user_chat.id, current_time, reason or "No reason given"), 
-                html=True)
+                                                           user_chat.id, current_time, reason or "No reason given"))
+                
 
     if GBAN_LOGS:
         try:
