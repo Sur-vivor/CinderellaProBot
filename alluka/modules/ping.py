@@ -47,14 +47,15 @@ def get_readable_time(seconds: int) -> str:
     ping_time += ":".join(time_list)
 
     return ping_time
+
 @run_async
 def ping(bot: Bot, update: Update):
     start_time = time.time()
-    requests.get('https://api.telegram.org')
+    r = requests.get("https://api.telegram.org")
     end_time = time.time()
     ping_time = str(round((end_time - start_time), 2))
     uptime = get_readable_time((time.time() - StartTime))
-    update.effective_message.reply_text(f"🏓 Pong!\n⏱️Reply took: {ping_time}s\nService Uptime: {uptime}", parse_mode=ParseMode.MARKDOWN)
+    update.effective_message.reply_text(f"🏓 Pong!\n⏱️Reply took: {ping_time}s\n🛠Service Uptime: {uptime}", parse_mode=ParseMode.MARKDOWN)
 
 @run_async
 def uptime(bot: Bot, update: Update):
