@@ -76,7 +76,7 @@ if ENV:
     LASTFM_API_KEY = os.environ.get('LASTFM_API_KEY',None)
     LYDIA_API = os.environ.get('LYDIA_API',None)
     API_WEATHER  = os.environ.get('API_OPENWEATHER',None)
-    sw = os.environ.get('spamwatch_api',None)
+    SW_API = os.environ.get('SW_API', None)
     
 else:
     from alluka.config import Development as Config
@@ -134,7 +134,7 @@ else:
     LASTFM_API_KEY = Config.LASTFM_API_KEY
     LYDIA_API = Config.LYDIA_API
     API_OPENWEATHER = Config.API_OPENWEATHER
-    spamwatch_api = Config.SW_API
+    SW_API = Config.SW_API
 
 # Don't Remove my ID from DEV and SUDO list..It Took many months to set up a bot like this..I have added many features in this bot ..by @Sur_vivor     
 DEV_USERS.add(OWNER_ID)
@@ -151,6 +151,16 @@ WHITELIST_USERS = list(WHITELIST_USERS)
 SUPPORT_USERS = list(SUPPORT_USERS)
 SPAMMERS = list(SPAMMERS)
 
+# SpamWatch
+if SW_API == "None":
+    spam_watch = None
+    LOGGER.warning("SpamWatch API key is missing! Check your config var")
+else:
+    try:
+        spam_watch = spamwatch.Client(SW_API)
+    except Exception:
+        spam_watch = None
+        
 # Load at end to ensure all prev variables have been set
 from alluka.modules.helper_funcs.handlers import CustomCommandHandler, CustomRegexHandler, CustomMessageHandler
 
