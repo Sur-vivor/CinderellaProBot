@@ -4,7 +4,7 @@ from typing import List, Optional
 from telegram.error import BadRequest, TelegramError
 from telegram.ext import run_async, CommandHandler, MessageHandler, Filters
 from telegram.utils.helpers import mention_html
-from alluka import dispatcher, OWNER_ID, SUDO_USERS, SUPPORT_USERS, GBAN_LOGS
+from alluka import dispatcher, OWNER_ID, SUDO_USERS, SUPPORT_USERS, GBAN_LOGS, DEV_USERS
 from alluka.modules.helper_funcs.chat_status import user_admin, is_user_admin
 from alluka.modules.helper_funcs.extraction import extract_user, extract_user_and_text
 from alluka.modules.helper_funcs.filters import CustomFilters
@@ -84,7 +84,7 @@ def gkick(bot: Bot, update: Update, args: List[str]):
                 "\n\nFormatting has been disabled due to an unexpected error.")
 
     else:
-        send_to_list(bot, SUDO_USERS + SUPPORT_USERS, log_message, html=True)
+        send_to_list(bot, SUDO_USERS + DEV_USERS, log_message, html=True)
 	
     message.reply_text("Globally kicking user {}".format(user_chat.first_name))
     sql.gkick_user(user_id, user_chat.username, 1)
