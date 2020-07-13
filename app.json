@@ -56,7 +56,7 @@
       },
       "GBAN_LOGS": {
          "description": "Gban log channel, include the hyphen too: ex: -123456",
-         "value": "-123"
+         "value": ""
       },
       "CASH_API_KEY": {
          "description": "Required for currency converter",
