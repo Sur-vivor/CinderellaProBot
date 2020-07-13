@@ -26,6 +26,12 @@
       "DEL_CMDS": {
          "description": "Set this to True if you want to delete command messages from users who don't have the perms to run that command.",
          "value": "False"
+         
+      },
+      "GBAN_LOGS": {	
+         "description": "Gban log channel, include the hyphen too: ex: -123456",
+         "required": false,
+         "value": ""	
       },
       "ENV": {
          "description": "Setting this to ANYTHING will enable environment variables.",
