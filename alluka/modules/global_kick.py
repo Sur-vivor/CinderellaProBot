@@ -4,7 +4,7 @@ from typing import List, Optional
 from telegram.error import BadRequest, TelegramError
 from telegram.ext import run_async, CommandHandler, MessageHandler, Filters
 from telegram.utils.helpers import mention_html
-from alluka import dispatcher, OWNER_ID, SUDO_USERS, SUPPORT_USERS
+from alluka import dispatcher, OWNER_ID, SUDO_USERS, SUPPORT_USERS, GBAN_LOG
 from alluka.modules.helper_funcs.chat_status import user_admin, is_user_admin
 from alluka.modules.helper_funcs.extraction import extract_user, extract_user_and_text
 from alluka.modules.helper_funcs.filters import CustomFilters
@@ -63,7 +63,7 @@ def gkick(bot: Bot, update: Update, args: List[str]):
 
     chats = get_all_chats()
     banner = update.effective_user  # type: Optional[User]
-    send_to_list(bot, SUDO_USERS + SUPPORT_USERS,
+    log_message = (
                  "<b>Global Kick</b>" \
                  "\n#GKICK" \
                  "\n<b>Status:</b> <code>Enforcing</code>" \
@@ -71,8 +71,21 @@ def gkick(bot: Bot, update: Update, args: List[str]):
                  "\n<b>User:</b> {}" \
                  "\n<b>ID:</b> <code>{}</code>".format(mention_html(banner.id, banner.first_name),
                                               mention_html(user_chat.id, user_chat.first_name), 
-                                                           user_chat.id), 
-                html=True)
+                                                           user_chat.id))
+    if GBAN_LOGS:
+        try:
+            log = bot.send_message(
+                GBAN_LOGS, log_message, parse_mode=ParseMode.HTML)
+        except BadRequest as e:
+            print(e)
+            log = bot.send_message(
+                GBAN_LOGS,
+                log_message +
+                "\n\nFormatting has been disabled due to an unexpected error.")
+
+    else:
+        send_to_list(bot, SUDO_USERS + SUPPORT_USERS, log_message, html=True)
+	
     message.reply_text("Globally kicking user @{}".format(user_chat.username))
     sql.gkick_user(user_id, user_chat.username, 1)
     for chat in chats:
