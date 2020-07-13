@@ -238,7 +238,7 @@ def ungban(bot: Bot, update: Update, args: List[str]):
     log_message = (
         f"#UNGBANNED\n"
         f"<b>Originated from:</b> {chat_origin}\n"
-        f"<b>Admin:</b> {mention_html(user.id, user.first_name)}\n"
+        f"<b>Sudo Admin:</b> {mention_html(user.id, user.first_name)}\n"
         f"<b>Unbanned User:</b> {mention_html(user_chat.id, user_chat.first_name)}\n"
         f"<b>Unbanned User ID:</b> {user_chat.id}\n"
         f"<b>Event Stamp:</b> {current_time}")
@@ -308,10 +308,9 @@ def ungban(bot: Bot, update: Update, args: List[str]):
     if ungban_time > 60:
         ungban_time = round((ungban_time / 60), 2)
         message.reply_text(
-            f"Person has been un-gbanned. Took {ungban_time} min")
+            f"Done! This Ungban affected {ungbanned_chats} chats, Took {ungban_time} min")
     else:
-        message.reply_text(
-            f"Person has been un-gbanned. Took {ungban_time} sec")
+        message.reply_text(f"Done! This Ungban affected {ungbanned_chats} chats, Took {ungban_time} sec")
         
 @run_async
 def gbanlist(bot: Bot, update: Update):
