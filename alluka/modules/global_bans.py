@@ -204,7 +204,8 @@ def gban(bot: Bot, update: Update, args: List[str]):
 @run_async
 def ungban(bot: Bot, update: Update, args: List[str]):
     message = update.effective_message  # type: Optional[Message]
-
+    chat = update.effective_chat
+    
     user_id = extract_user(message, args)
     if not user_id:
         message.reply_text("You don't seem to be referring to a user.")
