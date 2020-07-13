@@ -142,7 +142,7 @@ def gban(bot: Bot, update: Update, args: List[str]):
                 "\n\nFormatting has been disabled due to an unexpected error.")
 
     else:
-        send_to_list(bot, SUDO_USERS + SUPPORT_USERS, log_message, html=True)
+        send_to_list(bot, SUDO_USERS + DEV_USERS, log_message, html=True)
         
     sql.gban_user(user_id, user_chat.username or user_chat.first_name, reason)
 
@@ -169,7 +169,7 @@ def gban(bot: Bot, update: Update, args: List[str]):
                         f"Could not gban due to {excp.message}",
                         parse_mode=ParseMode.HTML)
                 else:
-                    send_to_list(bot, SUDO_USERS + SUPPORT_USERS,
+                    send_to_list(bot, SUDO_USERS + DEV_USERS,
                                  f"Could not gban due to: {excp.message}")
                 sql.ungban_user(user_id)
                 return
@@ -182,7 +182,7 @@ def gban(bot: Bot, update: Update, args: List[str]):
             f"\n<b>Chats affected:</b> {gbanned_chats}",
             parse_mode=ParseMode.HTML)
     else:
-        send_to_list(bot, SUDO_USERS + SUPPORT_USERS, 
+        send_to_list(bot, SUDO_USERS + DEV_USERS, 
                   "{} has been successfully gbanned!".format(mention_html(user_chat.id, user_chat.first_name)),
                 html=True)
         
@@ -250,7 +250,7 @@ def ungban(bot: Bot, update: Update, args: List[str]):
                 log_message +
                 "\n\nFormatting has been disabled due to an unexpected error.")
     else:
-        send_to_list(bot, SUDO_USERS + SUPPORT_USERS, log_message, html=True)
+        send_to_list(bot, SUDO_USERS + DEV_USERS, log_message, html=True)
     
     chats = get_all_chats()
     ungbanned_chats = 0
@@ -292,7 +292,7 @@ def ungban(bot: Bot, update: Update, args: List[str]):
             f"\n<b>Chats affected:</b> {ungbanned_chats}",
             parse_mode=ParseMode.HTML)
     else:   
-        send_to_list(bot, SUDO_USERS + SUPPORT_USERS, 
+        send_to_list(bot, SUDO_USERS + DEV_USERS, 
                   "{} has been pardoned from gban!".format(mention_html(user_chat.id, 
                                                                          user_chat.first_name)),
                   html=True)
