@@ -8,7 +8,7 @@ from telegram.ext import run_async, CommandHandler, MessageHandler, Filters
 from telegram.utils.helpers import mention_html
 
 import alluka.modules.sql.global_mutes_sql as sql
-from alluka import dispatcher, OWNER_ID, SUDO_USERS, SUPPORT_USERS, STRICT_GMUTE, GBAN_LOGS
+from alluka import dispatcher, OWNER_ID, DEV_USERS, SUDO_USERS, SUPPORT_USERS, STRICT_GMUTE, GBAN_LOGS
 from alluka.modules.helper_funcs.chat_status import user_admin, is_user_admin
 from alluka.modules.helper_funcs.extraction import extract_user, extract_user_and_text
 from alluka.modules.helper_funcs.filters import CustomFilters
@@ -27,11 +27,19 @@ def gmute(bot: Bot, update: Update, args: List[str]):
     if not user_id:
         message.reply_text("You don't seem to be referring to a user.")
         return
+    
+    if int(user_id) in OWNER_ID:
+        message.reply_text("You trying to gmute my Owner..huh??")
+        return
 
     if int(user_id) in SUDO_USERS:
         message.reply_text("You trying to gmute my sudo..huh??")
         return
 
+    if int(user_id) in DEV_USERS:
+        message.reply_text("You trying to gmute a Dev user!")
+        return
+    
     if int(user_id) in SUPPORT_USERS:
         message.reply_text("You trying to gmute a support user!S")
         return
@@ -90,7 +98,7 @@ def gmute(bot: Bot, update: Update, args: List[str]):
                 "\n\nFormatting has been disabled due to an unexpected error.")
 
     else:
-        send_to_list(bot, SUDO_USERS + SUPPORT_USERS, log_message, html=True)
+        send_to_list(bot, SUDO_USERS + DEV_USERS, log_message, html=True)
         
     sql.gmute_user(user_id, user_chat.username or user_chat.first_name, reason)
 
@@ -131,7 +139,7 @@ def gmute(bot: Bot, update: Update, args: List[str]):
                 pass
             else:
                 message.reply_text("Could not gmute due to: {}".format(excp.message))
-                send_to_list(bot, SUDO_USERS + SUPPORT_USERS, "Could not gmute due to: {}".format(excp.message))
+                send_to_list(bot, SUDO_USERS + DEV_USERS, "Could not gmute due to: {}".format(excp.message))
                 sql.ungmute_user(user_id)
                 return
         except TelegramError:
@@ -142,7 +150,7 @@ def gmute(bot: Bot, update: Update, args: List[str]):
             f"\n<b>Chats affected:</b> {gmuted_chats}",
             parse_mode=ParseMode.HTML)    
     else:
-        send_to_list(bot, SUDO_USERS + SUPPORT_USERS, 
+        send_to_list(bot, SUDO_USERS + DEV_USERS, 
                   "{} has been successfully gmuted!".format(mention_html(user_chat.id, user_chat.first_name)),
                 html=True)
 
@@ -194,7 +202,7 @@ def ungmute(bot: Bot, update: Update, args: List[str]):
                 "\n\nFormatting has been disabled due to an unexpected error.")
 
     else:
-        send_to_list(bot, SUDO_USERS + SUPPORT_USERS, log_message, html=True)
+        send_to_list(bot, SUDO_USERS + DEV_USERS, log_message, html=True)
     
     chats = get_all_chats()
     ungmuted_chats = 0
@@ -245,7 +253,7 @@ def ungmute(bot: Bot, update: Update, args: List[str]):
             f"\n<b>Chats affected:</b> {ungmuted_chats}",
             parse_mode=ParseMode.HTML)
     else:
-        send_to_list(bot, SUDO_USERS + SUPPORT_USERS, 
+        send_to_list(bot, SUDO_USERS + DEV_USERS, 
                   "{} has been successfully un-gmuted!".format(mention_html(user_chat.id, 
                                                                          user_chat.first_name)),
                   html=True)
