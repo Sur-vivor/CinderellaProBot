@@ -52,10 +52,9 @@ def ping(bot: Bot, update: Update):
     start_time = time.time()
     requests.get('https://api.telegram.org')
     end_time = time.time()
-    ms = float(end_time - start_time)
-    ping = round(ms, 2) % 60
+    ping_time = str(round((end_time - start_time), 2))
     uptime = get_readable_time((time.time() - StartTime))
-    update.effective_message.reply_text(f"🏓 Pong!\n⏱️Reply took: {ping}s\nService Uptime: {uptime}", parse_mode=ParseMode.MARKDOWN)
+    update.effective_message.reply_text(f"🏓 Pong!\n⏱️Reply took: {ping_time}s\nService Uptime: {uptime}", parse_mode=ParseMode.MARKDOWN)
 
 @run_async
 def uptime(bot: Bot, update: Update):
