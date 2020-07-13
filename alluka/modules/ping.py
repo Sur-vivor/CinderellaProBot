@@ -55,7 +55,7 @@ def ping(bot: Bot, update: Update):
     end_time = time.time()
     ping_time = str(round((end_time - start_time), 2) % 60)
     uptime = get_readable_time((time.time() - StartTime))
-    update.effective_message.reply_text(f"🏓 Pong!\n⏱️<b>Reply took:</b> {ping_time}s\n🔮<b>Service Uptime:</b> {uptime}", parse_mode=ParseMode.MARKDOWN)
+    update.effective_message.reply_text(f"🏓 Pong!\n⏱️<b>Reply took:</b> {ping_time}s\n🔮<b>Service Uptime:</b> {uptime}", parse_mode=ParseMode.HTML)
 
 @run_async
 def uptime(bot: Bot, update: Update):
