@@ -51,7 +51,8 @@ UNGBAN_ERRORS = {
 def gban(bot: Bot, update: Update, args: List[str]):
     message = update.effective_message  # type: Optional[Message] 
     chat = update.effective_chat
-   
+    user = update.effective_user
+
     user_id, reason = extract_user_and_text(message, args)
 
     if not user_id:
@@ -205,7 +206,8 @@ def gban(bot: Bot, update: Update, args: List[str]):
 def ungban(bot: Bot, update: Update, args: List[str]):
     message = update.effective_message  # type: Optional[Message]
     chat = update.effective_chat
-    
+    user = update.effective_user
+
     user_id = extract_user(message, args)
     if not user_id:
         message.reply_text("You don't seem to be referring to a user.")
