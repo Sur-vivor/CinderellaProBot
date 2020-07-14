@@ -609,11 +609,7 @@ def main():
 
     updater.idle()
 
-
-CHATS_CNT = {}
-CHATS_TIME = {}
-
-
+    
 if __name__ == '__main__':
     LOGGER.info("Successfully loaded modules: " + str(ALL_MODULES))
     main()
