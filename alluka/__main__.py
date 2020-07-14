@@ -591,9 +591,6 @@ def main():
 
     # dispatcher.add_error_handler(error_callback)
 
-    # add antiflood processor
-    Dispatcher.process_update = process_update
-
     if WEBHOOK:
         LOGGER.info("Using webhooks.")
         updater.start_webhook(listen="127.0.0.1",
