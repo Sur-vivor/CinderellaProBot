@@ -7,6 +7,16 @@
 
 Modular Telegram bot for managing your groups with a extras features with HunterxHunter theme.
 
+<p align="center">
+  <a href="https://github.com/Sur-vivor/CinderellaProBot/fork">
+    <img src="https://img.shields.io/github/forks/Sur-vivor/CinderellaProBot?label=Fork&style=social">
+    
+  </a>
+  <a href="https://github.com/Sur-vivor/CinderellaProBot">
+    <img src="https://img.shields.io/github/stars/Sur-vivor/CinderellaProBot?style=social">
+  </a>
+</p>
+
 ### Click Below Image to Deploy
 [![Deploy](https://telegra.ph/file/511ad504656e712b88235.jpg)](https://heroku.com/deploy?template=https://github.com/Sur-vivor/CinderellaProBot.git)
 
