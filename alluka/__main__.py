@@ -7,7 +7,6 @@ import resource
 import platform
 import sys
 import traceback
-
 import requests
 from parsel import Selector
 import json
