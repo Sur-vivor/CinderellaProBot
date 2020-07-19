@@ -19,8 +19,7 @@ from telegram.error import Unauthorized, BadRequest, TimedOut, NetworkError, Cha
 from telegram.ext import CommandHandler, Filters, MessageHandler, CallbackQueryHandler
 from telegram.ext.dispatcher import run_async, DispatcherHandlerStop, Dispatcher
 from telegram.utils.helpers import escape_markdown
-from alluka import dispatcher, updater, TOKEN, WEBHOOK, SUDO_USERS, OWNER_ID, CERT_PATH, PORT, URL, LOGGER, OWNER_NAME, OWNER_USERNAME \
-    ALLOW_EXCL
+from alluka import dispatcher, updater, TOKEN, WEBHOOK, SUDO_USERS, OWNER_ID, CERT_PATH, PORT, URL, LOGGER, OWNER_NAME, OWNER_USERNAME, ALLOW_EXCL
 from alluka.modules import ALL_MODULES
 from alluka.modules.helper_funcs.chat_status import is_user_admin
 from alluka.modules.helper_funcs.misc import paginate_modules
