@@ -29,7 +29,6 @@ if ENV:
         raise Exception("Your OWNER_ID env variable is not a valid integer.")
 
     MESSAGE_DUMP = os.environ.get('MESSAGE_DUMP', None)
-    OWNER_USERNAME = os.environ.get("OWNER_USERNAME", None)
     OWNER_NAME = os.environ.get("OWNER_NAME", None)
 
     try:
