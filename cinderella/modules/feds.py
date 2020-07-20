@@ -51,7 +51,8 @@ FBAN_ERRORS = {
     "Only the creator of a basic group can kick group administrators",
     "Channel_private",
     "Not in the chat",
-    "Have no rights to send a message"
+    "Have no rights to send a message",
+    "Can't remove chat owner"
 }
 
 UNFBAN_ERRORS = {
