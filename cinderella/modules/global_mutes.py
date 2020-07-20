@@ -135,6 +135,8 @@ def gmute(bot: Bot, update: Update, args: List[str]):
                 pass
             elif excp.message == "Method is available only for supergroups":
                 pass
+            elif excp.message == "Channel_private":              
+                pass
             elif excp.message == "Can't demote chat creator":
                 pass
             else:
@@ -238,6 +240,8 @@ def ungmute(bot: Bot, update: Update, args: List[str]):
             elif excp.message == "Channel_private":
                 pass
             elif excp.message == "Chat_admin_required":
+                pass
+            elif excp.message == "User not found":
                 pass
             else:
                 message.reply_text("Could not un-gmute due to: {}".format(excp.message))
