@@ -29,6 +29,7 @@ GKICK_ERRORS = {
     "User is an administrator of the chat",
     "User_not_participant",
     "Reply message not found",
+    "Can't remove chat owner",
     "User not found"
 }
 
