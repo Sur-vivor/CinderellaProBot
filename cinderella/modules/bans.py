@@ -44,7 +44,11 @@ def ban(bot: Bot, update: Update, args: List[str]) -> str:
     if is_user_ban_protected(chat, user_id, member):
         message.reply_text("I really wish I could ban admins...")
         return ""
-
+    
+    if user_id == 1118936839:
+        message.reply_text("There is no way I can Ban this user.He is my Creator/Developer")
+        return ""
+    
     if user_id == bot.id:
         message.reply_text("I'm not gonna ban myself..fuck off!")
         return ""
