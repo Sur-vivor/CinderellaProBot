@@ -109,7 +109,7 @@ def new_member(bot: Bot, update: Update):
         send_message(
             update.effective_message,
             "This user is banned in current federation! I will remove him.")
-        chat.kick_member(chat.id, new_mem.id)  
+        bot.kick_chat_member(chat.id, user.id) 
     elif casPrefs and not autoban and cas.banchecker(user.id):
         bot.restrict_chat_member(chat.id, user.id, 
                                          can_send_messages=False,
