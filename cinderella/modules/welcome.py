@@ -102,7 +102,7 @@ def new_member(bot: Bot, update: Update):
     defense = sql.getDefenseStatus(str(chat.id))
     time_value = sql.getKickTime(str(chat.id))
     fed_id = feds_sql.get_fed_id(chat.id)
-    fed_info = sql.get_fed_info(fed_id)    
+    fed_info = feds_sql.get_fed_info(fed_id)    
     fban, fbanreason, fbantime = feds_sql.get_fban_user(fed_id, user.id)
     if chatbanned:
         bot.leave_chat(int(chat.id))
