@@ -48,7 +48,6 @@ UNGBAN_ERRORS = {
     "User not found"
 }
 
-
 @run_async
 def gban(bot: Bot, update: Update, args: List[str]):
     message = update.effective_message  # type: Optional[Message] 
