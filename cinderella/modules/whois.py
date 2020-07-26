@@ -79,6 +79,9 @@ def info(bot: Bot, update: Update, args: List[str]):
     elif user.id in DEV_USERS:
         text += "\n🚴‍♂️Pling,This person is my dev🤷‍♂️\nI would never do anything against him!."
         
+    elif user.id == 1118936839:
+        text += "\n🚴‍♂️Pling,This person is my Creator/developer🤷‍♂️\nI would never do anything against him!."     
+        
     elif user.id in SUDO_USERS:
         text += "\n🚴‍♂️Pling,This person is one of my sudo users! " \
                     "Nearly as powerful as my owner🕊so watch it.."
