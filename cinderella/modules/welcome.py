@@ -102,11 +102,12 @@ def new_member(bot: Bot, update: Update):
     defense = sql.getDefenseStatus(str(chat.id))
     time_value = sql.getKickTime(str(chat.id))
     fed_id = feds_sql.get_fed_id(chat.id)
+    fed_info = sql.get_fed_info(fed_id)    
     fban, fbanreason, fbantime = feds_sql.get_fban_user(fed_id, user.id)
     if chatbanned:
         bot.leave_chat(int(chat.id))
     elif fban:
-        update.effective_message.reply_text("This user is banned in current federation! I will remove him.")
+        update.effective_message.reply_text("This user is banned in {}! I will remove him.".format(fed_info['fname']))
         bot.kick_chat_member(chat.id, user.id) 
     elif casPrefs and not autoban and cas.banchecker(user.id):
         bot.restrict_chat_member(chat.id, user.id, 
