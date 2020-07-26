@@ -1615,7 +1615,7 @@ def welcome_fed(bot, update):
         send_message(
             update.effective_message,
             "This user is banned in current federation! I will remove him.")
-        chat.kick_member(chat.id, user.id)
+        bot.kick_chat_member(chat.id, user.id)
         return True
     else:
         return False
