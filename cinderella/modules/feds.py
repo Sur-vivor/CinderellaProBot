@@ -644,7 +644,7 @@ def fed_ban(bot: Bot, update: Update, args: List[str]):
 		try:
 			# Do not spamming all fed chats
 			"""
-			context.bot.send_message(chat, "<b>FedBan reason updated</b>" \
+			bot.send_message(chat, "<b>FedBan reason updated</b>" \
 							"\n<b>Federation:</b> {}" \
 							"\n<b>Federation Admin:</b> {}" \
 							"\n<b>User:</b> {}" \
