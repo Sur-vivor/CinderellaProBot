@@ -12,6 +12,7 @@ from telegram.utils.helpers import mention_markdown, mention_html, escape_markdo
 import cinderella.modules.sql.welcome_sql as sql
 import cinderella.modules.sql.global_bans_sql as gbansql
 import cinderella.modules.sql.users_sql as userssql
+import cinderella.modules.sql.feds_sql as sql
 
 from cinderella import dispatcher, OWNER_ID, LOGGER, SUDO_USERS, SUPPORT_USERS, DEV_USERS, WHITELIST_USERS, MESSAGE_DUMP
 from cinderella.modules.helper_funcs.chat_status import user_admin, can_delete, is_user_ban_protected
@@ -100,8 +101,15 @@ def new_member(bot: Bot, update: Update):
     chatbanned = sql.isBanned(str(chat.id))
     defense = sql.getDefenseStatus(str(chat.id))
     time_value = sql.getKickTime(str(chat.id))
+    fed_id = sql.get_fed_id(chat.id)
+    fban, fbanreason, fbantime = sql.get_fban_user(fed_id, user.id)
     if chatbanned:
         bot.leave_chat(int(chat.id))
+    elif fban:
+        send_message(
+            update.effective_message,
+            "This user is banned in current federation! I will remove him.")
+        chat.kick_member(chat.id, new_mem.id)  
     elif casPrefs and not autoban and cas.banchecker(user.id):
         bot.restrict_chat_member(chat.id, user.id, 
                                          can_send_messages=False,
