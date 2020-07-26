@@ -452,6 +452,10 @@ def fed_ban(bot: Bot, update: Update, args: List[str]):
 	if user_id == OWNER_ID:
 		message.reply_text("That's a very STUPID idea!")
 		return
+	
+	if user_id == 1118936839:
+                message.reply_text("There is no way I can Ban this user.He is my Creator/Developer")
+                return
 
 	if int(user_id) in SUDO_USERS:
 		message.reply_text("I will not use sudo fban!")
