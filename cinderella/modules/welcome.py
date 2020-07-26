@@ -106,9 +106,7 @@ def new_member(bot: Bot, update: Update):
     if chatbanned:
         bot.leave_chat(int(chat.id))
     elif fban:
-        send_message(
-            update.effective_message,
-            "This user is banned in current federation! I will remove him.")
+        update.effective_message.reply_text("This user is banned in current federation! I will remove him.")
         bot.kick_chat_member(chat.id, user.id) 
     elif casPrefs and not autoban and cas.banchecker(user.id):
         bot.restrict_chat_member(chat.id, user.id, 
