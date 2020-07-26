@@ -6,6 +6,7 @@ import telegram.ext as tg
 import spamwatch
 StartTime = time.time()
 
+VERSION = "6.0"
 # enable logging
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
