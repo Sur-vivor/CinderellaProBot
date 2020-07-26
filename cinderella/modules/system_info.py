@@ -6,7 +6,7 @@ from platform import python_version, uname
 from telegram import Update, Bot, ParseMode, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import run_async, CallbackQueryHandler, CommandHandler
 
-from cinderella import dispatcher, DEV_USERS
+from cinderella import dispatcher, DEV_USERS, VERSION
 from cinderella.modules.disable import DisableAbleCommandHandler
 from cinderella.modules.helper_funcs.chat_status import dev_plus
 import cinderella.modules.helper_funcs.git_api as git
@@ -63,7 +63,7 @@ def status(bot: Bot, update: Update):
 	chat = update.effective_chat
 	
 	stat = "--- System Status ---\n"
-	stat += "Cinderella Version: `5.5.2`""\n"
+	stat += f"Cinderella Version: `{VERSION}`""\n"
 	stat += "Python Version: `"+python_version()+"`\n"
 	stat += "GitHub API Version: `"+str(git.vercheck())+"`\n"
 	#Software Info
