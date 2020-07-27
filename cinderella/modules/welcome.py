@@ -105,9 +105,9 @@ def new_member(bot: Bot, update: Update):
     fed_info = feds_sql.get_fed_info(fed_id)    
     fban, fbanreason, fbantime = feds_sql.get_fban_user(fed_id, user.id)
     try:
-	getmy = sql.get_mysubs(fed_id)
+	 getmy = sql.get_mysubs(fed_id)
     except:
-	getmy = []
+	 getmy = []
     subfban, subfbanreason, subfbantime = feds_sql.get_fban_user(getmy, user.id)
     if chatbanned:
         bot.leave_chat(int(chat.id))
