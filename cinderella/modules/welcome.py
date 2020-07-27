@@ -103,22 +103,12 @@ def new_member(bot: Bot, update: Update):
     time_value = sql.getKickTime(str(chat.id))
     fed_id = feds_sql.get_fed_id(chat.id)
     fed_info = feds_sql.get_fed_info(fed_id)    
-    fban, fbanreason, fbantime = feds_sql.get_fban_user(fed_id, user.id)
-    try:
-	    getmy = feds_sql.get_mysubs(fed_id)
-    except:
-	    getmy = []
-    subfban, subfbanreason, subfbantime = feds_sql.get_fban_user(getmy, user.id)
+    fban, fbanreason, fbantime = feds_sql.get_fban_user(fed_id, user.id)    
     if chatbanned:
         bot.leave_chat(int(chat.id))
     elif fban:
         update.effective_message.reply_text("🔨 User {} is banned in the current Federation ({}), and so has been Removed.\n<b>Reason</b>: {}".format(mention_html(user.id, user.first_name), fed_info['fname'], fbanreason or "No reason given"), parse_mode=ParseMode.HTML)
-        bot.kick_chat_member(chat.id, user.id)
-        return
-    elif subfban:
-        update.effective_message.reply_text("🔨 User {} is banned in the current Federation ({}), and so has been Removed.\n<b>Reason</b>: {}".format(mention_html(user.id, user.first_name), fed_info['fname'], subfbanreason or "No reason given"), parse_mode=ParseMode.HTML)
-        bot.kick_chat_member(chat.id, user.id)
-        return
+        bot.kick_chat_member(chat.id, user.id)        
     elif casPrefs and not autoban and cas.banchecker(user.id):
         bot.restrict_chat_member(chat.id, user.id, 
                                          can_send_messages=False,
