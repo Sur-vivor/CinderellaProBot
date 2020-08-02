@@ -1,4 +1,4 @@
-### @CinderellaProBot // http://www.telegram.dog/CinderellaProBot
+### @BellaqueenBot // http://www.telegram.dog/BellaqueenBot
 > with HunterxHunter theme.
 
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/)  
@@ -7,17 +7,17 @@
 Modular Telegram bot for managing your groups with a extras features with HunterxHunter theme.
 
 <p align="center">
-  <a href="https://github.com/Sur-vivor/CinderellaProBot/fork">
-    <img src="https://img.shields.io/github/forks/Sur-vivor/CinderellaProBot?label=Fork&style=social">
+  <a href="https://github.com/VISHNUVETRI25/BellaqueenBot/fork">
+    <img src="https://img.shields.io/github/forks/VISHNUVETRI25/BellaqueenBot?label=Fork&style=social">
     
   </a>
-  <a href="https://github.com/Sur-vivor/CinderellaProBot">
-    <img src="https://img.shields.io/github/stars/Sur-vivor/CinderellaProBot?style=social">
+  <a href="https://github.com/VISHNUVETRI25/BellaqueenBot">
+    <img src="https://img.shields.io/github/stars/VISHNUVETRI25/BellaqueenBot?style=social">
   </a>
 </p>
 
 ### Click Below Image to Deploy
-[![Deploy](https://telegra.ph/file/511ad504656e712b88235.jpg)](https://heroku.com/deploy?template=https://github.com/Sur-vivor/CinderellaProBot.git)
+[![Deploy](https://telegra.ph/file/22eb661979802f52fbfd7.jpg)](https://heroku.com/deploy?template=https://github.com/VISHNUVETRI25/BellaqueenBot.git)
 
 ### Configuration
 
@@ -33,18 +33,18 @@ defaults set in the sample_config, hence making it easier to upgrade.
 
 An example `config.py` file could be:
 ```
-from cinderella.sample_config import Config
+from Bellaqueen.sample_config import Config
 
 
 class Development(Config):
-    OWNER_ID = 1118936839  # my telegram ID
-    OWNER_USERNAME = "Sur_vivor"  # my telegram username
-    API_KEY = "your bot api key"  # my api key, as provided by the botfather
+    OWNER_ID = 1255834099  # my telegram ID
+    OWNER_USERNAME = "VISHNUVETRI25"  # my telegram username
+    API_KEY = "1070329071:AAHMLajIh-pAnDmIfxhiti8TwRHcCAf6nck"  # my api key, as provided by the botfather
     SQLALCHEMY_DATABASE_URI = 'postgresql://username:password@localhost:5432/database'  # sample db credentials
     MESSAGE_DUMP = '-1234567890' # some group chat that your bot is a member of
     USE_MESSAGE_DUMP = True
-    SUDO_USERS = []  # List of id's for users which have sudo access to the bot.
-    LOAD = []
+    SUDO_USERS = [1255834099]  # List of id's for users which have sudo access to the bot.
+    LOAD = [1255834099]
     NO_LOAD = ['translation']
 ```
 
@@ -52,21 +52,20 @@ If you can't have a config.py file (EG on heroku), it is also possible to use en
 The following env variables are supported:
  - `ENV`: Setting this to ANYTHING will enable env variables
 
- - `TOKEN`: Your bot token, as a string.
- - `OWNER_ID`: An integer of consisting of your owner ID
- - `OWNER_USERNAME`: Your username
+ - `TOKEN`: 1070329071:AAHMLajIh-pAnDmIfxhiti8TwRHcCAf6nck
+ - `OWNER_ID`: 1255834099
+ - `OWNER_USERNAME`: VISHNUVETRI25
 
- - `DATABASE_URL`: Your database URL
- - `MESSAGE_DUMP`: optional: a chat where your replied saved messages are stored, to stop people deleting their old 
+ - `DATABASE_URL`: https://github.com/VISHNUVETRI25/
+ - `MESSAGE_DUMP`: a chat where your replied saved messages are stored, to stop people deleting their old 
  - `LOAD`: Space separated list of modules you would like to load
  - `NO_LOAD`: Space separated list of modules you would like NOT to load
  - `WEBHOOK`: Setting this to ANYTHING will enable webhooks when in env mode
  messages
  - `URL`: The URL your webhook should connect to (only needed for webhook mode)
 
- - `SUDO_USERS`: A space separated list of user_ids which should be considered sudo users
- - `SUPPORT_USERS`: A space separated list of user_ids which should be considered support users (can gban/ungban,
- nothing else)
+ - `SUDO_USERS`: 1255834099
+ - `SUPPORT_USERS`: 1255834099
  - `WHITELIST_USERS`: A space separated list of user_ids which should be considered whitelisted - they can't be banned.
  - `DONATION_LINK`: Optional: link where you would like to receive donations.
  - `CERT_PATH`: Path to your webhook certificate
@@ -104,19 +103,19 @@ In the case of postgres, this is how you would set up a the database on a debian
 
 - create a new database user (change YOUR_USER appropriately):
 
-`createuser -P -s -e YOUR_USER`
+`createuser -P -s -e VISHNUVETRI25`
 
 This will be followed by you needing to input your password.
 
 - create a new database table:
 
-`createdb -O YOUR_USER YOUR_DB_NAME`
+`createdb -O VISHNUVETRI25 VISHNUVETRI25`
 
 Change YOUR_USER and YOUR_DB_NAME appropriately.
 
 - finally:
 
-`psql YOUR_DB_NAME -h YOUR_HOST YOUR_USER`
+`psql VISHNUVETRI25 -h VISHNUVETRI25`
 
 This will allow you to connect to your database via your terminal.
 By default, YOUR_HOST should be 0.0.0.0:5432.
