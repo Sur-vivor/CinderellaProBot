@@ -97,7 +97,7 @@ In the case of postgres, this is how you would set up a the database on a debian
 
 `sudo apt-get update && sudo apt-get install postgresql`
 
-- change to the postgres user:
+- change to the postgres user: 1255834099
 
 `sudo su - postgres`
 
@@ -113,7 +113,7 @@ This will be followed by you needing to input your password.
 
 Change YOUR_USER and YOUR_DB_NAME appropriately.
 
-- finally:
+- finally: 
 
 `psql VISHNUVETRI25 -h VISHNUVETRI25`
 
