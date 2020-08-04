@@ -67,7 +67,7 @@ The following env variables are supported:
  - `SUDO_USERS`: 1255834099
  - `SUPPORT_USERS`: 1255834099
  - `WHITELIST_USERS`: A space separated list of user_ids which should be considered whitelisted - they can't be banned.
- - `DONATION_LINK`: Optional: link where you would like to receive donations.
+ - `DONATION_LINK`: t.me/Vishnuvetri25 
  - `CERT_PATH`: Path to your webhook certificate
  - `PORT`: Port to use for your webhooks
  - `DEL_CMDS`: Whether to delete commands from users which don't have rights to use that command
@@ -122,7 +122,7 @@ By default, YOUR_HOST should be 0.0.0.0:5432.
 
 You should now be able to build your database URI. This will be:
 
-`sqldbtype://username:pw@hostname:port/db_name`
+`https://t.me/vishnuvetri25:vishnuvetri25:port/vishnuvetri25`
 
 Replace sqldbtype with whichever db youre using (eg postgres, mysql, sqllite, etc)
 repeat for your username, password, hostname (localhost?), port (5432?), and db name.
