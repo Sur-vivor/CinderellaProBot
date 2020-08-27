@@ -37,7 +37,7 @@ from cinderella.sample_config import Config
 
 
 class Development(Config):
-    OWNER_ID =1206817633# my telegram ID
+    OWNER_ID =1169076058# my telegram ID
     OWNER_USERNAME = "saravanakrish"  # my telegram username
     API_KEY = "your bot api key"  # my api key, as provided by the botfather
     SQLALCHEMY_DATABASE_URI = 'postgresql://username:password@localhost:5432/database'  # sample db credentials
