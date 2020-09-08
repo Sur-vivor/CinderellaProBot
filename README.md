@@ -7,17 +7,17 @@
 Modular Telegram bot for managing your groups with a extras features with HunterxHunter theme.
 
 <p align="center">
-  <a href="https://github.com/Kunjubeepuu/CinderellaProBot/fork">
-    <img src="https://img.shields.io/github/forks/Kunjubeepuu/CinderellaProBot?label=Fork&style=social">
+  <a href="https://github.com/Kunjubeepuu/Dora_beauty_of_telegram_bot/fork">
+    <img src="https://img.shields.io/github/forks/Kunjubeepuu/Dora_beauty_of_telegram_bot?label=Fork&style=social">
     
   </a>
   <a href="https://github.com/Kunjubeepuu/CinderellaProBot">
-    <img src="https://img.shields.io/github/stars/Kunjubeepuu/CinderellaProBot?style=social">
+    <img src="https://img.shields.io/github/stars/Kunjubeepuu/Dora_beauty_of_telegram_bot?style=social">
   </a>
 </p>
 
 ### Click Below Image to Deploy
-[![Deploy](https://telegra.ph/file/511ad504656e712b88235.jpg)](https://heroku.com/deploy?template=https://github.com/Kunjubeepuu/CinderellaProBot.git)
+[![Deploy](https://telegra.ph/file/511ad504656e712b88235.jpg)](https://heroku.com/deploy?template=https://github.com/Kunjubeepuu/Dora_beauty_of_telegram_bot.git)
 
 ### Configuration
 
@@ -37,8 +37,8 @@ from cinderella.sample_config import Config
 
 
 class Development(Config):
-    OWNER_ID = 1118936839  # my telegram ID
-    OWNER_USERNAME = "Sur_vivor"  # my telegram username
+    OWNER_ID = 1133504208  # my telegram ID
+    OWNER_USERNAME = "kunjubeepu"  # my telegram username
     API_KEY = "your bot api key"  # my api key, as provided by the botfather
     SQLALCHEMY_DATABASE_URI = 'postgresql://username:password@localhost:5432/database'  # sample db credentials
     MESSAGE_DUMP = '-1234567890' # some group chat that your bot is a member of
