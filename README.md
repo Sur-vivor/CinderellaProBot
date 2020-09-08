@@ -1,4 +1,4 @@
-### @Dora_beauty_of_telegram_bot // http://www.telegram.dog/@Dora_beauty_of_telegram_bot
+### @Dora_beauty_of_telegram_bot // http://www.telegram.dog/Dora_beauty_of_telegram_bot
 > with HunterxHunter theme.
 
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/)  
