@@ -75,13 +75,11 @@ def new_fed(bot: Bot, update: Update):
     message = update.effective_message
     fed_id = sql.get_fed_id(chat.id)
     info = sql.get_fed_info(fed_id)
-    get_owners = eval(info['fusers'])['owner']
-    get_owner = bot.get_chat(get_owners).id
-     
+
     if chat.type != "private":
         update.effective_message.reply_text("Please run this command in my PM only!")
         return
-    if user_id == get_owner:
+    if is_user_fed_owner(fed_id, user.id):
         update.effective_message.reply_text("Only one federation per admin.")
         return
 
