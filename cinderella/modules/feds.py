@@ -74,6 +74,7 @@ def new_fed(bot: Bot, update: Update):
     user = update.effective_user  # type: Optional[User]
     message = update.effective_message
     fedowner = sql.get_user_owner_fed_full(user.id)
+    fednam = message.text.split(None, 1)[1]
 
     if chat.type != "private":
         update.effective_message.reply_text("Please run this command in my PM only!")
@@ -81,7 +82,10 @@ def new_fed(bot: Bot, update: Update):
     if fedowner:
         update.effective_message.reply_text("Only one federation per person.")
     else:
-        fednam = message.text.split(None, 1)[1]
+	if len(fednam) > 64:
+            send_message(update.effective_message,
+                     "Reduce Your Fed name length to 64 charectors.")
+	    return
         if not fednam == '':
             fed_id = str(uuid.uuid4())
             fed_name = fednam
@@ -106,8 +110,8 @@ def new_fed(bot: Bot, update: Update):
                 LOGGER.warning("Cannot send a message to MESSAGE_DUMP")
         else:
             update.effective_message.reply_text("Please give a name for the federation.")
-
-
+	
+	
 @run_async
 def del_fed(bot: Bot, update: Update, args: List[str]):
     chat = update.effective_chat
