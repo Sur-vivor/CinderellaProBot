@@ -1405,7 +1405,8 @@ def set_fed_log(bot, update, args):
 		send_message(update.effective_message, "This command is specific to the group, not to the PM! ")
 		return
 	
-	if args:
+	if chat.type == chat.CHANNEL:
+	   if args:
 		fedinfo = sql.get_fed_info(args[0])
 		if not fedinfo:
 			send_message(update.effective_message, "This Federation does not exist!")
@@ -1417,7 +1418,7 @@ def set_fed_log(bot, update, args):
 		setlog = sql.set_fed_log(args[0], chat.id)
 		if setlog:
 			send_message(update.effective_message, "Federation log `{}` has been set to {}".format(fedinfo['fname'], chat.title), parse_mode="markdown")
-	else:
+	   else:
 		send_message(update.effective_message, "You have not provided your federated ID!")
 
 
