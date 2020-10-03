@@ -75,8 +75,8 @@ def new_fed(bot: Bot, update: Update):
     message = update.effective_message
     fed_id = sql.get_fed_id(chat.id)
     info = sql.get_fed_info(fed_id)
-    get_owner = eval(info['fusers'])['owner']
-    get_owner = bot.get_chat(get_owner).id
+    get_owners = eval(info['fusers'])['owner']
+    get_owner = bot.get_chat(get_owners).id
      
     if chat.type != "private":
         update.effective_message.reply_text("Please run this command in my PM only!")
