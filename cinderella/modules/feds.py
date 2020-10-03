@@ -80,12 +80,10 @@ def new_fed(bot: Bot, update: Update):
 
     fed_id = sql.get_fed_id(chat.id)
     info = sql.get_fed_info(fed_id)
-    get_owner = eval(info['fusers'])['owner']
-	
-    if user.id == get_owner:
-	update.effective_message.reply_text("Onle one federation per person.")
+    get_owner = eval(info['fusers'])['owner']	
+    if user.id = get_owner:
+	update.effective_message.reply_text("Only one federation per admin.")
 	return
-    
     fednam = message.text.split(None, 1)[1]
     if not fednam == '':
         fed_id = str(uuid.uuid4())
