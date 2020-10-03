@@ -83,9 +83,9 @@ def new_fed(bot: Bot, update: Update):
         update.effective_message.reply_text("Only one federation per person.")
     else:
 	if len(fednam) > 64:
-            send_message(update.effective_message,
+		send_message(update.effective_message,
                      "Reduce Your Fed name length to 64 charectors.")
-	    return
+		return
         if not fednam == '':
             fed_id = str(uuid.uuid4())
             fed_name = fednam
