@@ -78,35 +78,34 @@ def new_fed(bot: Bot, update: Update):
     if chat.type != "private":
         update.effective_message.reply_text("Please run this command in my PM only!")
         return
-    if user.id == fedowner:
+    if fedowner:
         update.effective_message.reply_text("Only one federation per person.")
-        return
+    else:
+        fednam = message.text.split(None, 1)[1]
+        if not fednam == '':
+            fed_id = str(uuid.uuid4())
+            fed_name = fednam
+            LOGGER.info(fed_id)
+            if user.id == int(OWNER_ID):
+                fed_id = fed_name
 
-    fednam = message.text.split(None, 1)[1]
-    if not fednam == '':
-        fed_id = str(uuid.uuid4())
-        fed_name = fednam
-        LOGGER.info(fed_id)
-        if user.id == int(OWNER_ID):
-            fed_id = fed_name
+            x = sql.new_fed(user.id, fed_name, fed_id)
+            if not x:
+                update.effective_message.reply_text("Failed to create federation!")
+                return
 
-        x = sql.new_fed(user.id, fed_name, fed_id)
-        if not x:
-            update.effective_message.reply_text("Failed to create federation!")
-            return
-
-        update.effective_message.reply_text("*You have successfully created a new federation!*"\
+            update.effective_message.reply_text("*You have successfully created a new federation!*"\
                                             "\nName: `{}`"\
                                             "\nID: `{}`"
                                             "\n\nUse the command below to join the federation:"
                                             "\n`/joinfed {}`".format(fed_name, fed_id, fed_id), parse_mode=ParseMode.MARKDOWN)
-        try:
-            bot.send_message(MESSAGE_DUMP,
+            try:
+                bot.send_message(MESSAGE_DUMP,
                 "Federation <b>{}</b> has been created with ID: <pre>{}</pre>\nCreator : {}".format(fed_name, fed_id,mention_html(user.id, user.first_name)), parse_mode=ParseMode.HTML)
-        except:
-            LOGGER.warning("Cannot send a message to MESSAGE_DUMP")
-    else:
-        update.effective_message.reply_text("Please give a name for the federation.")
+            except:
+                LOGGER.warning("Cannot send a message to MESSAGE_DUMP")
+        else:
+            update.effective_message.reply_text("Please give a name for the federation.")
 
 
 @run_async
