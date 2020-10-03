@@ -81,9 +81,7 @@ def new_fed(bot: Bot, update: Update):
         update.effective_message.reply_text("Please run this command in my PM only!")
         return
     if user_id == get_owner:
-	update.effective_message.reply_text(
-		"Only one federation per admin."
-	)
+	send_message(update.effective_message,"Only one federation per admin.")
 	return
 
     fednam = message.text.split(None, 1)[1]
