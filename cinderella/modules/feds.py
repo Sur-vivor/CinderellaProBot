@@ -1380,6 +1380,7 @@ def fed_stat_user(bot, update, args):
 	else:
 		fed_id = args[0]
 		fedinfo = sql.get_fed_info(fed_id)
+		name, reason, fbantime = sql.get_user_fban(fed_id, msg.from_user.id)
 		if not fedinfo:
 			send_message(update.effective_message, "Fed {} not found!".format(fed_id))
 			return
@@ -1571,14 +1572,15 @@ def get_myfeds_list(bot, update):
 
 	fedowner = sql.get_user_owner_fed_full(user.id)
 	fedadmin = sql.get_user_admin_fed_full(user.id)
-	if fedowner:
-		text = "*You are Owner of feds:\n*"
-		for f in fedowner:
-			text += "- `{}`: *{}*\n".format(f['fed_id'], f['fed']['fname'])
-	if fedadmin:
-		text += "*You are Admin of feds:\n*"
-		for f in fedadmin:
-			text += "- `{}`: *{}*\n".format(f['fed_id'], f['fed']['fname'])
+	if fedowner or fedadmin:
+		if fedowner:
+			text = "*You are Owner of feds:\n*"
+			for f in fedowner:
+				text += "- `{}`: *{}*\n".format(f['fed_id'], f['fed']['fname'])
+		if fedowner:
+			text += "*You are Admin of feds:\n*"
+			for f in fedadmin:
+				text += "- `{}`: *{}*\n".format(f['fed_id'], f['fed']['fname'])
 	else:
 		text = "*You are not have any feds!*"
 	send_message(update.effective_message, text, parse_mode="markdown")
