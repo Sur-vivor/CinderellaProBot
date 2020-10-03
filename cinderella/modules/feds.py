@@ -73,6 +73,7 @@ def new_fed(bot: Bot, update: Update):
     chat = update.effective_chat  # type: Optional[Chat]
     user = update.effective_user  # type: Optional[User]
     message = update.effective_message
+    fed_id = sql.get_fed_id(chat.id)
     if chat.type != "private":
         update.effective_message.reply_text("Please run this command in my PM only!")
         return
