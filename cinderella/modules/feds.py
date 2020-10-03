@@ -83,7 +83,7 @@ def new_fed(bot: Bot, update: Update):
     get_owner = eval(info['fusers'])['owner']
     get_owner = bot.get_chat(get_owner).id
     if user.id == get_owner:
-	update.effective_message.reply_text("Only one federation per person")
+	update.effective_message.reply_text("Only one federation per person.")
 	return
 
     fednam = message.text.split(None, 1)[1]
