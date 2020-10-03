@@ -85,7 +85,7 @@ def new_fed(bot: Bot, update: Update):
     if user.id == get_owner:
 	update.effective_message.reply_text("Only one federation per person")
 	return
-	
+
     fednam = message.text.split(None, 1)[1]
     if not fednam == '':
         fed_id = str(uuid.uuid4())
