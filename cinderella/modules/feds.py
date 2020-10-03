@@ -76,6 +76,9 @@ def new_fed(bot: Bot, update: Update):
     if chat.type != "private":
         update.effective_message.reply_text("Please run this command in my PM only!")
         return
+    if is_user_fed_owner(fed_id, user.id):
+        update.effective_message.reply_text("Only one fed per person!")
+        return 
     fednam = message.text.split(None, 1)[1]
     if not fednam == '':
         fed_id = str(uuid.uuid4())
@@ -1577,7 +1580,7 @@ def get_myfeds_list(bot, update):
 			text = "*You are Owner of feds:\n*"
 			for f in fedowner:
 				text += "- `{}`: *{}*\n".format(f['fed_id'], f['fed']['fname'])
-		if fedowner:
+		if fedadmin:
 			text += "*You are Admin of feds:\n*"
 			for f in fedadmin:
 				text += "- `{}`: *{}*\n".format(f['fed_id'], f['fed']['fname'])
