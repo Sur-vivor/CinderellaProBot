@@ -1406,20 +1406,20 @@ def set_fed_log(bot, update, args):
 		return
 	
 	if chat.type == chat.CHANNEL:
-	   if args:
-		fedinfo = sql.get_fed_info(args[0])
-		if not fedinfo:
-			send_message(update.effective_message, "This Federation does not exist!")
-			return
-		isowner = is_user_fed_owner(args[0], user.id)
-		if not isowner:
-			send_message(update.effective_message, "Only federation creator can set federation logs.")
-			return
-		setlog = sql.set_fed_log(args[0], chat.id)
-		if setlog:
-			send_message(update.effective_message, "Federation log `{}` has been set to {}".format(fedinfo['fname'], chat.title), parse_mode="markdown")
-	   else:
-		send_message(update.effective_message, "You have not provided your federated ID!")
+		if args:
+			fedinfo = sql.get_fed_info(args[0])
+		        if not fedinfo:
+				send_message(update.effective_message, "This Federation does not exist!")
+			        return
+		        isowner = is_user_fed_owner(args[0], user.id)
+		        if not isowner:
+				send_message(update.effective_message, "Only federation creator can set federation logs.")
+			        return
+		         setlog = sql.set_fed_log(args[0], chat.id)
+		         if setlog:
+				send_message(update.effective_message, "Federation log `{}` has been set to {}".format(fedinfo['fname'], chat.title), parse_mode="markdown")
+	        else:
+			send_message(update.effective_message, "You have not provided your federated ID!")
 
 
 @run_async
@@ -1570,9 +1570,14 @@ def get_myfeds_list(bot, update):
 	
 
 	fedowner = sql.get_user_owner_fed_full(user.id)
+	fedadmin = sql.get_user_admin_fed_full(user.id)
 	if fedowner:
-		text = "*You are owner of feds:\n*"
+		text = "*You are Owner of feds:\n*"
 		for f in fedowner:
+			text += "- `{}`: *{}*\n".format(f['fed_id'], f['fed']['fname'])
+	if fedadmin:
+		text += "*You are Admin of feds:\n*"
+		for f in fedadmin:
 			text += "- `{}`: *{}*\n".format(f['fed_id'], f['fed']['fname'])
 	else:
 		text = "*You are not have any feds!*"
