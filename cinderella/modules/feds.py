@@ -79,8 +79,8 @@ def new_fed(bot: Bot, update: Update):
     if chat.type != "private":
         update.effective_message.reply_text("Please run this command in my PM only!")
         return
-    if is_user_fed_owner(fed_id, user.id):
-        update.effective_message.reply_text("Only one federation per admin.")
+    if int(info['owner']) == int(user.id):
+        update.effective_message.reply_text("Only one federation per person.")
         return
 
     fednam = message.text.split(None, 1)[1]
