@@ -109,30 +109,30 @@ def new_member(bot: Bot, update: Update):
     elif fban:
         update.effective_message.reply_text("🔨 User {} is banned in the current Federation ({}), and so has been Removed.\n<b>Reason</b>: {}".format(mention_html(user.id, user.first_name), fed_info['fname'], fbanreason or "No reason given"), parse_mode=ParseMode.HTML)
         bot.kick_chat_member(chat.id, user.id)        
-    elif casPrefs and not autoban and cas.banchecker(user.id):
-        bot.restrict_chat_member(chat.id, user.id, 
-                                         can_send_messages=False,
-                                         can_send_media_messages=False, 
-                                         can_send_other_messages=False, 
-                                         can_add_web_page_previews=False)
-        msg.reply_text("Warning! This user is CAS Banned. I have muted them to avoid spam. Ban is advised.")
-        isUserGbanned = gbansql.is_user_gbanned(user.id)
-        if not isUserGbanned:
-            report = "CAS Banned user detected: <code>{}</code>".format(user.id)
-            send_to_list(bot, SUDO_USERS + SUPPORT_USERS, report, html=True)
-        if defense:
-            bantime = int(time.time()) + 60
-            chat.kick_member(new_mem.id, until_date=bantime)
-    elif casPrefs and autoban and cas.banchecker(user.id):
-        chat.kick_member(user.id)
-        msg.reply_text("CAS banned user detected! User has been automatically banned!")
-        isUserGbanned = gbansql.is_user_gbanned(user.id)
-        if not isUserGbanned:
-            report = "CAS Banned user detected: <code>{}</code>".format(user.id)
-            send_to_list(bot, SUDO_USERS + SUPPORT_USERS, report, html=True)
-    elif defense and (user.id not in SUDO_USERS + SUPPORT_USERS):
-        bantime = int(time.time()) + 60
-        chat.kick_member(user.id, until_date=bantime)
+     #elif casPrefs and not autoban and cas.banchecker(user.id):
+       # bot.restrict_chat_member(chat.id, user.id, 
+       #                                  can_send_messages=False,
+       #                                  can_send_media_messages=False, 
+       #                                  can_send_other_messages=False, 
+       #                                  can_add_web_page_previews=False)
+        #msg.reply_text("Warning! This user is CAS Banned. I have muted them to avoid spam. Ban is advised.")
+        #isUserGbanned = gbansql.is_user_gbanned(user.id)
+        #if not isUserGbanned:
+           #report = "CAS Banned user detected: <code>{}</code>".format(user.id)
+            #send_to_list(bot, SUDO_USERS + SUPPORT_USERS, report, html=True)
+        #if defense:
+         #   bantime = int(time.time()) + 60
+          #  chat.kick_member(new_mem.id, until_date=bantime)
+    #elif casPrefs and autoban and cas.banchecker(user.id):
+       # chat.kick_member(user.id)
+       #msg.reply_text("CAS banned user detected! User has been automatically banned!")
+       # isUserGbanned = gbansql.is_user_gbanned(user.id)
+        #if not isUserGbanned:
+            #report = "CAS Banned user detected: <code>{}</code>".format(user.id)
+            #send_to_list(bot, SUDO_USERS + SUPPORT_USERS, report, html=True)
+    #elif defense and (user.id not in SUDO_USERS + SUPPORT_USERS):
+      #  bantime = int(time.time()) + 60
+       # chat.kick_member(user.id, until_date=bantime)
     elif should_welc:
         sent = None
         new_members = update.effective_message.new_chat_members
