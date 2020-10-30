@@ -1,4 +1,4 @@
-### @CinderellaProBot // http://www.telegram.dog/CinderellaProBot
+### @CinderellaProBot // http://www.telegram.dog/namelessprobot
 > with HunterxHunter theme.
 
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/)  
@@ -8,11 +8,11 @@ Modular Telegram bot for managing your groups with a extras features with Hunter
 
 <p align="center">
   <a href="https://github.com/saravanakrish97/NamelessProBot/fork">
-    <img src="https://img.shields.io/github/forks/Sur-vivor/CinderellaProBot?label=Fork&style=social">
+    <img src="https://img.shields.io/github/forks/saravanakrish97/NamelessProBot?label=Fork&style=social">
     
   </a>
   <a href="https://github.com/saravanakrish97/NamelessProBot">
-    <img src="https://img.shields.io/github/stars/Sur-vivor/CinderellaProBot?style=social">
+    <img src="https://img.shields.io/github/stars/saravanakrish97/NamelessProBot?style=social">
   </a>
 </p>
 
