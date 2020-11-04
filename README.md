@@ -1,4 +1,4 @@
-### @CinderellaProBot // http://www.telegram.dog/CinderellaProBot
+### @TimonAndbomba // http://www.telegram.dog/TimonAndbomba
 > with HunterxHunter theme.
 
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/)  
@@ -7,12 +7,12 @@
 Modular Telegram bot for managing your groups with a extras features with HunterxHunter theme.
 
 <p align="center">
-  <a href="https://github.com/Sur-vivor/CinderellaProBot/fork">
-    <img src="https://img.shields.io/github/forks/Sur-vivor/CinderellaProBot?label=Fork&style=social">
+  <a href="https://github.com/mughilethi/TimonAndbomba/fork">
+    <img src="https://img.shields.io/github/forks/mughilethi/TimonAndbomba?label=Fork&style=social">
     
   </a>
-  <a href="https://github.com/Sur-vivor/CinderellaProBot">
-    <img src="https://img.shields.io/github/stars/Sur-vivor/CinderellaProBot?style=social">
+  <a href="https://github.com/mughilethi/TimonAndbomba">
+    <img src="https://img.shields.io/github/stars/mughilethi/TimonAndbomba?style=social">
   </a>
 </p>
 
