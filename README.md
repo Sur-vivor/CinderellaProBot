@@ -1,4 +1,4 @@
-### @TimonAndBomba_bot // http://www.telegram.dog/TimonAndBomba_bot
+### @TimonAndBombabot // http://www.telegram.dog/TimonAndBombabot
 > with HunterxHunter theme.
 
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/)  
@@ -7,17 +7,17 @@
 Modular Telegram bot for managing your groups with a extras features with HunterxHunter theme.
 
 <p align="center">
-  <a href="https://github.com/mughilethi/TimonAndBomba_bot/fork">
-    <img src="https://img.shields.io/github/forks/mughilethi/TimonAndBomba_bot?label=Fork&style=social">
+  <a href="https://github.com/mughilethi/TimonAndBombabot/fork">
+    <img src="https://img.shields.io/github/forks/mughilethi/TimonAndBombabot?label=Fork&style=social">
     
   </a>
-  <a href="https://github.com/mughilethi/TimonAndBomba_bot">
-    <img src="https://img.shields.io/github/stars/mughilethi/TimonAndBomba_bot?style=social">
+  <a href="https://github.com/mughilethi/TimonAndBombabot">
+    <img src="https://img.shields.io/github/stars/mughilethi/TimonAndBombabot?style=social">
   </a>
 </p>
 
 ### Click Below Image to Deploy
-[![Deploy](https://telegra.ph/file/511ad504656e712b88235.jpg)](https://heroku.com/deploy?template=https://github.com/mughilethi/TimonAndBomba_bot.git)
+[![Deploy](https://telegra.ph/file/511ad504656e712b88235.jpg)](https://heroku.com/deploy?template=https://github.com/mughilethi/TimonAndBombabot.git)
 
 ### Configuration
 
