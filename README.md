@@ -1,4 +1,4 @@
-### @TimonAndbomba // http://www.telegram.dog/TimonAndbomba
+### @TimonAndbomba // http://www.telegram.dog/TimonAndbombabot
 > with HunterxHunter theme.
 
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/)  
