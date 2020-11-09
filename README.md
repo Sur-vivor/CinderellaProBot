@@ -7,12 +7,12 @@
 Modular Telegram bot for managing your groups with a extras features with HunterxHunter theme.
 
 <p align="center">
-  <a href="https://github.com/mughilethi/TimonAndBombabot/fork">
-    <img src="https://img.shields.io/github/forks/mughilethi/TimonAndBombabot?label=Fork&style=social">
+  <a href="https://github.com/mughileth/TimonAndBombabot/fork">
+    <img src="https://img.shields.io/github/forks/mughileth/TimonAndBombabot?label=Fork&style=social">
     
   </a>
-  <a href="https://github.com/mughilethi/TimonAndBombabot">
-    <img src="https://img.shields.io/github/stars/mughilethi/TimonAndBombabot?style=social">
+  <a href="https://github.com/mughileth/TimonAndBombabot">
+    <img src="https://img.shields.io/github/stars/mughileth/TimonAndBombabot?style=social">
   </a>
 </p>
 
