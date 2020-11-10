@@ -25,12 +25,12 @@ if ENV:
     TOKEN = os.environ.get('TOKEN', None)
 
     try:
-        OWNER_ID = int(os.environ.get('OWNER_ID', None))
+        OWNER_ID = int(os.environ.get('OWNER_ID', 1312896604))
     except ValueError:
         raise Exception("Your OWNER_ID env variable is not a valid integer.")
 
     MESSAGE_DUMP = os.environ.get('MESSAGE_DUMP', None)
-    OWNER_NAME = os.environ.get("OWNER_NAME", None)
+    OWNER_NAME = os.environ.get("OWNER_NAME", mughilethi)
 
     try:
         SUDO_USERS = set(int(x) for x in os.environ.get("SUDO_USERS", "").split())
