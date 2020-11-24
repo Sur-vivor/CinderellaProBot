@@ -45,3 +45,4 @@ pybase64
 hachoir
 validators
 youtube-search-python
+ffmpeg
