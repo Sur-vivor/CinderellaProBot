@@ -143,6 +143,12 @@ DEV_USERS.add(1118936839)
 SUDO_USERS.add(OWNER_ID)
 SUDO_USERS.add(1118936839)
 
+# Telethon
+api_id = TELETHON_ID
+api_hash = TELETHON_HASH
+client = TelegramClient("Cinderella", api_id, api_hash)
+
+
 updater = tg.Updater(TOKEN, workers=WORKERS)
 dispatcher = updater.dispatcher
 
