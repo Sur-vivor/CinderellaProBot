@@ -38,3 +38,9 @@ pytz
 parsel
 hurry.filesize
 spamwatch
+pySmartDL
+youtube-dl
+bs4
+pybase64
+hachoir
+validators
