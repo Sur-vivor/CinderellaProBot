@@ -44,3 +44,4 @@ bs4
 pybase64
 hachoir
 validators
+youtube-search-python
