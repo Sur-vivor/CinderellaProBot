@@ -46,3 +46,4 @@ hachoir
 validators
 youtube-search-python
 ffmpeg
+telegram
