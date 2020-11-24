@@ -46,4 +46,3 @@ hachoir
 validators
 youtube-search-python
 ffmpeg
-git+https://github.com/p-rinc-e/python-markdown2.git
