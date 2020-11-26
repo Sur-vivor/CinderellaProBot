@@ -703,9 +703,9 @@ def fed_ban(bot: Bot, update: Update, args: List[str]):
 					except TelegramError:
 						pass
 	if chats_in_fed == 0:
-		send_message(update.effective_message, "{} has been fbanned.Fedban affected 0 chats.".format(mention_html(user_chat.id, user_chat.first_name)), parse_mode=ParseMode.HTML)
+		send_message(update.effective_message, "{} has been fbanned.Fedban affected 0 chats.".format(user_target), parse_mode=ParseMode.HTML)
 	elif chats_in_fed > 0:
-		send_message(update.effective_message, "{} has been fbanned.Fedban affected {} chats.".format((mention_html(user_chat.id, user_chat.first_name)), (chats_in_fed)), parse_mode=ParseMode.HTML)
+		send_message(update.effective_message, "{} has been fbanned.Fedban affected {} chats.".format(user_target, chats_in_fed), parse_mode=ParseMode.HTML)
 
 
 @run_async
