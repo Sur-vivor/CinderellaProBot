@@ -15,7 +15,9 @@ class Config(object):
     API_KEY = "YOUR BOT TOKEN HERE"
     OWNER_ID = "YOUR OWN ID HERE"  # If you dont know, run the bot and do /id in your private chat with it
     OWNER_USERNAME = "YOUR USERNAME HERE"
-
+    TELETHON_HASH = None  # for purge stuffs
+    TELETHON_ID = None
+    
     # RECOMMENDED
     SQLALCHEMY_DATABASE_URI = 'sqldbtype://username:pw@hostname:port/db_name'  # needed for any database modules
     MESSAGE_DUMP = None  # needed to make sure 'save from' messages persist
