@@ -85,5 +85,11 @@ async def delete_msg(event):
     remove = [msg, to_delete]
     await event.client.delete_messages(chat, remove)
 
-
-__mod_name__ = "Purges"
+__help__ = """
+*Admin only:*
+ - /del: deletes the message you replied to
+ - /purge: deletes all messages between this and the replied to message.
+ - /purge <integer X>: deletes the replied message, and X messages following it if replied to a message.
+ - /purge <integer X>: deletes the number of messages starting from bottom. (Counts manaully deleted messages too)
+"""
+__mod_name__ = "PURGE"
