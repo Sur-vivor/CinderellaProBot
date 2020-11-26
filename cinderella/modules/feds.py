@@ -772,7 +772,7 @@ def unfban(bot: Bot, update: Update, args: List[str]):
 
 	banner = update.effective_user  # type: Optional[User]
 
-	message.reply_text("I'll give {} another chance in this federation".format(mention_html(user_chat.id, user_chat.first_name)), parse_mode=ParseMode.HTML)
+	message.reply_text("I'll give {} another chance in this federation".format(user_target), parse_mode=ParseMode.HTML)
 
 	chat_list = sql.all_fed_chats(fed_id)
 	# Will send to current chat
@@ -855,9 +855,9 @@ def unfban(bot: Bot, update: Update, args: List[str]):
 					pass
 
 	if unfbanned_in_chats == 0:
-		send_message(update.effective_message," {} has been un-fbanned in 0 chats.".format(mention_html(user_chat.id, user_chat.first_name)), parse_mode=ParseMode.HTML)
+		send_message(update.effective_message," {} has been un-fbanned in 0 chats.".format(user_target), parse_mode=ParseMode.HTML)
 	if unfbanned_in_chats > 0:
-		send_message(update.effective_message," {} has been un-fbanned in {} chats.".format((mention_html(user_chat.id, user_chat.first_name)), (unfbanned_in_chats)), parse_mode=ParseMode.HTML)
+		send_message(update.effective_message," {} has been un-fbanned in {} chats.".format(user_target, unfbanned_in_chats), parse_mode=ParseMode.HTML)
 	# Also do not spamming all fed admins
 	"""
 	FEDADMIN = sql.all_fed_users(fed_id)
