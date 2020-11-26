@@ -47,4 +47,3 @@ validators
 youtube-search-python
 ffmpeg
 git+https://github.com/Sur-vivor/python-markdown2.git
-instantmusic
