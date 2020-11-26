@@ -153,7 +153,7 @@ api_id = TELETHON_ID
 api_hash = TELETHON_HASH
 client = TelegramClient("cinderella", api_id, api_hash)
 
-updater = tg.Updater(TOKEN, workers=WORKERS)
+updater = tg.Updater(TOKEN, workers=WORKERS, use_context=True)
 dispatcher = updater.dispatcher
 
 SUDO_USERS = list(SUDO_USERS) + list(DEV_USERS)
