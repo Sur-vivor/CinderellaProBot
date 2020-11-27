@@ -152,7 +152,7 @@
     {
       "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
     }
-  ]
+  ],
    "name": "Cinderella",
    "repository": "https://github.com/Sur-vivor/CiderellaProBot",
    "success_url": "https://telegram.dog/CinderellaProBot",
