@@ -79,7 +79,7 @@ def new_fed(bot: Bot, update: Update):
     if chat.type != "private":
         update.effective_message.reply_text("Please run this command in my PM only!")
         return
-    if not fedowner or OWNER_ID:
+    if user.id != fedowner or not int(OWNER_ID):
         if not fednam == '':
             fed_id = str(uuid.uuid4())
             fed_name = fednam
