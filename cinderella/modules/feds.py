@@ -79,8 +79,11 @@ def new_fed(bot: Bot, update: Update):
     if chat.type != "private":
         update.effective_message.reply_text("Please run this command in my PM only!")
         return
-    if fedowner:
-        update.effective_message.reply_text("Only one federation per person.")
+    if fedowner
+        try:
+            update.effective_message.reply_text("Only one federation per person.")
+        except:
+             fedowner = OWNER_ID
     else:
         if not fednam == '':
             fed_id = str(uuid.uuid4())
