@@ -79,9 +79,7 @@ def new_fed(bot: Bot, update: Update):
     if chat.type != "private":
         update.effective_message.reply_text("Please run this command in my PM only!")
         return
-    if fedowner except int(OWNER_ID):
-        update.effective_message.reply_text("Only one federation per person.")
-    else:
+    if not fedowner and not int(OWNER_ID):
         if not fednam == '':
             fed_id = str(uuid.uuid4())
             fed_name = fednam
@@ -106,7 +104,8 @@ def new_fed(bot: Bot, update: Update):
                 LOGGER.warning("Cannot send a message to MESSAGE_DUMP")
         else:
             update.effective_message.reply_text("Please give a name for the federation.")
-	
+    else:
+        update.effective_message.reply_text("Only one federation per person.")
 	
 @run_async
 def del_fed(bot: Bot, update: Update, args: List[str]):
