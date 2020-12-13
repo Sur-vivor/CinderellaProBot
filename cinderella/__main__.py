@@ -28,7 +28,7 @@ from cinderella.modules.connection import connect_button
 
 PM_START_TEXT = """
 _Hello_ *{}*
-_My name is_ *{}*\n_A POWER FULL BOT OF \n[{}](tg://user?id={})_
+_My name is_ *{}*\n_A POWER FULL BOT OF \n MY OWNER_
 """
 
 
@@ -602,7 +602,7 @@ def main():
             updater.bot.set_webhook(url=URL + TOKEN)
 
     else:
-        LOGGER.info("Cinderella running...")
+        LOGGER.info("uumbiitund...")
         updater.start_polling(timeout=15, read_latency=4)
 
     updater.idle()
