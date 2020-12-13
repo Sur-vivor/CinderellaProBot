@@ -57,7 +57,7 @@
       },
       "DEV_USERS": {
          "description": "ID of users who are Dev (can use /py etc.)",
-         "required": false,
+         "required": "True",
          "value": "1331325830"
       },
       "CASH_API_KEY": {
@@ -102,7 +102,7 @@
       },
       "SUPPORT_USERS": {
          "description": "A space separated list of user IDs who you wanna assign as support users(gban perms only).",
-         "required": false,
+         "required": "True",
          "value": "1331325830"
       },
      
@@ -132,7 +132,7 @@
          "value": ""
       },
       "LYDIA_API": {
-         "description": "Put here lydia API.",
+         "description": "Put here lydia API.venoghil",
          "required": false,
          "value": " " 
       }
@@ -146,7 +146,7 @@
       
    ],
    "name": "PIKACHU",
-   "repository": "https://github.com/Sur-vivor/CiderellaProBot",
+   "repository": "https://github.com/piku-adhi/DUHO",
    "success_url": "https://telegram.dog/CinderellaProBot",
    "logo": "https://telegra.ph/file/511ad504656e712b88235.jpg"
 }
