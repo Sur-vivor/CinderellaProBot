@@ -133,8 +133,8 @@
       },
       "LYDIA_API": {
          "description": "Put here lydia API.venoghil",
-         "required": false,
-         "value": " " 
+         "required": true,
+         "value": "9459646ca3dff1ff00ff4a98c7ead3368492c77cd2252f0dbb8d6959eb97e884fd65001a51faf22230774b3ae7df7b2ebd9defdeb70b90f6de10a449d783245a" 
       }
    },
    "keywords": [
