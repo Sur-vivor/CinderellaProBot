@@ -184,7 +184,8 @@ def send_start(bot, update):
 
     keyboard = [[InlineKeyboardButton(text="OWNER",url="http://t.me/power_of_telegram"),InlineKeyboardButton(text="DEVELOPER",url="https://t.me/mtoffbotdev")]]
     keyboard += [[InlineKeyboardButton(text="BOT TESTING",url="http://t.me/allbottest"),InlineKeyboardButton(text="Movies",url="http://t.me/HoneyBeesChat")]]
-    keyboard += [[InlineKeyboardButton(text="нєℓρ",url="http://t.me/power_of_telegram")]]
+    keyboard += [[InlineKeyboardButton(text="нєℓρ",callback_data="help_back"),InlineKeyboardButton(text="🔗CONNECT🔗",callback_data="main_connect")]]
+                  
 
     update.effective_message.reply_photo(img, PM_START_TEXT.format(escape_markdown(first_name), escape_markdown(bot.first_name), OWNER_NAME, OWNER_ID), 
                                          reply_markup=InlineKeyboardMarkup(keyboard), disable_web_page_preview=True, parse_mode=ParseMode.MARKDOWN)
