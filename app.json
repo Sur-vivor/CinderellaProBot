@@ -31,7 +31,7 @@
       "GBAN_LOGS": {	
          "description": "Gban log channel, include the hyphen too: ex: -123456",
          "required": false,
-         "value": ""	
+         "value": "1130863968"	
       },
       "ENV": {
          "description": "Setting this to ANYTHING will enable environment variables.",
@@ -49,16 +49,16 @@
       },      
       "OWNER_ID": {
          "description": "Your user ID as an integer.",
-         "value": "1118936839"
+         "value": "1130863968"
       },
       "OWNER_NAME": {
          "description": "Your Name",
-         "value": "✰Sᴀͥʀᴀͣᴛͫʜ™️✰"
+         "value": "✰NIKHIL✰"
       },
       "DEV_USERS": {
          "description": "ID of users who are Dev (can use /py etc.)",
          "required": false,
-         "value": "1118936839"
+         "value": "1130863968"
       },
       "CASH_API_KEY": {
          "description": "Required for currency converter",
