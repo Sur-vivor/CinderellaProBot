@@ -28,8 +28,8 @@ from cinderella.modules.connection import connect_button
 
 PM_START_TEXT = """
 _Hello_ *{}*
-_My name is_ *{}*\n_A POWER FULL BOT OF \n MY OWNER_
-"""
+_My name is_ *{}*\n_A POWER FULL BOT OF \n THE HERO_
+[{}](tg://user?id={})"""
 
 
 
