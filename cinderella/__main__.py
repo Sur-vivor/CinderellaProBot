@@ -183,7 +183,7 @@ def send_start(bot, update):
     text = PM_START_TEXT
 
     keyboard = [[InlineKeyboardButton(text="OWNER",url="http://t.me/power_of_telegram"),InlineKeyboardButton(text="DEVELOPER",url="https://t.me/mtoffbotdev")]]
-    keyboard += [[InlineKeyboardButton(text="BOT TESTING",url="http://t.me/allbottest"),InlineKeyboardButton(text="Movies",url="http://t.me/HoneyBeesChat")]]
+    keyboard += [[InlineKeyboardButton(text="GIT REPOS",url="http://t.me/Bot_Hub1"),InlineKeyboardButton(text="OUR COMMUNITY",url="http://t.me/HoneyBeesChat")]]
     keyboard += [[InlineKeyboardButton(text="нєℓρ",callback_data="help_back"),InlineKeyboardButton(text="🔗CONNECT🔗",callback_data="main_connect")]]
                   
 
