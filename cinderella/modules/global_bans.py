@@ -113,7 +113,7 @@ def gban(bot: Bot, update: Update, args: List[str]):
 
         return
     
-    message.reply_text("⚡️ *Snaps the Banhammer* ⚡️")
+    message.reply_text("GOING TO KILL THIS GUY ")
     
     start_time = time.time()
     datetime_fmt = "%H:%M - %d-%m-%Y"
@@ -192,7 +192,7 @@ def gban(bot: Bot, update: Update, args: List[str]):
             parse_mode=ParseMode.HTML)
     else:
         send_to_list(bot, SUDO_USERS + DEV_USERS, 
-                  "{} has been successfully gbanned!".format(mention_html(user_chat.id, user_chat.first_name)),
+                  "{} has been successfully killed!".format(mention_html(user_chat.id, user_chat.first_name)),
                 html=True)
         
     message.reply_text("Done! {} has been globally banned.".format(mention_html(user_chat.id, user_chat.first_name)),
