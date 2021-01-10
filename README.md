@@ -1,4 +1,4 @@
-### @Piku_Piku_bot // http://www.telegram.dog/Piku_Piku_bot
+### HydraProBot @HydraPro_bot
 > with HunterxHunter theme.
 
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/)  
@@ -11,13 +11,13 @@ Modular Telegram bot for managing your groups with a extras features with Hunter
     <img src="https://img.shields.io/github/forks/Sur-vivor/CinderellaProBot?label=Fork&style=social">
     
   </a>
-  <a href="https://github.com/Sur-vivor/CinderellaProBot">
+  <a href="https://github.com/Zyruz-ramu/hydraprobot">
     <img src="https://img.shields.io/github/stars/Sur-vivor/CinderellaProBot?style=social">
   </a>
 </p>
 
 ### Click Below Image to Deploy
-[![Deploy](https://telegra.ph/file/48f109f213b0b453e4e3d.jpg)](https://heroku.com/deploy?template=https://github.com/piku-adhi/DUHO.git)
+[![Deploy](https://telegra.ph/file/3045588b3ecbfd54998b8.jpg)](https://heroku.com/deploy?template=https://github.com/Zyruz-ramu/hydraprobot.git)
 
 ### Configuration
 
