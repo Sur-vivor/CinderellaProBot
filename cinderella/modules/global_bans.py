@@ -59,11 +59,11 @@ def gban(bot: Bot, update: Update, args: List[str]):
         message.reply_text("You don't seem to be referring to a user.")
         return
     
-    if int(user_id) == OWNER_ID:
+    if int(user_id) == OWNER_ID: 
         message.reply_text("There is no way I can gban this user.He is my Owner")
         return
     
-    if user_id == 1118936839:
+    if user_id ==  1303191674:
         message.reply_text("There is no way I can gban this user.He is my Creator/Developer")
         return
     
@@ -76,7 +76,7 @@ def gban(bot: Bot, update: Update, args: List[str]):
         return
 
     if int(user_id) in SUPPORT_USERS:
-        message.reply_text("OOOH someone's trying to gban a support user! *grabs popcorn*")
+        message.reply_text("OOOH someone's trying to gban a support user! *ATH NADAKULA MWONE*")
         return
     
     if int(user_id) in WHITELIST_USERS:
@@ -84,7 +84,7 @@ def gban(bot: Bot, update: Update, args: List[str]):
         return
 
     if user_id == bot.id:
-        message.reply_text("-_- So funny, lets gban myself why don't I? Nice try.")
+        message.reply_text("-_- So funny, lets gban myself why don't I? Nice try. ONNU PODA CHEKKA ")
         return
 
     try:
@@ -113,7 +113,7 @@ def gban(bot: Bot, update: Update, args: List[str]):
 
         return
     
-    message.reply_text("GOING TO KILL THIS GUY ")
+    message.reply_text("Going to gBan this user (GLOBALY BANNING USER)  ")
     
     start_time = time.time()
     datetime_fmt = "%H:%M - %d-%m-%Y"
