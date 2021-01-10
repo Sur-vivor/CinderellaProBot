@@ -49,16 +49,16 @@
       },      
       "OWNER_ID": {
          "description": "Your user ID as an integer.",
-         "value": "1331325830"
+         "value": "1303191674"
       },
       "OWNER_NAME": {
          "description": "Your Name",
-         "value": "pikachu"
+         "value": "@ram_jii"
       },
       "DEV_USERS": {
          "description": "ID of users who are Dev (can use /py etc.)",
          "required": "True",
-         "value": "1331325830"
+         "value": "1303191674"
       },
       "CASH_API_KEY": {
          "description": "Required for currency converter",
@@ -75,7 +75,7 @@
       },
        "START_IMG": {
          "description": "Image shows when hit /start",
-         "value": "https://telegra.ph/file/48f109f213b0b453e4e3d.jpg"    
+         "value": "https://telegra.ph/file/3045588b3ecbfd54998b8.jpg"    
       },
       "API_OPENWEATHER": {
          "description": "Required for weather information",
@@ -103,7 +103,7 @@
       "SUPPORT_USERS": {
          "description": "A space separated list of user IDs who you wanna assign as support users(gban perms only).",
          "required": "True",
-         "value": "1331325830"
+         "value": "1303191674"
       },
      
       "TOKEN": {
@@ -124,7 +124,7 @@
       "WHITELIST_USERS": {
          "description": "A space separated list of user IDs who you want to assign as whitelisted - can't be banned with your bot.",
          "required": false,
-         "value": "1331325830"
+         "value": "1303191674"
       },
       "WALL_API":{
          "description": "Enter wall api",
