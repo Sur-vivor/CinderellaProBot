@@ -28,7 +28,8 @@ from cinderella.modules.connection import connect_button
 
 PM_START_TEXT = """
 _Hello_ *{}*
-_My name is_ *{}*\n_A powerfull group management bot to manage your group add me to your group)"""
+_My name is_ *{}*\n_A POWER FULL BOT FOR  \n GROUP MANEGEMENT MADE BY_
+[{}](tg://user?id=%7B%7D)"""
 
 
 HELP_STRINGS = """
