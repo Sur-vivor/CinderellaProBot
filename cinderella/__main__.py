@@ -36,13 +36,12 @@ _My name is_ *{}*\n_A POWER FULL BOT OF \n THE HERO_
 
 HELP_STRINGS = """
 Hey there! My name is *{}*.
-I'm a modular group management bot with a few fun extras! Have a look at the following for an idea of some of \
+I'm a powerful group management bot with a few fun extras! Have a look at the following for an idea of some of \
 the things I can help you with.
 *Main* commands available:
  🔆- /start: start the bot
  🔱 - /help: PM's you this message.
  ▶️- /help <module name>: PM's you info about that module.
- ⏩ - /source: clone me .
  🗡️- /settings:
    ➡️ - in PM: will send you your settings for all supported modules.
    ♒- in a group: will redirect you to pm, with all that chat's settings.
@@ -57,11 +56,6 @@ VERSION = "6.0"
 def vercheck() -> str:
     return str(VERSION)
 
-
-SOURCE_STRING = """
-⚡I'm built in python3, using the python-telegram-bot library, and am fully opensource - you can find what makes me tick [there](https://t.me/Bot_Hub1)
-⚡You Can Clone Me [Here](https://github.com/piku-adhi/DUHO)
-"""
 
 
 IMPORTED = {}
@@ -79,7 +73,7 @@ GDPR = []
 
 START_IMG = os.environ.get('START_IMG', None)
 if START_IMG is None:
-    img = "https://telegra.ph/file/48f109f213b0b453e4e3d.jpg"
+    img = "https://telegra.ph/file/3045588b3ecbfd54998b8.jpg"
 
   
 else:
@@ -182,8 +176,8 @@ def send_start(bot, update):
     first_name = update.effective_user.first_name 
     text = PM_START_TEXT
 
-    keyboard = [[InlineKeyboardButton(text="OWNER",url="http://t.me/power_of_telegram"),InlineKeyboardButton(text="DEVELOPER",url="https://t.me/mtoffbotdev")]]
-    keyboard += [[InlineKeyboardButton(text="GIT REPOS",url="http://t.me/Bot_Hub1"),InlineKeyboardButton(text="OUR COMMUNITY",url="http://t.me/HoneyBeesChat")]]
+    keyboard = [[InlineKeyboardButton(text="OWNER",url="http://t.me/ram_jii"),InlineKeyboardButton(text="DEVELOPER",url="https://t.me/ram_jii")]]
+    keyboard += [[InlineKeyboardButton(text=" REPO ",url="http://t.me/ram_jii"),InlineKeyboardButton(text="OUR COMMUNITY",url="http://t.me/malayalam_chat2")]]
     keyboard += [[InlineKeyboardButton(text="нєℓρ",callback_data="help_back"),InlineKeyboardButton(text="🔗CONNECT🔗",callback_data="main_connect")]]
                   
 
@@ -286,7 +280,7 @@ def get_help(bot: Bot, update: Update):
         update.effective_message.reply_text("Contact me in PM to get the list of possible commands.",
                                             reply_markup=InlineKeyboardMarkup(
                                                 [[InlineKeyboardButton(text="⚔️Help⚔️",url="t.me/{}?start=help".format(bot.username))],  
-                                                [InlineKeyboardButton(text="⚠️Contact Creator⚠️",url="https://t.me/fun_heat")]]))
+                                                [InlineKeyboardButton(text="⚠️Contact Creator⚠️",url="https://t.me/ram_jii")]]))
         return
 
     elif len(args) >= 2 and any(args[1].lower() == x for x in HELPABLE):
