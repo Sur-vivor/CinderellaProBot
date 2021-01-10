@@ -177,7 +177,7 @@ def send_start(bot, update):
     text = PM_START_TEXT
 
     keyboard = [[InlineKeyboardButton(text="OWNER",url="http://t.me/ram_jii"),InlineKeyboardButton(text="DEVELOPER",url="https://t.me/ram_jii")]]
-    keyboard += [[InlineKeyboardButton(text=" REPO ",url="http://t.me/ram_jii"),InlineKeyboardButton(text="OUR COMMUNITY",url="http://t.me/malayalam_chat2")]]
+    keyboard += [[InlineKeyboardButton(text=" REPO ",url="http://t.me/ram_jii"),InlineKeyboardButton(text="OUR COMMUNITY",url="http://t.me/nimmi_hydrasupport")]]
     keyboard += [[InlineKeyboardButton(text="нєℓρ",callback_data="help_back"),InlineKeyboardButton(text="🔗CONNECT🔗",callback_data="main_connect")]]
                   
 
