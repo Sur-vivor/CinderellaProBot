@@ -28,8 +28,9 @@ from cinderella.modules.connection import connect_button
 
 PM_START_TEXT = """
 _Hello_ *{}*
-_My name is_ *{}*\n_A POWER FULL BOT OF \n THE HERO_
-[{}](tg://user?id={})"""
+_My name is_ *{}*\n_A POWER FULL BOT FOR GROUP MANAGING.
+GIVE ME A TRY BY ADDING ME TO YOUR GROUP /help for ALL MODUELS AVAILABLE FOR THIS BOT
+
 
 
 
@@ -176,9 +177,9 @@ def send_start(bot, update):
     first_name = update.effective_user.first_name 
     text = PM_START_TEXT
 
-    keyboard = [[InlineKeyboardButton(text="OWNER",url="http://t.me/ram_jii"),InlineKeyboardButton(text="DEVELOPER",url="https://t.me/ram_jii")]]
-    keyboard += [[InlineKeyboardButton(text=" REPO ",url="http://t.me/ram_jii"),InlineKeyboardButton(text="OUR COMMUNITY",url="http://t.me/nimmi_hydrasupport")]]
-    keyboard += [[InlineKeyboardButton(text="нєℓρ",callback_data="help_back"),InlineKeyboardButton(text="🔗CONNECT🔗",callback_data="main_connect")]]
+    keyboard = [[InlineKeyboardButton(text="DEVELOPER",url="https://t.me/ram_jii")]]
+    keyboard += [[InlineKeyboardButton(text="OUR COMMUNITY",url="http://t.me/nimmi_hydrasupport")]]
+   
                   
 
     update.effective_message.reply_photo(img, PM_START_TEXT.format(escape_markdown(first_name), escape_markdown(bot.first_name), OWNER_NAME, OWNER_ID), 
