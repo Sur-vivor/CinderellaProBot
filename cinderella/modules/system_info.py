@@ -103,7 +103,7 @@ def status(bot: Bot, update: Update):
 	reply = str(stat)+ str(softw) + str(cpuu) + str(memm) + "\n"
 	bot.send_message(chat.id, reply, parse_mode=ParseMode.MARKDOWN)        
         # bot info
-	" THIS BOT IS CURRENTLY UPDATED WITH MASTER! FOR ANY QUERY CONTACT DEVOLEPER [HERE](https://t.me/ram_jii)"
+        memm += "THIS BOT IS CURRENTLY UPDATED WITH MASTER! FOR ANY QUERY CONTACT DEVOLEPER [HERE](https://t.me/ram_jii)"
 __help__ = """
 - /system : To know System status
 - /speed or - /speedtest: To find Speed
