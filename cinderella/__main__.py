@@ -34,7 +34,7 @@ _My name is_ *{}*\n_A POWER FULL BOT FOR \n GROUP MANEGEMENT. [ /help ] for All 
 
 HELP_STRINGS = """
 Hey there! My name is *{}*.
-I'm a powerful group management bot with few new features! give me a at the following for an idea of some of \
+ HEYY I'm a powerful group management bot with few new features! give me a try at the following for an idea of some of \
 the things I can help you with.
 *Main* commands available:
  - /start: start the bot
