@@ -94,27 +94,16 @@ def sing(bot: Bot, update: Update):
     else:
       message.reply_text(random.choice(SONG_STRINGS))
     
-    @run_async
-def update(bot: Bot, update: Update):
-    bot.sendChatAction(update.effective_chat.id, "typing") # Bot typing before send messages
-    message = update.effective_message
-    if message.reply_to_message:
-      message.reply_to_message.reply_text(random.choice(UPDATE_STRINGS))
-    else:
-      message.reply_text(random.choice(UPDATE_STRINGS))
-
+ 
 __help__ = """
 - /abuse : Abuse someone in malayalam.
 - /sing : First lines of some random malayalam Songs.
-- /update : get info of update and creator.
 """
 
 __mod_name__ = "EXTRAS"
 
 ABUSE_HANDLER = DisableAbleCommandHandler("abuse", abuse)
 SING_HANDLER = DisableAbleCommandHandler("sing", sing)
-UPADTE_HANDLER = DisableAbleCommandHandler("update", update)
 
 dispatcher.add_handler(ABUSE_HANDLER)
 dispatcher.add_handler(SING_HANDLER)
-dispatcher.add_handler(UPDATE_HANDLER)
