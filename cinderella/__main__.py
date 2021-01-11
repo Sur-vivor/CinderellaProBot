@@ -34,15 +34,15 @@ _My name is_ *{}*\n_A POWER FULL BOT FOR \n GROUP MANEGEMENT. [ /help ] for All 
 
 HELP_STRINGS = """
 Hey there! My name is *{}*.
- HEYY I'm a powerful group management bot with few new features! give me a try at the following for an idea of some of \
+I'm a powerful group management bot with few new features! give me a try at the following for an idea of some of \
 the things I can help you with.
 *Main* commands available:
  - /start: start the bot
  - /help: PM's you this message.
  - /help <module name>: PM's you info about that module.
  - /settings:
-   ➡️ - in PM: will send you your settings for all supported modules.
-   ♒- in a group: will redirect you to pm, with all that chat's settings.
+ - in PM: will send you your settings for all supported modules.
+ - in a group: will redirect you to pm, with all that chat's settings.
 {}
 And the following:
 """.format(dispatcher.bot.first_name, "" if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\n")
