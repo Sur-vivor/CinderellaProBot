@@ -114,7 +114,9 @@ for module_name in ALL_MODULES:
 
     if hasattr(imported_module, "__user_settings__"):
         USER_SETTINGS[imported_module.__mod_name__.lower()] = imported_module
-
+      
+    if hasattr(imported-module, "__update__"):
+        UPDATE_STRINGS[imported_module.__mod_name__.lower()] = imported_module
 
 # do not async
 def send_help(chat_id, text, keyboard=None):
