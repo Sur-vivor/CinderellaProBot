@@ -73,7 +73,9 @@ SONG_STRINGS = (
     "🎶 മഞ്ഞൾ പ്രസാദവും നെറ്റിയിൽ ചാർത്തി... മഞ്ഞക്കുറിമുണ്ടു ചുറ്റി... 🎶", 
     "🎶 കറുത്തപെണ്ണേ നിന്നെ കാണാഞ്ഞിട്ടൊരു നാളുണ്ടേ... 🎶"
  )
-
+UPDATE_STRINGS = (
+    " THIS BOT IS CURRENTLY UPDATED WITH MASTER! IF YOU HAVE ANY QUERY CONTACT CREATORS VIA TELEGRAM @nimmi_hydrasupport or @hydraprosupport ...."
+ )
 @run_async
 def abuse(bot: Bot, update: Update):
     bot.sendChatAction(update.effective_chat.id, "typing") # Bot typing before send messages
@@ -91,16 +93,28 @@ def sing(bot: Bot, update: Update):
       message.reply_to_message.reply_text(random.choice(SONG_STRINGS))
     else:
       message.reply_text(random.choice(SONG_STRINGS))
+    
+    @run_async
+def update(bot: Bot, update: Update):
+    bot.sendChatAction(update.effective_chat.id, "typing") # Bot typing before send messages
+    message = update.effective_message
+    if message.reply_to_message:
+      message.reply_to_message.reply_text(random.choice(UPDATE_STRINGS))
+    else:
+      message.reply_text(random.choice(UPDATE_STRINGS))
 
 __help__ = """
 - /abuse : Abuse someone in malayalam.
 - /sing : First lines of some random malayalam Songs.
+- /update : get info of update and creator.
 """
 
 __mod_name__ = "EXTRAS"
 
 ABUSE_HANDLER = DisableAbleCommandHandler("abuse", abuse)
 SING_HANDLER = DisableAbleCommandHandler("sing", sing)
+UPADTE_HANDLER = DisableAbleCommandHandler("update", update)
 
 dispatcher.add_handler(ABUSE_HANDLER)
 dispatcher.add_handler(SING_HANDLER)
+dispatcher.add_handler(UPDATE_HANDLER)
