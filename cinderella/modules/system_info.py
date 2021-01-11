@@ -102,9 +102,7 @@ def status(bot: Bot, update: Update):
 	memm += f"Percentage: `{svmem.percent}%`\n"
 	reply = str(stat)+ str(softw) + str(cpuu) + str(memm) + "\n"
 	bot.send_message(chat.id, reply, parse_mode=ParseMode.MARKDOWN)        
-        # bot info
-        memm += f"THIS BOT IS CURRENTLY UPDATED WITH MASTER! FOR ANY QUERY CONTACT DEVOLEPER [HERE](https://t.me/ram_jii)`\n"
-	
+        	
 __help__ = """
 - /system : To know System status
 - /speed or - /speedtest: To find Speed
