@@ -13,6 +13,16 @@
          "description": "Set this to True if you want ! to be a command prefix along with /",
          "value": "True"
       },
+      "TL_APP_ID": {
+         "description": "Get this value from my.telegram.org! Please do not steal",
+         "value": "",
+         "required": true
+      },
+      "TL_HASH": {
+         "description": "Get this value from my.telegram.org! Please do not steal",
+         "value": "",
+         "required": true
+      },
       "BAN_STICKER": {
          "description": "ID of the sticker you want to use when banning people.",
          "required": false,
