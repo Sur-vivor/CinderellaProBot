@@ -515,7 +515,7 @@ def fed_ban(bot: Bot, update: Update, args: List[str]):
 
 		fed_chats = sql.all_fed_chats(fed_id)
 		# Will send to current chat
-		bot.send_message(chat.id, "<b>New FederationBan</b>" \
+		bot.send_message(chat.id, "<b>FedBan reason updated</b>" \
 							 "\n<b>Federation:</b> {}" \
 							 "\n<b>Federation Admin:</b> {}" \
 							 "\n<b>User:</b> {}" \
@@ -618,7 +618,7 @@ def fed_ban(bot: Bot, update: Update, args: List[str]):
 
 	fed_chats = sql.all_fed_chats(fed_id)
 	# Will send to current chat
-	bot.send_message(chat.id, "<b>FedBan reason updated</b>" \
+	bot.send_message(chat.id, "<b>New Fedban</b>" \
 							"\n<b>Federation:</b> {}" \
 							"\n<b>Federation Admin:</b> {}" \
 							"\n<b>User:</b> {}" \
@@ -626,7 +626,7 @@ def fed_ban(bot: Bot, update: Update, args: List[str]):
 							"\n<b>Reason:</b> {}".format(fed_name, mention_html(user.id, user.first_name), user_target, fban_user_id, reason), parse_mode="HTML")
 	# Send message to owner if fednotif is enabled
 	if getfednotif:
-		bot.send_message(info['owner'], "<b>FedBan reason updated</b>" \
+		bot.send_message(info['owner'], "<b>New Fedban</b>" \
 							"\n<b>Federation:</b> {}" \
 							"\n<b>Federation Admin:</b> {}" \
 							"\n<b>User:</b> {}" \
@@ -636,7 +636,7 @@ def fed_ban(bot: Bot, update: Update, args: List[str]):
 	get_fedlog = sql.get_fed_log(fed_id)
 	if get_fedlog:
 		if int(get_fedlog) != int(chat.id):
-			bot.send_message(get_fedlog, "<b>FedBan reason updated</b>" \
+			bot.send_message(get_fedlog, "<b>New Fedban</b>" \
 							"\n<b>Federation:</b> {}" \
 							"\n<b>Federation Admin:</b> {}" \
 							"\n<b>User:</b> {}" \
