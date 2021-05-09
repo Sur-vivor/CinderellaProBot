@@ -1,95 +1,86 @@
-import asyncio
 import time
-
 from telethon import events
-from telethon.errors.rpcerrorlist import MessageDeleteForbiddenError
-from telethon.tl.types import ChannelParticipantsAdmins
 
-from cinderella import DEV_USERS, SUDO_USERS, client
-
-# Check if user has admin rights
-
-
-async def is_administrator(user_id: int, message):
-    admin = False
-    async for user in client.iter_participants(
-        message.chat_id, filter=ChannelParticipantsAdmins
-    ):
-        if user_id == user.id or user_id in SUDO_USERS or user_id in DEV_USERS:
-            admin = True
-            break
-    return admin
+from cinderella import telethn, OWNER_ID
+from cinderella.modules.helper_funcs.telethon.chat_status import (
+    can_delete_messages,
+    user_is_admin,
+)
 
 
-@client.on(events.NewMessage(pattern="^/purge"))
-async def purge(event):
-    start = time.perf_counter_ns()
-    chat = event.chat_id
-    msgs = []
-
-    if not await is_administrator(user_id=event.from_id, message=event):
-        await event.reply("You're not an admin!")
+async def purge_messages(event):
+    start = time.perf_counter()
+    if event.from_id is None:
         return
 
-    msg = await event.get_reply_message()
-    if not msg:
+    if not await user_is_admin(
+        user_id=event.sender_id, message=event
+    ) and event.from_id not in OWNER_ID:
+        await event.reply("Only Admins are allowed to use this command")
+        return
+
+    if not await can_delete_messages(message=event):
+        await event.reply("Can't seem to purge the message")
+        return
+
+    reply_msg = await event.get_reply_message()
+    if not reply_msg:
         await event.reply("Reply to a message to select where to start purging from.")
         return
+    messages = []
+    message_id = reply_msg.id
+    delete_to = event.message.id
+
+    messages.append(event.reply_to_msg_id)
+    for msg_id in range(message_id, delete_to + 1):
+        messages.append(msg_id)
+        if len(messages) == 100:
+            await event.client.delete_messages(event.chat_id, messages)
+            messages = []
 
     try:
-        msg_id = msg.id
-        count = 0
-        end = time.perf_counter_ns()
-        time_taken = (end - start) / (10 ** 6)  # ns to ms
-        timep = "{:.2f}".format(time_taken)
-        to_delete = event.message.id - 1
-        await event.client.delete_messages(chat, event.message.id)
-        msgs.append(event.reply_to_msg_id)
-        for m_id in range(to_delete, msg_id - 1, -1):
-            msgs.append(m_id)
-            count += 1
-            if len(msgs) == 100:
-                await event.client.delete_messages(chat, msgs)
-                msgs = []
-
-        await event.client.delete_messages(chat, msgs)
-        del_res = await event.client.send_message(
-            event.chat_id, f"Purged {count} messages.\nin {timep}ms"
-        )
-
-        await asyncio.sleep(4)
-        await del_res.delete()
-
-    except MessageDeleteForbiddenError:
-        text = "Failed to delete messages.\n"
-        text += "Messages maybe too old or I'm not admin! or dont have delete rights!"
-        del_res = await event.respond(text, parse_mode="md")
-        await asyncio.sleep(7)
-        await del_res.delete()
+        await event.client.delete_messages(event.chat_id, messages)
+    except:
+        pass
+    time_ = time.perf_counter() - start
+    text = f"Purged Successfully in {time_:0.2f} Second(s)"
+    await event.respond(text, parse_mode="markdown")
 
 
-@client.on(events.NewMessage(pattern="^/del$"))
-async def delete_msg(event):
-
-    if not await is_administrator(user_id=event.from_id, message=event):
-        await event.reply("You're not an admin!")
+async def delete_messages(event):
+    if event.from_id is None:
         return
 
-    chat = event.chat_id
-    msg = await event.get_reply_message()
-    if not msg:
-        await event.reply("Reply to some message to delete it.")
+    if not await user_is_admin(
+        user_id=event.sender_id, message=event
+    ) and event.from_id not in OWNER_ID:
+        await event.reply("Only Admins are allowed to use this command")
         return
-    to_delete = event.message
+
+    if not await can_delete_messages(message=event):
+        await event.reply("Can't seem to delete this?")
+        return
+
+    message = await event.get_reply_message()
+    if not message:
+        await event.reply("Whadya want to delete?")
+        return
     chat = await event.get_input_chat()
-    remove = [msg, to_delete]
-    await event.client.delete_messages(chat, remove)
+    del_message = [message, event.message]
+    await event.client.delete_messages(chat, del_message)
 
 __help__ = """
-*Admin only:*
- - /del: deletes the message you replied to
- - /purge: deletes all messages between this and the replied to message.
- - /purge <integer X>: deletes the replied message, and X messages following it if replied to a message.
- - /purge <integer X>: deletes the number of messages starting from bottom. (Counts manaully deleted messages too)
+ ❍ /del*:* deletes the message you replied to
+ ❍ /purge*:* deletes all messages between this and the replied to message.
+ ❍ /purge <integer X>*:* deletes the replied message, and X messages following it if replied to a message.
 """
+
+PURGE_HANDLER = purge_messages, events.NewMessage(pattern="^[!/]purge$")
+DEL_HANDLER = delete_messages, events.NewMessage(pattern="^[!/]del$")
+
+telethn.add_event_handler(*PURGE_HANDLER)
+telethn.add_event_handler(*DEL_HANDLER)
+
 __mod_name__ = "PURGE"
+__command_list__ = ["del", "purge"]
+__handlers__ = [PURGE_HANDLER, DEL_HANDLER]
