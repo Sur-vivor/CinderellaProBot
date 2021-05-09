@@ -1,8 +1,8 @@
 import html
 
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update, Bot
 from telegram.error import BadRequest
-from telegram.ext import CallbackContext, CallbackQueryHandler, run_async
+from telegram.ext import CallbackQueryHandler, run_async
 from telegram.utils.helpers import mention_html
 
 import cinderella.modules.sql.approve_sql as sql
@@ -16,11 +16,10 @@ from cinderella.modules.log_channel import loggable
 @loggable
 @user_admin
 @run_async
-def approve(update, context):
+def approve(update, bot, args):
     message = update.effective_message
     chat_title = message.chat.title
     chat = update.effective_chat
-    args = context.args
     user = update.effective_user
     user_id = extract_user(message, args)
     if not user_id:
@@ -61,11 +60,10 @@ def approve(update, context):
 @loggable
 @user_admin
 @run_async
-def disapprove(update, context):
+def disapprove(update, bot, args):
     message = update.effective_message
     chat_title = message.chat.title
     chat = update.effective_chat
-    args = context.args
     user = update.effective_user
     user_id = extract_user(message, args)
     if not user_id:
@@ -99,7 +97,7 @@ def disapprove(update, context):
 
 @user_admin
 @run_async
-def approved(update, context):
+def approved(update, bot):
     message = update.effective_message
     chat_title = message.chat.title
     chat = update.effective_chat
@@ -117,10 +115,9 @@ def approved(update, context):
 
 @user_admin
 @run_async
-def approval(update, context):
+def approval(update, bot, args):
     message = update.effective_message
     chat = update.effective_chat
-    args = context.args
     user_id = extract_user(message, args)
     member = chat.get_member(int(user_id))
     if not user_id:
@@ -139,11 +136,11 @@ def approval(update, context):
 
 
 @run_async
-def unapproveall(update: Update, context: CallbackContext):
+def unapproveall(update: Update, bot):
     chat = update.effective_chat
     user = update.effective_user
     member = chat.get_member(user.id)
-    if member.status != "creator" and user.id not in DRAGONS:
+    if member.status != "creator" and user.id not in SUDO_USERS:
         update.effective_message.reply_text(
             "Only the chat owner can unapprove all users at once."
         )
@@ -170,7 +167,7 @@ def unapproveall(update: Update, context: CallbackContext):
 
 
 @run_async
-def unapproveall_btn(update: Update, context: CallbackContext):
+def unapproveall_btn(update, bot):
     query = update.callback_query
     chat = update.effective_chat
     message = update.effective_message
