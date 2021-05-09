@@ -16,7 +16,7 @@ from cinderella.modules.log_channel import loggable
 @loggable
 @user_admin
 @run_async
-def approve(update, bot, args):
+def approve(bot: Bot, update: Update, args: List[str]):
     message = update.effective_message
     chat_title = message.chat.title
     chat = update.effective_chat
@@ -60,7 +60,7 @@ def approve(update, bot, args):
 @loggable
 @user_admin
 @run_async
-def disapprove(update, bot, args):
+def disapprove(bot: Bot, update: Update, args: List[str]):
     message = update.effective_message
     chat_title = message.chat.title
     chat = update.effective_chat
@@ -97,7 +97,7 @@ def disapprove(update, bot, args):
 
 @user_admin
 @run_async
-def approved(update, bot):
+def approved(bot: Bot, update: Update):
     message = update.effective_message
     chat_title = message.chat.title
     chat = update.effective_chat
@@ -115,7 +115,7 @@ def approved(update, bot):
 
 @user_admin
 @run_async
-def approval(update, bot, args):
+def approval(bot: Bot, update: Update, args: List[str]):
     message = update.effective_message
     chat = update.effective_chat
     user_id = extract_user(message, args)
@@ -136,7 +136,7 @@ def approval(update, bot, args):
 
 
 @run_async
-def unapproveall(update: Update, bot):
+def unapproveall(bot: Bot, update: Update):
     chat = update.effective_chat
     user = update.effective_user
     member = chat.get_member(user.id)
@@ -167,7 +167,7 @@ def unapproveall(update: Update, bot):
 
 
 @run_async
-def unapproveall_btn(update, bot):
+def unapproveall_btn(bot: Bot, update: Update):
     query = update.callback_query
     chat = update.effective_chat
     message = update.effective_message
