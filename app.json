@@ -13,12 +13,12 @@
          "description": "Set this to True if you want ! to be a command prefix along with /",
          "value": "True"
       },
-      "TL_APP_ID": {
+      "APP_ID": {
          "description": "Get this value from my.telegram.org! Please do not steal",
          "value": "",
          "required": true
       },
-      "TL_HASH": {
+      "APP_HASH": {
          "description": "Get this value from my.telegram.org! Please do not steal",
          "value": "",
          "required": true
