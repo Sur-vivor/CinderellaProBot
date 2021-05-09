@@ -17,7 +17,7 @@ from cinderella.modules.log_channel import loggable
 @loggable
 @user_admin
 @run_async
-def approve(bot: Bot, update: Update, args: List[str]):
+def approve(bot: Bot, update: Update, args: List[str]) -> str:
     message = update.effective_message
     chat_title = message.chat.title
     chat = update.effective_chat
@@ -61,7 +61,7 @@ def approve(bot: Bot, update: Update, args: List[str]):
 @loggable
 @user_admin
 @run_async
-def disapprove(bot: Bot, update: Update, args: List[str]):
+def disapprove(bot: Bot, update: Update, args: List[str]) -> str:
     message = update.effective_message
     chat_title = message.chat.title
     chat = update.effective_chat
