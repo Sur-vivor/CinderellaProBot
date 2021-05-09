@@ -2,7 +2,7 @@ import time
 from telethon import events
 
 from cinderella import telethn, OWNER_ID
-from cinderella.modules.helper_funcs.telethn.chatstatus import (
+from cinderella.modules.helper_funcs.telethon.chat_status import (
     can_delete_messages,
     user_is_admin,
 )
