@@ -11,11 +11,13 @@ from cinderella import SUDO_USERS, dispatcher
 from cinderella.modules.disable import DisableAbleCommandHandler
 from cinderella.modules.helper_funcs.chat_status import user_admin
 from cinderella.modules.helper_funcs.extraction import extract_user
+from cinderella.modules.log_channel import loggable
 
 
+@loggable
 @user_admin
 @run_async
-def approve(bot: Bot, update: Update, args: List[str]) -> str:
+def approve(update: Update, args: List[str]) -> str:
     message = update.effective_message
     chat_title = message.chat.title
     chat = update.effective_chat
@@ -46,11 +48,20 @@ def approve(bot: Bot, update: Update, args: List[str]) -> str:
         f"[{member.user['first_name']}](tg://user?id={member.user['id']}) has been approved in {chat_title}! They will now be ignored by automated admin actions like locks, blocklists, and antiflood.",
         parse_mode=ParseMode.MARKDOWN,
     )
+    log_message = (
+        f"<b>{html.escape(chat.title)}:</b>\n"
+        f"#APPROVED\n"
+        f"<b>Admin:</b> {mention_html(user.id, user.first_name)}\n"
+        f"<b>User:</b> {mention_html(member.user.id, member.user.first_name)}"
+    )
+
+    return log_message
 
 
+@loggable
 @user_admin
 @run_async
-def disapprove(bot: Bot, update: Update, args: List[str]) -> str:
+def disapprove(update: Update, args: List[str]) -> str:
     message = update.effective_message
     chat_title = message.chat.title
     chat = update.effective_chat
@@ -75,11 +86,19 @@ def disapprove(bot: Bot, update: Update, args: List[str]) -> str:
     message.reply_text(
         f"{member.user['first_name']} is no longer approved in {chat_title}."
     )
+    log_message = (
+        f"<b>{html.escape(chat.title)}:</b>\n"
+        f"#UNAPPROVED\n"
+        f"<b>Admin:</b> {mention_html(user.id, user.first_name)}\n"
+        f"<b>User:</b> {mention_html(member.user.id, member.user.first_name)}"
+    )
+
+    return log_message
 
 
 @user_admin
 @run_async
-def approved(bot: Bot, update: Update):
+def approved(update: Update):
     message = update.effective_message
     chat_title = message.chat.title
     chat = update.effective_chat
@@ -97,7 +116,7 @@ def approved(bot: Bot, update: Update):
 
 @user_admin
 @run_async
-def approval(bot: Bot, update: Update, args: List[str]):
+def approval(update: Update, args: List[str]):
     message = update.effective_message
     chat = update.effective_chat
     user_id = extract_user(message, args)
@@ -118,7 +137,7 @@ def approval(bot: Bot, update: Update, args: List[str]):
 
 
 @run_async
-def unapproveall(bot: Bot, update: Update):
+def unapproveall(update: Update):
     chat = update.effective_chat
     user = update.effective_user
     member = chat.get_member(user.id)
@@ -149,7 +168,7 @@ def unapproveall(bot: Bot, update: Update):
 
 
 @run_async
-def unapproveall_btn(bot: Bot, update: Update):
+def unapproveall_btn(update: Update):
     query = update.callback_query
     chat = update.effective_chat
     message = update.effective_message
