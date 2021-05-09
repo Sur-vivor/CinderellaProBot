@@ -86,7 +86,7 @@ async def profanity(event):
            await event.reply("Only admins can execute this command!")
            return
         else:
-          if not await can_change_info(message=dmod):
+          if not await can_change_info(message=event):
             await event.reply("You are missing the following rights to use this command:CanChangeinfo")
             return
     if not input:
