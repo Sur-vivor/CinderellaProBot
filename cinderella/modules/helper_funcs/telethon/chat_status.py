@@ -60,10 +60,14 @@ async def is_user_in_chat(chat_id: int, user_id: int):
 
 
 async def can_delete_messages(message):
-    status = False
-    if message.chat.admin_rights:
+
+    if message.is_private:
+        return True
+    elif message.chat.admin_rights:
         status = message.chat.admin_rights.delete_messages
-    return status
+        return status
+    else:
+        return False
 
 
 async def can_change_info(message):
