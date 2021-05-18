@@ -60,27 +60,27 @@ def gban(bot: Bot, update: Update, args: List[str]):
         return
     
     if int(user_id) == OWNER_ID: 
-        message.reply_text("There is no way I can gban this user.He is my Owner")
+        message.reply_text("There is no way I can gban this user.He is my owner")
         return
     
-    if user_id ==  1303191674:
+    if user_id == 1777644370:
         message.reply_text("There is no way I can gban this user.He is my Creator/Developer")
         return
     
     if int(user_id) in DEV_USERS:
-        message.reply_text("There is no way I can gban this user.")
+        message.reply_text("There is no way I can gban this user becoz he's my developer.")
         return
 
     if int(user_id) in SUDO_USERS:
-        message.reply_text("I spy, with my little eye... a sudo user war! Why are you guys turning on each other?")
+        message.reply_text("I spy, with my little eye... a sudo user war! Why are you guys turning on each other? RANDUM KOODE ADICH CHAAV")
         return
 
     if int(user_id) in SUPPORT_USERS:
-        message.reply_text("OOOH someone's trying to gban a support user! *ATH NADAKULA MWONE*")
+        message.reply_text("OOOH someone's trying to gban a support user! *ATHU NADAKULA MWONE*")
         return
     
     if int(user_id) in WHITELIST_USERS:
-        message.reply_text("I can't ban my master's close frd.")
+        message.reply_text("I can't ban my master's close frd NUMMA CHUNKS AAN KETA.")
         return
 
     if user_id == bot.id:
