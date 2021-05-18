@@ -174,7 +174,7 @@ def send_start(bot, update):
     text = PM_START_TEXT
 
     keyboard = [[InlineKeyboardButton(text="DEVELOPER",url="https://t.me/esto_420")]]
-    keyboard += [[InlineKeyboardButton(text="OUR COMMUNITY",url="http://t.me/unitedbotsupport")]]
+    keyboard += [[InlineKeyboardButton(text="OUR COMMUNITY",url="http://t.me/tubots")]]
    
                   
 
@@ -276,8 +276,8 @@ def get_help(bot: Bot, update: Update):
 
         update.effective_message.reply_text("Contact me in PM to get the list of possible commands.",
                                             reply_markup=InlineKeyboardMarkup(
-                                                [[InlineKeyboardButton(text="⚔️Help⚔️",url="t.me/{}?start=help".format(bot.username))],  
-                                                [InlineKeyboardButton(text="⚠️Contact Creator⚠️",url="https://t.me/esto_420")]]))
+                                                [[InlineKeyboardButton(text="⚔Help⚔",url="t.me/{}?start=help".format(bot.username))],  
+                                                [InlineKeyboardButton(text="Contact Creator",url="https://t.me/esto_420")]]))
         return
 
     elif len(args) >= 2 and any(args[1].lower() == x for x in HELPABLE):
